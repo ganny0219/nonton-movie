@@ -1,0 +1,247 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Movie {
+  id                String            @id @default(uuid())
+  featured          Featured[]
+  type              String
+  title             String
+  slug              String            @unique
+  trailerUrl        String
+  resolution        String
+  vote              String[]          @default([])
+  year              String
+  rated             String
+  released          String
+  releasedTimestamp String            @default("")
+  runtime           String
+  genre             Genre[]
+  director          Director[]
+  writer            Writer[]
+  actor             Actor[]
+  plot              String
+  language          String
+  country           String
+  poster            String
+  rating            String           @default("10")
+  totalRating       Int           @default(0)
+  imdbId            String            @unique
+  production        String
+  views             Int               @default(0)
+  playerUrl         PlayerUrl[]
+  track             Track[]
+  season            Season[]
+  releaseSchedule   ReleaseSchedule[]
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+}
+
+model Season {
+  id                String    @id @default(uuid())
+  slug              String    @unique
+  name              String
+  released          String
+  releasedTimestamp String    @default("")
+  vote              String[]  @default([])
+  trailerUrl        String    @default("")
+  sequence          Int
+  poster            String
+  rating            String   @default("10")
+  totalRating       Int   @default(0)
+  episode           Episode[]
+  movieId           String
+  movie             Movie     @relation(fields: [movieId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+model Episode {
+  id                String             @id @default(uuid())
+  seasonId          String
+  season            Season             @relation(fields: [seasonId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  slug              String             @unique
+  sequence          Int
+  released          String
+  releasedTimestamp String             @default("")
+  title             String
+  plot              String
+  rating            String            @default("10")
+  totalRating       Int            @default(0)
+  vote              String[]           @default([])
+  poster            String
+  playerUrl         EpisodePlayerUrl[]
+  track             EpisodeTrack[]
+  views             Int                @default(0)
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model Track {
+  id        String   @id @default(uuid())
+  movieId   String
+  movie     Movie    @relation(fields: [movieId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  language  String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EpisodeTrack {
+  id        String   @id @default(uuid())
+  episodeId String
+  episode   Episode  @relation(fields: [episodeId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  language  String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PlayerUrl {
+  id      String @id @default(uuid())
+  movieId String
+  movie   Movie  @relation(fields: [movieId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name    String
+  url     String
+}
+
+model EpisodePlayerUrl {
+  id        String  @id @default(uuid())
+  episodeId String
+  episode   Episode @relation(fields: [episodeId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  name      String
+  url       String
+}
+
+model Director {
+  id        String   @id @default(uuid())
+  movie     Movie[]
+  name      String   @unique
+  as        String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Actor {
+  id        String   @id @default(uuid())
+  movie     Movie[]
+  name      String   @unique
+  as        String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Writer {
+  id        String   @id @default(uuid())
+  movie     Movie[]
+  name      String   @unique
+  as        String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Genre {
+  id        String   @id @default(uuid())
+  movie     Movie[]
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Ads {
+  id        String   @id @default(uuid())
+  sequence  Int
+  name      String
+  url       String
+  bannerUrl String
+  type      AdsType  @default(full)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AdsType {
+  full
+  half
+}
+
+model SocialMedia {
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  logoUrl   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ReleaseSchedule {
+  id        String   @id @default(uuid())
+  type      String
+  day       String
+  movieId   String
+  movie     Movie    @relation(fields: [movieId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Featured {
+  id        String   @id @default(uuid())
+  type      String
+  movieId   String
+  movie     Movie    @relation(fields: [movieId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ImdbSelector {
+  id           String   @id @default(uuid())
+  name         String   @unique
+  mainTitle    String
+  episodeTitle String
+  episodeArray String
+  rated        String
+  poster       String
+  genre        String
+  released     String
+  country      String
+  language     String
+  runtime      String
+  plot         String
+  year         String
+  writer       String
+  director     String
+  actorArray   String
+  actorName    String
+  actorAs      String
+  actorImage   String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model PlayerServer {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  baseUrl   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GoogleDrive {
+  id         String @id @default(uuid())
+  googleId   String @unique
+  imdbId     String
+  movieTitle String
+  season     Int
+  episode    Int
+  movieType String @default("")
+}

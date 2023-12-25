@@ -1,0 +1,15 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /pandora
+Disallow: /pandora/*
+Disallow: /api
+Disallow: /api/*
+Disallow: /_next
+Disallow: /_next/*
+
+# Sitemaps
+Sitemap: https://nontonmovie.online/sitemap.xml
