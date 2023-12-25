@@ -8,31 +8,15 @@ import EpisodeContainer from "@/components/movie/episode-container";
 import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
 import CustomHead from "@/components/custom-head";
 import { isMobileServerCheck } from "@/utils/server-function/global";
+import { getMovieListPage } from "@/utils/server-function/movie";
 import { getFeatured } from "@/utils/server-function/featured";
 import { getMovieListByGenrePage } from "@/utils/server-function/genre";
-import { getMovieListPage } from "@/utils/server-function/movie";
 import { getSeasonListPage } from "@/utils/server-function/season";
 import { getEpisodeListPage } from "@/utils/server-function/episode";
 
-type Props = {
-  movieTerbaru: Movie[];
-  featuredHome: Movie[];
-  actionMovie: Movie[];
-  animeMovie: Movie[];
-  drakorMovie: Movie[];
-  seasonTerbaru: Season[];
-  seriesTerbaru: Movie[];
-  episodeTerbaru: Episode[];
-};
-export default async function Home({}: // movieTerbaru,
-// featuredHome,
-// actionMovie,
-// animeMovie,
-// drakorMovie,
-// seasonTerbaru,
-// seriesTerbaru,
-// episodeTerbaru,
-Props) {
+
+
+export default async function Home() {
   const movieTerbaru = await getMovieListPage(1, "movie");
   const featuredHome = await getFeatured("home");
   const actionMovie = await getMovieListByGenrePage("action", 1);

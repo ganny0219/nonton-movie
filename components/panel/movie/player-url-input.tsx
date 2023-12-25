@@ -59,7 +59,6 @@ function PlayerUrlInput({ updateMode, playerServerListJson }: Props) {
     if (movieData.imdbId == "") {
       return alert("Masukan Imdb Terlebih Dahulu");
     }
-    console.log(playerServerListJson);
     const newPlayerUrl: PlayerUrl[] = [];
     playerUrl.map((player, playerIndex) => {
       if (player.name.toLowerCase().includes("vidsrc")) {
@@ -101,9 +100,8 @@ function PlayerUrlInput({ updateMode, playerServerListJson }: Props) {
           </button>
           <button
             disabled={editPlayer}
-            className={`mr-4 py-1 whitespace-nowrap ${
-              editPlayer ? " bg-[#ffffff50]" : "bg-[#fff]"
-            } px-2 rounded`}
+            className={`mr-4 py-1 whitespace-nowrap ${editPlayer ? " bg-[#ffffff50]" : "bg-[#fff]"
+              } px-2 rounded`}
             onClick={onSetVidsrc}
           >
             Set Vidsrc

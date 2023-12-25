@@ -77,13 +77,12 @@ async function RootComponent({ children, main }: Props) {
           `}
       </Script>
       <div
-        className={`${
-          main ? "w-[95%] sm:w-[90%] xl:w-[80%]" : "w-[95%] sm:w-[90%]"
-        } m-auto text-[#fff] min-h-[100vh]`}
+        className={`${main ? "w-[95%] sm:w-[90%] xl:w-[80%]" : "w-[95%] sm:w-[90%]"
+          } m-auto text-[#fff] min-h-[100vh]`}
       >
-        <Header />
+        {/* <Header /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
         <div className="flex flex-1 justify-end mt-4">
           <a
             href="#root-header"

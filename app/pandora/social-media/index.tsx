@@ -7,7 +7,7 @@ import { apiAxios } from "@/utils/axios";
 import { getSocialMedia } from "@/utils/server-function/social-media";
 import axios from "axios";
 import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 import React, { useState } from "react";
 
 type Props = {
@@ -85,9 +85,8 @@ function SocialMediaPanelPage({ socialMediaData }: Props) {
           />
           <button
             disabled={!tambahSocialValidation}
-            className={`ml-2 rounded ${
-              tambahSocialValidation ? "bg-[#fff]" : "bg-[#ffffff90]"
-            } p-1`}
+            className={`ml-2 rounded ${tambahSocialValidation ? "bg-[#fff]" : "bg-[#ffffff90]"
+              } p-1`}
             onClick={onTambahSocialMedia}
           >
             Tambah

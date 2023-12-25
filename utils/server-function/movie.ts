@@ -24,7 +24,6 @@ export const getMovieListPage = async (
       skip: ((page ? +page : 1) - 1) * 30,
       take: 30,
     });
-
     const movieLength: number = await prisma.movie.count({
       where: {
         type: type,
@@ -35,6 +34,7 @@ export const getMovieListPage = async (
       movieLength: movieLength,
     });
   } catch (err) {
+    console.log(err)
     throw new Error("getMoviePage Error~");
   }
 };

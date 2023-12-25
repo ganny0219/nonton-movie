@@ -67,7 +67,6 @@ function TrackEpisodeInput({
       ...newTrack[trackIndex],
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/vtt/${fileName}`,
     };
-    console.log(newTrack);
 
     dispatch(
       updateEpisodeData({
@@ -198,9 +197,8 @@ function TrackEpisodeInput({
         />
         <button
           disabled={editEpisode || editTrack}
-          className={`${
-            editEpisode || editTrack ? "bg-[ffffff90]" : "bg-[#fff]"
-          }  px-2 h-auto aspect-square rounded`}
+          className={`${editEpisode || editTrack ? "bg-[ffffff90]" : "bg-[#fff]"
+            }  px-2 h-auto aspect-square rounded`}
           onClick={onTambahTrack}
         >
           +
@@ -247,9 +245,8 @@ function TrackEpisodeInput({
               />
               <label
                 htmlFor={`vvt-${episodeSlug}-${trk.language}`}
-                className={`cursor-pointer ${
-                  !editTrack ? " bg-[#fff]" : "hidden bg-[#ffffff80]"
-                } shadow-md w-[30%] py-1 mr-2 rounded text-center`}
+                className={`cursor-pointer ${!editTrack ? " bg-[#fff]" : "hidden bg-[#ffffff80]"
+                  } shadow-md w-[30%] py-1 mr-2 rounded text-center`}
               >
                 Vtt {checkVttReady ? "Ready" : "Empty"}
               </label>
@@ -263,9 +260,8 @@ function TrackEpisodeInput({
               {!editEpisode && (
                 <button
                   disabled={editEpisode || editTrack}
-                  className={`${
-                    editEpisode || editTrack ? "bg-red-300" : "bg-red-500"
-                  } p-1 w-[10%] rounded justify-center items-center`}
+                  className={`${editEpisode || editTrack ? "bg-red-300" : "bg-red-500"
+                    } p-1 w-[10%] rounded justify-center items-center`}
                   onClick={(e) => onDelete(e, trackIndex)}
                 >
                   x
