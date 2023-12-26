@@ -13,15 +13,15 @@ import CustomHead from "@/components/custom-head";
 import { getStringParams } from "@/utils/server-function/global";
 import { getSeasonBySlug } from "@/utils/server-function/season";
 import { getRecomendarionMovie } from "@/utils/server-function/movie";
+import { PageProps } from "@/types/global";
 
-type Props = {
-  season: Season;
-  recomendMovie: Movie[];
-};
-function StreamSeriesPage({ season, recomendMovie }: Props) {
+async function StreamSeriesPage(props: PageProps) {
+  const slug = props.params.slug;
+  const season: Season = await getSeasonBySlug(slug);
+  const recomendMovie = await getRecomendarionMovie(season.movie.genre);
   return (
     <>
-      <CustomHead
+      {/* <CustomHead
         title={`Nonton ${season?.movie?.title} :
         ${season.name} - Subtitle Indonesia - Nonton Movie`}
         description={`Nonton Movie - Nonton Film ${season?.movie?.title} :
@@ -32,7 +32,7 @@ function StreamSeriesPage({ season, recomendMovie }: Props) {
         ${season.name} Gratis, Nonton ${season?.movie?.title} :
         ${season.name} Streaming, ${season?.movie?.title} :
         ${season.name} Subtitle Indonesia`}
-      />
+      /> */}
       <RootComponent>
         <PageContainer>
           {/* <AdsContainerTwoGrid /> */}
@@ -74,33 +74,3 @@ function StreamSeriesPage({ season, recomendMovie }: Props) {
 }
 
 export default StreamSeriesPage;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const slug = getStringParams(context, "slug");
-    const season = await getSeasonBySlug(slug);
-    const recomendMovie = await getRecomendarionMovie(season.movie.genre);
-
-    if (season) {
-      return {
-        props: {
-          season,
-          recomendMovie,
-        },
-      };
-    } else {
-      return {
-        props: {},
-        notFound: true,
-      };
-    }
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

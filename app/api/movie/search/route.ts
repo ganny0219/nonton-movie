@@ -1,9 +1,10 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest) {
   try {
-    const { search } = req.query;
+    const search = req.nextUrl.searchParams.get("search");
     if (search != "" && search?.length ? search?.length > 1 : true) {
       const movie = await prisma.movie.findMany({
         where: {
@@ -17,14 +18,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         },
         take: 5,
       });
-      return res.status(200).json(movie);
+      return NextResponse.json(movie, { status: 200 });
     }
-    return res.status(200).json([]);
+    return NextResponse.json([], { status: 200 });
   } catch (err) {
-    res.status(403).json({
-      message: err,
-    });
+    return NextResponse.json(
+      {
+        message: err,
+      },
+      { status: 403 }
+    );
   }
 }
-
-export default handler;

@@ -1,10 +1,9 @@
 import { prisma } from "@/prisma/prisma-client";
 import { convertDate } from "@/utils/client-function/global";
-import { Movie } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { movieData } = req.body;
+export async function PATCH(req: NextRequest) {
+  const { movieData } = await req.json();
   try {
     const result = await prisma.movie.update({
       where: {
@@ -32,13 +31,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         plot: movieData.plot,
       },
     });
-    res.status(200).json(result);
+    return NextResponse.json(result, { status: 200 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json({
-      message: err,
-    });
+    return NextResponse.json(
+      {
+        message: err,
+      },
+      { status: 403 }
+    );
   }
 }
-
-export default handler;

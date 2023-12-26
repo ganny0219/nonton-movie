@@ -5,6 +5,7 @@ import { apiAxios } from "@/utils/axios";
 import { getPlayerServerListJson } from "@/utils/server-function/player-server";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
   googleId: string;
@@ -19,17 +20,10 @@ type Body = {
   movieType: string;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
   try {
-    const {
-      imdbId,
-      movieTitle,
-      googleId,
-      selectedServer,
-      playerList,
-      update,
-      movieType,
-    }: Body = req.body;
+    const { googleId, selectedServer, playerList, update }: Body =
+      await req.json();
 
     let generateResult: GoogleGenereateResult = {
       playerx: "",
@@ -116,11 +110,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     //     },
     //   });
     // }
-    res.status(200).json(generateResult);
+    return NextResponse.json(generateResult, { status: 200 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json(err);
+    return NextResponse.json({ message: err }, { status: 403 });
   }
 }
-
-export default handler;

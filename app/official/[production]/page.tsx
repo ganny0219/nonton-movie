@@ -1,22 +1,20 @@
 import React from "react";
 import PageContainer from "@/components/layouts/page-container";
 import RootComponent from "@/components/root-component";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
-import { Movie } from "@/types/movie";
 import MovieContainer from "@/components/movie/movie-container";
 import MovieCard from "@/components/movie/movie-card";
 import Pagination from "@/components/pagination";
 import CustomHead from "@/components/custom-head";
-import { apiAxios } from "@/utils/axios";
-import { getStringParams } from "@/utils/server-function/global";
 import { getMovieByOfficalPage } from "@/utils/server-function/movie";
+import { PageProps } from "@/types/global";
+import { MovieResponse } from "@/types/movie";
 
-type Props = {
-  movie: Movie[];
-  movieLength: number;
-  productionName: string;
-};
-function OfficialProductionPage({ movie, productionName, movieLength }: Props) {
+async function OfficialProductionPage(props: PageProps) {
+  const productionName = props.params.production;
+  const { movie, movieLength }: MovieResponse = await getMovieByOfficalPage(
+    1,
+    productionName
+  );
   return (
     <>
       <CustomHead
@@ -48,41 +46,3 @@ function OfficialProductionPage({ movie, productionName, movieLength }: Props) {
 }
 
 export default OfficialProductionPage;
-export const getStaticPaths: GetStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const productionName = getStringParams(context, "production");
-    const { movie, movieLength } = await getMovieByOfficalPage(
-      1,
-      productionName
-    );
-    if (movie) {
-      return {
-        props: {
-          movie,
-          movieLength,
-          productionName,
-        },
-        revalidate: 60,
-      };
-    } else {
-      return {
-        props: {},
-        notFound: true,
-      };
-    }
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

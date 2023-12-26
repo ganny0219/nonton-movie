@@ -44,7 +44,7 @@ function SelectorSeriesContainer({ imdbSelector }: Props) {
   const editHandler = async () => {
     if (edit == false) {
       await apiAxios
-        .post(
+        .patch(
           `/imdb-selector/update`,
           {
             selectorData: selectorData,

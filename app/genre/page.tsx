@@ -7,18 +7,15 @@ import { GetServerSideProps, GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
 
-type Props = {
-  genreList: Genre[];
-};
-
-function GenrePage({ genreList }: Props) {
+async function GenrePage() {
+  const genreList: Genre[] = await getGenreList();
   return (
     <>
-      <CustomHead
+      {/* <CustomHead
         title="Nonton Film, Movie, Box Office Terbaru dan Terlengkap Subtitle Indonesia - Nonton Movie"
         description="Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus."
         keywords="Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime"
-      />
+      /> */}
       <RootComponent>
         <PageContainer>
           <h1 className="text-3xl mt-4">Genre</h1>
@@ -43,24 +40,3 @@ function GenrePage({ genreList }: Props) {
 }
 
 export default GenrePage;
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const genreList = await getGenreList();
-
-    return {
-      props: {
-        genreList,
-      },
-      revalidate: 60,
-    };
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

@@ -9,9 +9,14 @@ import {
 } from "@/utils/server-function/tmdb";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { imdbId, season, sequence, mainTitle } = req.query;
+export async function GET(req: NextRequest) {
+  const imdbId = req.nextUrl.searchParams.get("imdbId");
+  const season = req.nextUrl.searchParams.get("season");
+  const sequence = req.nextUrl.searchParams.get("sequence");
+  const mainTitle = req.nextUrl.searchParams.get("mainTitle");
+
   try {
     let episode;
     if (imdbId?.includes("tt")) {
@@ -30,13 +35,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       );
     }
 
-    return res.status(200).json(episode);
+    return NextResponse.json(episode, { status: 200 });
   } catch (error) {
-    console.log(error);
-    res.status(403).json({
-      message: error,
-    });
+    return NextResponse.json({ message: error }, { status: 403 });
   }
-};
-
-export default handler;
+}

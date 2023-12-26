@@ -1,3 +1,4 @@
+"use client";
 import FieldHorizontal from "@/components/field/field-horizontal";
 import Line from "@/components/line";
 import { Season } from "@/types/movie";

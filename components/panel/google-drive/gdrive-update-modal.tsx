@@ -41,7 +41,7 @@ const GDriveUpdateModal = ({
 
   const onUpdate = async () => {
     await apiAxios
-      .post(`/google-drive/update`, {
+      .patch(`/google-drive/update`, {
         googleDriveData: updateData,
       })
       .then((res) => {

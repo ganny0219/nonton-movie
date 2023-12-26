@@ -1,9 +1,6 @@
 import CustomHead from "@/components/custom-head";
 import PageContainer from "@/components/layouts/page-container";
 import RootComponent from "@/components/root-component";
-import { Genre } from "@/types/movie";
-import axios from "axios";
-import { GetServerSideProps } from "next";
 import Link from "next/link";
 import React from "react";
 
@@ -33,11 +30,11 @@ const countryList = [
 function CountryPage() {
   return (
     <>
-      <CustomHead
+      {/* <CustomHead
         title="Nonton Film, Movie, Box Office Terbaru dan Terlengkap Subtitle Indonesia - Nonton Movie"
         description="Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus."
         keywords="Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime"
-      />
+      /> */}
       <RootComponent>
         <PageContainer>
           <h2 className="text-3xl mt-4">Country</h2>

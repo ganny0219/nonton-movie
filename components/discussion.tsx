@@ -1,11 +1,10 @@
+"use client";
 import { DiscussionEmbed } from "disqus-react";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-type Props = {
-  urlPath: string;
-};
-
-function Discussion({ urlPath }: Props) {
+function Discussion() {
+  const urlPath = usePathname();
   return (
     <DiscussionEmbed
       shortname="nontonmovie-online"

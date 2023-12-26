@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useState } from "react";
 import { Actor, Director, Movie, Writer } from "@/types/movie";
 import { RootState } from "@/store";
@@ -5,8 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateMovieData } from "@/store/movie";
 import FieldHorizontal from "@/components/field/field-horizontal";
 import EditButton from "@/components/button/edit-button";
-import { toggleClass } from "video.js/dist/types/utils/dom";
-import axios from "axios";
 import { apiAxios } from "@/utils/axios";
 
 type Props = {
@@ -77,7 +76,7 @@ function CastInput({ type, data, updateMode }: Props) {
   const editCastToggle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!editCast) {
-      await apiAxios.post(`/movie/update-cast`, {
+      await apiAxios.patch(`/movie/update-cast`, {
         removedCast: removedCast.current,
         castData: movieData[type.toLowerCase()],
         movieId: movieData.id,

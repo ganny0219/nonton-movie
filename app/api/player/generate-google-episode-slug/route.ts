@@ -8,6 +8,7 @@ import { apiAxios } from "@/utils/axios";
 import { getPlayerServerListJson } from "@/utils/server-function/player-server";
 import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
   googleGenerateData: GoogleGenereateData[];
@@ -18,16 +19,9 @@ type Body = {
   movieType: string;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
   try {
-    const {
-      googleGenerateData,
-      update,
-      season,
-      imdbId,
-      movieTitle,
-      movieType,
-    }: Body = req.body;
+    const { googleGenerateData, update }: Body = await req.json();
     const episodeList: Episode[] = [];
     const playerServerList = await getPlayerServerListJson();
 
@@ -144,11 +138,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       };
       episodeList.push(newEpisode);
     }
-    return res.status(200).json(episodeList);
+    return NextResponse.json(episodeList, { status: 200 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json(err);
+    return NextResponse.json(err, { status: 403 });
   }
 }
-
-export default handler;

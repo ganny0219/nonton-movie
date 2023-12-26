@@ -1,8 +1,9 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { movieId } = req.body;
+export async function PATCH(req: NextRequest) {
+  const { movieId } = await req.json();
   try {
     const result = await prisma.movie.update({
       where: {
@@ -14,13 +15,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         },
       },
     });
-    res.status(200).json(result);
+    return NextResponse.json(result, { status: 200 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json({
-      message: err,
-    });
+    return NextResponse.json(
+      {
+        message: err,
+      },
+      { status: 403 }
+    );
   }
 }
-
-export default handler;

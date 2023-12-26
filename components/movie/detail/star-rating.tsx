@@ -40,7 +40,7 @@ function StarRating({
     } else {
       newRating = (+totalRating + star) / (vote.length + 1);
     }
-    await apiAxios.post(`/rating/vote-movie`, {
+    await apiAxios.patch(`/rating/vote-movie`, {
       star: star,
       lastTotalRating: totalRating,
       lastVote: vote,

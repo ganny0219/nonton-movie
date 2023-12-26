@@ -117,7 +117,7 @@ function TrackInput({ updateMode, movieId, movieSlug }: Props) {
     if (!editTrack) {
       if (!editTrack) {
         await apiAxios
-          .post(`/track/update-track`, {
+          .patch(`/track/update-track`, {
             movieId: movieId,
             track: track,
             removedTrack: removedTrack.current,

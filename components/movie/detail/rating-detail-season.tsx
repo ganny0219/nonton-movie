@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import StarRating from "./star-rating";
-import ProfileIcon from "@/assets/icons/profile-icon";
+"use client";
+import React, { useState } from "react";
 import Line from "@/components/line";
-import { Movie, Season } from "@/types/movie";
+import { Season } from "@/types/movie";
 import StarSeasonRating from "./star-season-rating";
 import { convertRating } from "@/utils/client-function/global";
 type Props = {

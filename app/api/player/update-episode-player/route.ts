@@ -1,13 +1,14 @@
 import { prisma } from "@/prisma/prisma-client";
 import { Episode, PlayerUrl, Season, Track } from "@/types/movie";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
   playerList: PlayerUrl[];
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { playerList }: Body = req.body;
+export async function PATCH(req: NextRequest) {
+  const { playerList }: Body = await req.json();
 
   try {
     for await (let play of playerList) {
@@ -21,11 +22,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         },
       });
     }
-    res.status(200).json({ message: "Success" });
+    return NextResponse.json({ message: "Success" }, { status: 200 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json(err);
+    return NextResponse.json({ message: err }, { status: 403 });
   }
 }
-
-export default handler;

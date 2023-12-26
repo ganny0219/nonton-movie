@@ -27,6 +27,11 @@ export interface MovieBase {
   views: number;
 }
 
+export type MovieResponse = {
+  movie: Movie[];
+  movieLength: number;
+};
+
 export interface Movie extends MovieBase {
   [key: string]: any;
   featured: Featured[];
@@ -117,6 +122,11 @@ export interface Season extends SeasonBase {
   episode: Episode[];
 }
 
+export type SeasonResponse = {
+  season: Season[];
+  seasonLength: number;
+};
+
 export interface EpisodeBase {
   id?: string;
   slug: string;
@@ -131,6 +141,11 @@ export interface EpisodeBase {
   poster: string;
   views: number;
 }
+
+export type EpisodeResponse = {
+  episode: Episode[];
+  episodeLength: number;
+};
 
 export interface Episode extends EpisodeBase {
   season?: Season;

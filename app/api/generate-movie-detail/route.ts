@@ -1,6 +1,5 @@
 import { prisma } from "@/prisma/prisma-client";
 import {
-  createSlug,
   getImdbDetailMovie,
   getImdbDetailSeries,
 } from "@/utils/server-function/imdb";
@@ -8,11 +7,12 @@ import {
   getTmdbDetailMovie,
   getTmdbDetailSeries,
 } from "@/utils/server-function/tmdb";
-import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { imdbId, type, create } = req.query;
+export async function GET(req: NextRequest) {
+  const imdbId = req.nextUrl.searchParams.get("imdbId");
+  const type = req.nextUrl.searchParams.get("type");
+  const create = req.nextUrl.searchParams.get("create");
   try {
     if (create == "true") {
       const duplicate = await prisma.movie.count({
@@ -21,7 +21,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       });
       if (duplicate > 0) {
-        return res.status(422).json({ message: "Duplicate Data" });
+        return NextResponse.json(
+          { message: "Duplicate Data" },
+          { status: 422 }
+        );
       }
     }
     let detail = undefined;
@@ -31,25 +34,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       } else {
         detail = await getTmdbDetailMovie(imdbId as string);
       }
-      return res.status(200).json({
-        ...detail,
-        imdbId: imdbId,
-      });
+      return NextResponse.json(
+        {
+          ...detail,
+          imdbId: imdbId,
+        },
+        { status: 200 }
+      );
     } else {
       if (imdbId?.includes("tt")) {
         detail = await getImdbDetailSeries(imdbId as string);
       } else {
         detail = await getTmdbDetailSeries(imdbId as string);
       }
-      return res.status(200).json({
-        ...detail,
-        imdbId: imdbId,
-      });
+      return NextResponse.json(
+        {
+          ...detail,
+          imdbId: imdbId,
+        },
+        { status: 200 }
+      );
     }
   } catch (err) {
-    console.log(err);
-    res.status(403).json({ message: err });
+    return NextResponse.json({ message: err }, { status: 403 });
   }
-};
-
-export default handler;
+}

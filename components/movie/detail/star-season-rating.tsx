@@ -41,7 +41,7 @@ function StarSeasonRating({
     } else {
       newRating = (+totalRating + star) / (vote.length + 1);
     }
-    await apiAxios.post(`/rating/vote-season`, {
+    await apiAxios.patch(`/rating/vote-season`, {
       star: star,
       lastTotalRating: totalRating,
       lastVote: vote,

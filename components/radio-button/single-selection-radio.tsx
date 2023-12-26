@@ -1,5 +1,6 @@
+"use client";
 import { updateMovieData } from "@/store/movie";
-import React from "react";
+import React, { ElementRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 type RadioType = {
@@ -12,10 +13,25 @@ type RadioType = {
 type Props = {
   radioList: RadioType[];
   currentValue: string;
+  defaultValue: string;
 };
 
-function SingleSelectionRadio({ radioList, currentValue }: Props) {
+function SingleSelectionRadio({
+  radioList,
+  currentValue,
+  defaultValue,
+}: Props) {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const defaultRadio: HTMLElement = document.querySelector(
+      `[value=${defaultValue}]`
+    ) as HTMLElement;
+
+    if (currentValue == defaultValue && defaultRadio) {
+      defaultRadio.click();
+    }
+  }, [currentValue]);
 
   const onRadioChange = (
     e: React.MouseEvent<HTMLInputElement>,

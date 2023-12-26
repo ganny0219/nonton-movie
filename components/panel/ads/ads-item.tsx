@@ -41,14 +41,12 @@ function AdsItem({ ads, adsIndex, setFullAds, setHalfAds }: Props) {
   };
 
   const editSave = async () => {
-    await baseAxios.post(
+    await baseAxios.patch(
       `/ads/update`,
       {
         dataAds: ads,
       },
-      {
-
-      }
+      {}
     );
 
     return setEdit(false);

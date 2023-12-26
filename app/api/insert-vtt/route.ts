@@ -2,6 +2,7 @@ import { prisma } from "@/prisma/prisma-client";
 import { Season } from "@/types/movie";
 import { convertEpisodeDateTimestamp } from "@/utils/client-function/global";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { cwd } from "process";
 
 interface MulterRequest extends NextApiRequest {
@@ -28,11 +29,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-export default (req: MulterRequest, res: NextApiResponse) => {
+export async function POST(req: MulterRequest, res: NextApiResponse) {
   upload.fields([{ name: "files" }])(req, res, (err: Error) => {
     if (err) {
-      return res.status(500).json({ error: err.message });
+      return NextResponse.json({ error: err.message }, { status: 403 });
     }
-    res.status(200).send("File diunggah");
+    return NextResponse.json({ message: "File diunggah" }, { status: 200 });
   });
-};
+}

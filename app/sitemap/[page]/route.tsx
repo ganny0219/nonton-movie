@@ -1,7 +1,11 @@
 import { convertSitemapSlug } from "@/utils/client-function/global";
 import { generateSitemap } from "@/utils/server-function/sitemap";
 import { GetServerSideProps } from "next";
-import { ISitemapField, getServerSideSitemap, getServerSideSitemapLegacy } from "next-sitemap";
+import {
+  ISitemapField,
+  getServerSideSitemap,
+  getServerSideSitemapLegacy,
+} from "next-sitemap";
 import { NextRequest, NextResponse } from "next/server";
 
 const URLS_PER_SITEMAP = 1000;
@@ -19,14 +23,12 @@ const pageList = [
   `series`,
 ];
 
-
 export async function GET(request: NextRequest) {
   if (!request.nextUrl.pathname) {
     return { notFound: true };
   }
   const fields: ISitemapField[] = [];
   const { type, page } = convertSitemapSlug(request.nextUrl.pathname);
-
   if (type == "page") {
     pageList.map((url) =>
       fields.push({
@@ -49,6 +51,6 @@ export async function GET(request: NextRequest) {
   const cacheMaxAgeStaleDataReturnSeconds = 15 * 60; // 15 minutes
 
   return getServerSideSitemap(fields, {
-    "Cache-Control": `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`
-  })
+    "Cache-Control": `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`,
+  });
 }

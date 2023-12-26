@@ -1,4 +1,4 @@
-import type { Movie } from "@/types/movie";
+import type { Movie, MovieResponse } from "@/types/movie";
 import React from "react";
 import PageContainer from "@/components/layouts/page-container";
 import MovieCard from "@/components/movie/movie-card";
@@ -12,15 +12,15 @@ import {
   getStringParams,
 } from "@/utils/server-function/global";
 import { getMovieListByCountryPage } from "@/utils/server-function/movie";
+import { PageProps } from "@/types/global";
 
-type Props = {
-  title: string;
-  movie: Movie[];
-  movieLength: number;
-  pageIndex: number;
-};
-
-function GenreIndexPage({ movie, title, movieLength, pageIndex }: Props) {
+async function GenreIndexPage(props: PageProps) {
+  const pageIndex = props.params.index;
+  const title = props.params.category;
+  const { movie, movieLength }: MovieResponse = await getMovieListByCountryPage(
+    pageIndex,
+    title
+  );
   return (
     <>
       <CustomHead
@@ -48,38 +48,3 @@ function GenreIndexPage({ movie, title, movieLength, pageIndex }: Props) {
 }
 
 export default GenreIndexPage;
-
-export const getStaticPaths: GetStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const pageIndex = getPageIndexParams(context);
-    const country = getStringParams(context, "category");
-    const { movie, movieLength } = await getMovieListByCountryPage(
-      pageIndex,
-      country
-    );
-    return {
-      props: {
-        title: country,
-        pageIndex,
-        movie,
-        movieLength,
-      },
-      revalidate: 60,
-    };
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

@@ -2,14 +2,15 @@ import { prisma } from "@/prisma/prisma-client";
 import { Episode, Season, Track } from "@/types/movie";
 import { NextApiRequest, NextApiResponse } from "next";
 import * as fs from "fs";
+import { NextRequest, NextResponse } from "next/server";
 type Body = {
   track: Track[];
   episodeId: string;
   removedTrack: Track[];
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { track, episodeId, removedTrack }: Body = req.body;
+export async function PATCH(req: NextRequest) {
+  const { track, episodeId, removedTrack }: Body = await req.json();
 
   try {
     for await (let removedTrk of removedTrack) {
@@ -57,11 +58,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    res.status(201).json(result);
+    return NextResponse.json(result, { status: 200 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json(err);
+    return NextResponse.json({ message: err }, { status: 403 });
   }
 }
-
-export default handler;

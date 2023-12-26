@@ -49,7 +49,7 @@ function PlayerEpisodeUrlInput({
   const editPlayerToggel = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!editPlayer) {
-      await apiAxios.post(`/player/update-episode-player`, {
+      await apiAxios.patch(`/player/update-episode-player`, {
         playerList: playerUrl,
       });
       return setEditPlayer((prev) => !prev);

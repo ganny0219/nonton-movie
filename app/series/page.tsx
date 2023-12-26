@@ -13,29 +13,28 @@ import { getEpisodeListPage } from "@/utils/server-function/episode";
 import { getFeatured } from "@/utils/server-function/featured";
 import { getSeasonListPage } from "@/utils/server-function/season";
 
-type Props = {
-  series: Movie[];
-  seriesLength: number;
-  featuredSeries: Movie[];
-  seriesSeason: Season[];
-  seriesEpisode: Episode[];
-};
-
-function SeriesPage({
-  seriesEpisode,
-  series,
-  seriesLength,
-  featuredSeries,
-  seriesSeason,
-}: Props) {
+async function SeriesPage() {
+  const { movie: series, movieLength: seriesLength } = await getMovieListPage(
+    1,
+    "series"
+  );
+  const seriesEpisode = (await getEpisodeListPage(1, "series")).episode.splice(
+    0,
+    12
+  );
+  const featuredSeries = await getFeatured("series");
+  const seriesSeason = (await getSeasonListPage(1, "series")).season.splice(
+    0,
+    12
+  );
   return (
     <>
-      <CustomHead
+      {/* <CustomHead
         title="Nonton Serial TV, TV-Series, Film Seri TV Terlengkap Subtitle Indonesia - 
         Nonton Movie"
         description="Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus."
         keywords="Series Terbaru, Series, Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime"
-      />
+      /> */}
       <RootComponent>
         <PageContainer title="SERIAL TV">
           {seriesEpisode.length > 0 && (
@@ -68,38 +67,3 @@ function SeriesPage({
 }
 
 export default SeriesPage;
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const { movie: series, movieLength: seriesLength } = await getMovieListPage(
-      1,
-      "series"
-    );
-    const seriesEpisode = (
-      await getEpisodeListPage(1, "series")
-    ).episode.splice(0, 12);
-    const featuredSeries = await getFeatured("series");
-    const seriesSeason = (await getSeasonListPage(1, "series")).season.splice(
-      0,
-      12
-    );
-    return {
-      props: {
-        series,
-        seriesLength,
-        seriesEpisode,
-        seriesSeason,
-        featuredSeries,
-      },
-      revalidate: 60,
-    };
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

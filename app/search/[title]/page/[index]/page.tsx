@@ -1,4 +1,4 @@
-import type { Movie } from "@/types/movie";
+import type { Movie, MovieResponse } from "@/types/movie";
 import React from "react";
 import PageContainer from "@/components/layouts/page-container";
 import MovieCard from "@/components/movie/movie-card";
@@ -12,20 +12,15 @@ import {
   getStringParams,
 } from "@/utils/server-function/global";
 import { getMovieBySearchPage } from "@/utils/server-function/movie";
+import { PageProps } from "@/types/global";
 
-type Props = {
-  movie: Movie[];
-  movieLength: number;
-  searchInput: string;
-  pageIndex: number;
-};
-
-function SearchTitleIndexPage({
-  movie,
-  movieLength,
-  pageIndex,
-  searchInput,
-}: Props) {
+async function SearchTitleIndexPage(props: PageProps) {
+  const pageIndex = props.params.index;
+  const searchInput = props.params.title;
+  const { movie, movieLength }: MovieResponse = await getMovieBySearchPage(
+    pageIndex,
+    searchInput
+  );
   return (
     <>
       <CustomHead
@@ -54,30 +49,3 @@ function SearchTitleIndexPage({
 }
 
 export default SearchTitleIndexPage;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const searchInput = getStringParams(context, "title");
-    const pageIndex = getPageIndexParams(context);
-    const { movie, movieLength } = await getMovieBySearchPage(
-      pageIndex,
-      searchInput
-    );
-    return {
-      props: {
-        movie,
-        searchInput,
-        movieLength,
-        pageIndex,
-      },
-    };
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

@@ -1,4 +1,4 @@
-import type { Movie, Season } from "@/types/movie";
+import type { Movie, Season, SeasonResponse } from "@/types/movie";
 import React, { useState } from "react";
 
 import PageContainer from "@/components/layouts/page-container";
@@ -14,21 +14,21 @@ import CustomHead from "@/components/custom-head";
 import { apiAxios } from "@/utils/axios";
 import { getPageIndexParams } from "@/utils/server-function/global";
 import { getSeasonListPage } from "@/utils/server-function/season";
+import { PageProps } from "@/types/global";
 
-type Props = {
-  season: Season[];
-  seasonLength: number;
-  pageIndex: number;
-};
-
-function SeasonIndexPage({ pageIndex, season, seasonLength }: Props) {
+async function SeasonIndexPage(props: PageProps) {
+  const pageIndex = props.params.index;
+  const { season, seasonLength }: SeasonResponse = await getSeasonListPage(
+    pageIndex,
+    ""
+  );
   return (
     <>
-      <CustomHead
+      {/* <CustomHead
         title="Nonton Season Terbaru dari Serial TV, TV-Series, Serial TV Terbaru Subtitle Indonesia - Nonton Movie"
         description="Nonton Movie - Nonton Film, Serial TV Season Terbaru, Drakor Season Terbaru, Anime Season Terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari, semua tersedia disitus."
         keywords="Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime, Season Terbaru"
-      />
+      /> */}
       <RootComponent>
         <PageContainer title="SEASON SERIAL TV">
           <MovieContainer title="SEASON TERBARU">
@@ -58,28 +58,4 @@ export const getStaticPaths: GetStaticPaths = () => {
     paths: [],
     fallback: "blocking",
   };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const pageIndex = getPageIndexParams(context);
-    const { season, seasonLength } = await getSeasonListPage(pageIndex, "");
-
-    return {
-      props: {
-        season,
-        seasonLength,
-        pageIndex,
-      },
-      revalidate: 60,
-    };
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
 };

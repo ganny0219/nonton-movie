@@ -14,17 +14,18 @@ import { getMovieListByGenrePage } from "@/utils/server-function/genre";
 import { getSeasonListPage } from "@/utils/server-function/season";
 import { getEpisodeListPage } from "@/utils/server-function/episode";
 
-
-
 export default async function Home() {
-  const movieTerbaru = await getMovieListPage(1, "movie");
+  const movieTerbaru = (await getMovieListPage(1, "movie")).movie;
   const featuredHome = await getFeatured("home");
-  const actionMovie = await getMovieListByGenrePage("action", 1);
-  const animeMovie = await getMovieListPage(1, "anime");
-  const drakorMovie = await getMovieListPage(1, "drama-korea");
-  const seasonTerbaru = await getSeasonListPage(1, "");
-  const seriesTerbaru = await getMovieListPage(1, "series");
-  const episodeTerbaru = await getEpisodeListPage(1, "");
+  const actionMovie = (await getMovieListByGenrePage("action", 1)).movie;
+  const animeMovie = (await getMovieListPage(1, "anime")).movie;
+  const drakorMovie = (await getMovieListPage(1, "drama-korea")).movie;
+  const seasonTerbaru = (await getSeasonListPage(1, "")).season;
+  const seriesTerbaru = (await getMovieListPage(1, "series")).movie;
+  const episodeTerbaru = (await getEpisodeListPage(1, "")).episode.splice(
+    0,
+    28
+  );
 
   return (
     <>
@@ -82,7 +83,10 @@ export default async function Home() {
             />
           )}
           {episodeTerbaru.length > 0 && (
-            <EpisodeContainer episodeList={episodeTerbaru} />
+            <EpisodeContainer
+              episodeList={episodeTerbaru}
+              seeAllpath="/episode/page/1"
+            />
           )}
         </PageContainer>
       </RootComponent>

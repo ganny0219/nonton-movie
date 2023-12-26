@@ -68,7 +68,7 @@ function PlayerServerItem({
 
     if (edit) {
       await apiAxios
-        .post(`/player-server/update`, {
+        .patch(`/player-server/update`, {
           playerServer: playServer,
         })
         .then((res) => {

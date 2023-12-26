@@ -188,7 +188,7 @@ function EpisodeInput({
     }
     if (updateMode) {
       await apiAxios
-        .post(`/player/update-episode-player`, {
+        .patch(`/player/update-episode-player`, {
           playerList,
         })
         .then((res) => res.data);

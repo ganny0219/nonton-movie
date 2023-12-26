@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactNode } from "react";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
@@ -8,13 +9,13 @@ import { Movie } from "@/types/movie";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
-const nextButton: ReactNode = (
+const NextButton: ReactNode = (
   <div className="flex justify-center items-center bg-[#313131] w-10 aspect-square rounded">
     <ChevronRightIcon />
   </div>
 );
 
-const prevButton: ReactNode = (
+const PrevButton: ReactNode = (
   <div className="flex justify-center items-center bg-[#313131] w-10 aspect-square rounded">
     <ChevronLeftIcon />
   </div>
@@ -44,12 +45,12 @@ const Pagination = ({ moviePerPage, movieLength, offset, url }: Props) => {
       <ReactPaginate
         forcePage={startOffset}
         breakLabel=". ."
-        nextLabel={nextButton}
+        nextLabel={NextButton}
         onPageChange={handlePageClick}
         pageRangeDisplayed={isMobile ? 2 : 3}
         marginPagesDisplayed={isMobile ? 1 : 2}
         pageCount={pageCount}
-        previousLabel={prevButton}
+        previousLabel={PrevButton}
         containerClassName="flex flex-row justify-center items-center w-full my-6"
         pageClassName="flex justify-center items-center p-2 bg-[#313131] mx-2 aspect-square w-10 rounded"
         activeClassName="bg-secondary text-black"

@@ -1,3 +1,4 @@
+"use client";
 import EditButton from "@/components/button/edit-button";
 import FieldHorizontal from "@/components/field/field-horizontal";
 import { RootState } from "@/store";
@@ -46,7 +47,7 @@ function GenreInput({ updateMode }: Props) {
     e.preventDefault();
     if (!editGenre) {
       await apiAxios
-        .post(`/movie/update-genre`, {
+        .patch(`/movie/update-genre`, {
           removedGenre: removedGenre.current,
           genreData: genre,
           movieId,

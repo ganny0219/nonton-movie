@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import DrawerPanelItem from "./drawer-panel-item";
 import { useRouter } from "next/navigation";

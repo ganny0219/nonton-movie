@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactNode, useEffect, useState } from "react";
 import AdsBannerItem from "./ads-banner-item";
 import { Ads } from "@/types/ads";

@@ -46,7 +46,7 @@ function PlayerUrlInput({ updateMode, playerServerListJson }: Props) {
   const editPlayerToggle = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (!editPlayer) {
-      await apiAxios.post(`/player/update-player`, {
+      await apiAxios.patch(`/player/update-player`, {
         playerList: movieData.playerUrl,
       });
       return setEditPlayer((prev) => !prev);
@@ -100,8 +100,9 @@ function PlayerUrlInput({ updateMode, playerServerListJson }: Props) {
           </button>
           <button
             disabled={editPlayer}
-            className={`mr-4 py-1 whitespace-nowrap ${editPlayer ? " bg-[#ffffff50]" : "bg-[#fff]"
-              } px-2 rounded`}
+            className={`mr-4 py-1 whitespace-nowrap ${
+              editPlayer ? " bg-[#ffffff50]" : "bg-[#fff]"
+            } px-2 rounded`}
             onClick={onSetVidsrc}
           >
             Set Vidsrc

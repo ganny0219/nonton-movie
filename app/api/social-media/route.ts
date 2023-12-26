@@ -1,6 +1,7 @@
 import { prisma } from "@/prisma/prisma-client";
 import { SocialMedia } from "@/types/social-media";
 import { NextResponse } from "next/server";
+
 export async function GET(request: Request) {
   try {
     const result = await prisma.socialMedia.findMany({

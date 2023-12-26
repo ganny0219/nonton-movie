@@ -195,11 +195,7 @@ function NavbarWeb({
               />
               <Link
                 href={{
-                  pathname: `/search/${
-                    searchInputRef.current?.value
-                      ? searchInputRef.current?.value
-                      : ""
-                  }`,
+                  pathname: `/search/${searchInputRef.current?.value}`,
                 }}
               >
                 <SearchIcon color="#ccc" size="1.5" />

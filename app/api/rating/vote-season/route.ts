@@ -1,5 +1,6 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 const requestIp = require("request-ip");
 
@@ -10,9 +11,10 @@ type Body = {
   lastTotalRating: number;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function PATCH(req: NextRequest) {
   try {
-    const { lastVote, seasonId, star, lastTotalRating }: Body = req.body;
+    const { lastVote, seasonId, star, lastTotalRating }: Body =
+      await req.json();
     let newRating = "";
     let totalRating = 0;
     if (lastVote.length == 0) {
@@ -48,15 +50,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           totalRating: totalRating,
         },
       });
-      return res.status(200).json(result);
+      return NextResponse.json(result, { status: 200 });
     }
-    res.status(200).json({ message: "not allow vote two times" });
+    return NextResponse.json(
+      { message: "not allow vote two times" },
+      { status: 402 }
+    );
   } catch (err) {
-    console.log(err);
-    res.status(403).json({
-      message: err,
-    });
+    return NextResponse.json(
+      {
+        message: err,
+      },
+      { status: 403 }
+    );
   }
 }
-
-export default handler;

@@ -1,10 +1,9 @@
 import { prisma } from "@/prisma/prisma-client";
-import { Movie } from "@/types/movie";
-import { PlayerServer } from "@/types/player-server";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { playerServerName } = req.query;
+export async function DELETE(req: NextRequest) {
+  const playerServerName = req.nextUrl.searchParams.get("playerServerName");
   try {
     await prisma.playerUrl.deleteMany({
       where: {
@@ -23,11 +22,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         },
       },
     });
-    res.status(201).json({});
+    return NextResponse.json({}, { status: 200 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json(err);
+    return NextResponse.json({ message: err }, { status: 403 });
   }
 }
-
-export default handler;

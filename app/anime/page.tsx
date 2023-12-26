@@ -1,4 +1,4 @@
-import type { Episode, Movie, Season } from "@/types/movie";
+import type { Episode, Movie, MovieResponse, Season } from "@/types/movie";
 import type { GetStaticProps } from "next";
 import React from "react";
 
@@ -14,30 +14,28 @@ import { getMovieListPage } from "@/utils/server-function/movie";
 import { getFeatured } from "@/utils/server-function/featured";
 import { getSeasonListPage } from "@/utils/server-function/season";
 
-type Props = {
-  anime: Movie[];
-  animeLength: number;
-  featuredAnime: Movie[];
+async function AnimePage() {
+  const { movie: anime, movieLength: animeLength }: MovieResponse =
+    await getMovieListPage(1, "anime");
 
-  animeEpisode: Episode[];
-  animeSeason: Season[];
-};
+  const animeEpisode = (await getEpisodeListPage(1, "anime")).episode.splice(
+    0,
+    12
+  );
 
-function AnimePage({
-  animeEpisode,
-  anime,
-  animeLength,
-  featuredAnime,
+  const featuredAnime = await getFeatured("anime");
 
-  animeSeason,
-}: Props) {
+  const animeSeason = (await getSeasonListPage(1, "anime")).season.splice(
+    0,
+    12
+  );
   return (
     <>
-      <CustomHead
+      {/* <CustomHead
         title={`Pilihan Genre Anime Terlengkap - Nonton Movie`}
         description={`Nonton Movie - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
         keywords={`Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Nonton Movie, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`}
-      />
+      /> */}
       <RootComponent>
         <PageContainer title="FILM ANIME">
           {animeEpisode.length > 0 && (
@@ -70,42 +68,3 @@ function AnimePage({
 }
 
 export default AnimePage;
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const { movie: anime, movieLength: animeLength } = await getMovieListPage(
-      1,
-      "anime"
-    );
-
-    const animeEpisode = (await getEpisodeListPage(1, "anime")).episode.splice(
-      0,
-      12
-    );
-
-    const featuredAnime = await getFeatured("anime");
-
-    const animeSeason = (await getSeasonListPage(1, "anime")).season.splice(
-      0,
-      12
-    );
-    return {
-      props: {
-        anime,
-        animeLength,
-        animeEpisode,
-        animeSeason,
-        featuredAnime,
-      },
-      revalidate: 60,
-    };
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

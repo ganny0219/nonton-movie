@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import StarRating from "./star-rating";
 import ProfileIcon from "@/assets/icons/profile-icon";

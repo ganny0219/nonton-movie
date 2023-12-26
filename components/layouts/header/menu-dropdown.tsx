@@ -10,14 +10,14 @@ type Props = {
 
 function MenuDropdown({ children, onMouseOver, onMouseLeave, path }: Props) {
   return (
-    <Link
-      href={path ? { pathname: path } : {}}
+    <div
+      // href={{ pathname: path ? path : null }}
       className=" flex flex-row justify-center items-center p-2 px-4 hover:cursor-pointer hover:text-secondary"
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
     >
       {children}
-    </Link>
+    </div>
   );
 }
 

@@ -18,7 +18,7 @@ function EpisodeContainer({ seeAllpath, episodeList, page }: Props) {
         <h3 className="flex-1 truncate md:text-2xl">EPISODE TERBARU</h3>
         {!page && (
           <Link
-            href={{ pathname: seeAllpath }}
+            href={{ pathname: seeAllpath ? seeAllpath : null }}
             className="bg-secondary px-2 py-1 text-[0.5rem] md:text-xs font-bold rounded text-[#313131]"
           >
             SEE ALL

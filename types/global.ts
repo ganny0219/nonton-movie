@@ -12,3 +12,9 @@ export type AlertProps = {
   error: boolean;
   visible: boolean;
 };
+
+export type PageProps = {
+  params: {
+    [key: string]: any;
+  };
+};

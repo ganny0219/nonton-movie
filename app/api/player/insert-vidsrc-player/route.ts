@@ -1,6 +1,7 @@
 import { prisma } from "@/prisma/prisma-client";
 import { Episode, PlayerUrl, Season, Track } from "@/types/movie";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
   seasonData: Season;
@@ -8,8 +9,8 @@ type Body = {
   season: number;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { seasonData, imdbId, season }: Body = req.body;
+export async function POST(req: NextRequest) {
+  const { seasonData, imdbId, season }: Body = await req.json();
   try {
     for (let episode of seasonData.episode) {
       let duplicate = false;
@@ -41,10 +42,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         });
       }
     }
-    return res.status(201).json({ message: "success" });
+    return NextResponse.json({ message: "success" }, { status: 201 });
   } catch (err) {
-    res.status(403).json(err);
+    return NextResponse.json({ message: err }, { status: 403 });
   }
 }
-
-export default handler;

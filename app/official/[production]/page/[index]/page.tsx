@@ -1,46 +1,23 @@
-import React, { useState } from "react";
-import AdsContainer from "@/components/ads/ads-container-two-grid";
-import AdsBannerItem from "@/components/ads/ads-banner-item";
-import CastContainer from "@/components/cast/cast-container";
-import CastItem from "@/components/cast/cast-card";
+import React from "react";
 import PageContainer from "@/components/layouts/page-container";
-import Line from "@/components/line";
-import DetailMovie from "@/components/movie/detail/detail-movie";
-import RecomendationMovie from "@/components/movie/recomendation-movie";
-import Note from "@/components/note";
 import RootComponent from "@/components/root-component";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
-import axios from "axios";
-import { Movie } from "@/types/movie";
-import SelectButton from "@/components/button/select-button";
-import Season from "@/components/movie/season";
+import { MovieResponse } from "@/types/movie";
 import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
-
 import AdsContainerOneGrid from "@/components/ads/ads-container-one-grid";
 import MovieContainer from "@/components/movie/movie-container";
 import MovieCard from "@/components/movie/movie-card";
 import Pagination from "@/components/pagination";
 import CustomHead from "@/components/custom-head";
-import { apiAxios } from "@/utils/axios";
-import {
-  getPageIndexParams,
-  getStringParams,
-} from "@/utils/server-function/global";
 import { getMovieByOfficalPage } from "@/utils/server-function/movie";
+import { PageProps } from "@/types/global";
 
-type Props = {
-  movie: Movie[];
-  movieLength: number;
-  pageIndex: number;
-  productionName: string;
-};
-
-function OfficialProductionIndexPage({
-  movie,
-  productionName,
-  movieLength,
-  pageIndex,
-}: Props) {
+async function OfficialProductionIndexPage(props: PageProps) {
+  const pageIndex = props.params.index;
+  const productionName = props.params.production;
+  const { movie, movieLength }: MovieResponse = await getMovieByOfficalPage(
+    pageIndex,
+    productionName
+  );
   return (
     <>
       <CustomHead
@@ -72,45 +49,3 @@ function OfficialProductionIndexPage({
 }
 
 export default OfficialProductionIndexPage;
-
-export const getStaticPaths: GetStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const pageIndex = getPageIndexParams(context);
-    const productionName = getStringParams(context, "production");
-    const { movie, movieLength } = await getMovieByOfficalPage(
-      pageIndex,
-      productionName
-    );
-    if (movie) {
-      return {
-        props: {
-          movie,
-          movieLength,
-          productionName,
-          pageIndex,
-        },
-        revalidate: 60,
-      };
-    } else {
-      return {
-        props: {},
-        notFound: true,
-      };
-    }
-  } catch {
-    return {
-      props: {},
-      redirect: {
-        permanent: true,
-        destination: "/error",
-      },
-    };
-  }
-};

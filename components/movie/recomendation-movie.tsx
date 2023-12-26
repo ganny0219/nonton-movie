@@ -1,12 +1,10 @@
+"use client";
 import React, { useEffect, useRef } from "react";
-import axios from "axios";
 import { Movie } from "@/types/movie";
 import SliderCard from "./slider-card";
 import Slider from "react-slick";
-import SeasonCard from "./season-card";
 import RightCircle from "@/assets/icons/right-circle";
 import LeftCircle from "@/assets/icons/left-circle";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type Props = {

@@ -4,7 +4,7 @@ import Line from "@/components/line";
 import AdsItem from "@/components/panel/ads/ads-item";
 import RootPanel from "@/components/panel/root-panel";
 import DaySheduleContainer from "@/components/panel/schedule/day-shedule-container";
-import movie from "@/pages/api/rss/movie";
+import SchedulePanel from "@/components/panel/schedule/schedule-panel";
 import { Ads } from "@/types/ads";
 import { Movie } from "@/types/movie";
 import { ReleaseScheduleData } from "@/types/release-schedule";
@@ -16,14 +16,9 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import React, { useState } from "react";
 
-type Props = {
-  movie: Movie[];
-  releaseScheduleDataDB: ReleaseScheduleData;
-};
-
-function SchedulePanelPage({ movie, releaseScheduleDataDB }: Props) {
-  const [releaseScheduleData, setReleaseScheduleData] =
-    useState<ReleaseScheduleData>(releaseScheduleDataDB);
+async function SchedulePanelPage() {
+  const movie = await getMovieListPanel("");
+  const releaseScheduleDataDB = await getReleaseSchedule();
 
   return (
     <RootPanel selected="schedule">
@@ -31,72 +26,12 @@ function SchedulePanelPage({ movie, releaseScheduleDataDB }: Props) {
         <h1 className="text-4xl">Schedule List</h1>
       </div>
       <Line thin color="#00000050" />
-      <DaySheduleContainer
-        title="Monday"
+      <SchedulePanel
         movie={movie}
-        releaseScheduleData={releaseScheduleData.monday}
-        setReleaseScheduleData={setReleaseScheduleData}
-      />
-      <DaySheduleContainer
-        title="Tuesday"
-        movie={movie}
-        releaseScheduleData={releaseScheduleData.tuesday}
-        setReleaseScheduleData={setReleaseScheduleData}
-      />
-      <DaySheduleContainer
-        title="Wednesday"
-        movie={movie}
-        releaseScheduleData={releaseScheduleData.wednesday}
-        setReleaseScheduleData={setReleaseScheduleData}
-      />
-      <DaySheduleContainer
-        title="Thursday"
-        movie={movie}
-        releaseScheduleData={releaseScheduleData.thursday}
-        setReleaseScheduleData={setReleaseScheduleData}
-      />
-      <DaySheduleContainer
-        title="Friday"
-        movie={movie}
-        releaseScheduleData={releaseScheduleData.friday}
-        setReleaseScheduleData={setReleaseScheduleData}
-      />
-      <DaySheduleContainer
-        title="Saturday"
-        movie={movie}
-        releaseScheduleData={releaseScheduleData.saturday}
-        setReleaseScheduleData={setReleaseScheduleData}
-      />
-      <DaySheduleContainer
-        title="Sunday"
-        movie={movie}
-        releaseScheduleData={releaseScheduleData.sunday}
-        setReleaseScheduleData={setReleaseScheduleData}
+        releaseScheduleDataDB={releaseScheduleDataDB}
       />
     </RootPanel>
   );
 }
 
 export default SchedulePanelPage;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      props: {},
-      redirect: {
-        destination: "/pandora/auth",
-      },
-    };
-  }
-
-  const movie = await getMovieListPanel("");
-  const releaseScheduleDataDB = await getReleaseSchedule();
-
-  return {
-    props: {
-      movie: movie,
-      releaseScheduleDataDB: releaseScheduleDataDB,
-    },
-  };
-};

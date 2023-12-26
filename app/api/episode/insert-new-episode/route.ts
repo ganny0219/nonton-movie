@@ -1,17 +1,16 @@
 import { prisma } from "@/prisma/prisma-client";
-import { Episode, PlayerUrl, Season } from "@/types/movie";
-import { apiAxios } from "@/utils/axios";
+import { Episode } from "@/types/movie";
 import { convertEpisodeDateTimestamp } from "@/utils/client-function/global";
-import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
   episode: Episode;
   seasonId: string;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { episode, seasonId }: Body = req.body;
+export async function POST(req: NextRequest) {
+  const { episode, seasonId }: Body = await req.json();
 
   try {
     const result = await prisma.episode.create({
@@ -47,11 +46,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    res.status(201).json(result);
+    return NextResponse.json(result, { status: 201 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json(err);
+    return NextResponse.json(err, { status: 403 });
   }
 }
-
-export default handler;

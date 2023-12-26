@@ -2,13 +2,14 @@ import { prisma } from "@/prisma/prisma-client";
 import { Movie } from "@/types/movie";
 import { PlayerServer } from "@/types/player-server";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
   playerServer: PlayerServer;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { playerServer }: Body = req.body;
+export async function POST(req: NextRequest) {
+  const { playerServer }: Body = await req.json();
   try {
     const movieList = await prisma.movie.findMany({
       select: {
@@ -65,11 +66,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         });
       }
     }
-    res.status(201).json({});
+    return NextResponse.json({}, { status: 201 });
   } catch (err) {
-    console.log(err);
-    res.status(403).json(err);
+    return NextResponse.json({ message: err }, { status: 403 });
   }
 }
-
-export default handler;
