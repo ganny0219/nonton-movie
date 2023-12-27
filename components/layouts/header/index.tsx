@@ -59,7 +59,11 @@ function Header({ hidden }: Props) {
       <HeaderContainer>
         <div className="flex flex-row w-full items-center">
           <div className="flex flex-row text-gray-200 flex-1 justify-between lg:justify-normal">
-            <button onClick={burgerToggleHandler} className="lg:hidden">
+            <button
+              aria-label="burger-button"
+              onClick={burgerToggleHandler}
+              className="lg:hidden"
+            >
               <BurgerIcon color="#fff" size="1.5" />
             </button>
             <Link

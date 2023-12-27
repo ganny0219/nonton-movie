@@ -62,12 +62,14 @@ function RecomendationMovie({ recomendMovie }: Props) {
             <h3 className="flex-1 truncate md:text-2xl">Recomendation Movie</h3>
             <div className="flex items-center ml-2">
               <button
+                aria-label="prev-button"
                 className="mr-1"
                 onClick={() => sliderRef.current?.slickPrev()}
               >
                 <LeftCircle size="1.5" />
               </button>
               <button
+                aria-label="next-button"
                 onClick={() => {
                   if (slideNumberRef.current == currentSlideRef.current) {
                     return sliderRef.current?.slickGoTo(0);

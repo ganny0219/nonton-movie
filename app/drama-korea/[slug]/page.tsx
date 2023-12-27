@@ -13,7 +13,21 @@ import {
 } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
 import DetailSelection from "@/components/movie/detail/detail-selection";
+import { Metadata } from "next";
+import { generateMetaResult } from "@/utils/server-function/global";
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const slug = params.slug;
+  const drakor = await getMovieBySlug(slug);
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/drama-korea/${slug}`;
+  const title = `Nonton ${drakor.title} - Subtitle Indonesia - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${drakor.title} sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `;
+  const keywords = `Nonton ${drakor.title}, Nonton Film ${drakor.title}, Nonton ${drakor.title} Gratis, Nonton ${drakor.title} Streaming, ${drakor.title} Subtitle Indonesia`;
+  const image = drakor.poster;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 async function StreamDramaKoreaPage(props: PageProps) {
   const slug = props.params.slug;
   const drakor = await getMovieBySlug(slug);
@@ -21,11 +35,6 @@ async function StreamDramaKoreaPage(props: PageProps) {
 
   return (
     <>
-      {/* <CustomHead
-        title={`Nonton ${drakor.title} - Subtitle Indonesia - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film ${drakor.title} sub indonesia sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `}
-        keywords={`Nonton ${drakor.title}, Nonton Film ${drakor.title}, Nonton ${drakor.title} Gratis, Nonton ${drakor.title} Streaming, ${drakor.title} Subtitle Indonesia`}
-      /> */}
       <RootComponent>
         <PageContainer>
           <AdsContainerTwoGrid />

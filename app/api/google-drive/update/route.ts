@@ -1,7 +1,6 @@
 import { prisma } from "@/prisma/prisma-client";
 import { GoogleDrive } from "@/types/google-drive";
-import { Episode, Season } from "@/types/movie";
-import { NextApiRequest, NextApiResponse } from "next";
+
 import { NextRequest, NextResponse } from "next/server";
 
 type Body = {

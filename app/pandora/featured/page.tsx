@@ -5,6 +5,7 @@ import React from "react";
 import { getFeaturedListPanel } from "@/utils/server-function/featured";
 import { getMovieListPanel } from "@/utils/server-function/movie";
 import FeaturedPanel from "@/components/panel/featured/featured-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function FeaturedPanelPage() {
   const movie = await getMovieListPanel("");

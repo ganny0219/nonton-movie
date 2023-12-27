@@ -10,6 +10,7 @@ import { getSession } from "next-auth/react";
 
 import { getMovieListPanel } from "@/utils/server-function/movie";
 import MoviePanel from "@/components/panel/movie/movie-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function MoviePanelPage() {
   const anime = await getMovieListPanel("anime");

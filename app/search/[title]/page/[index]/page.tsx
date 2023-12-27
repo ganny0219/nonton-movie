@@ -1,18 +1,28 @@
-import type { Movie, MovieResponse } from "@/types/movie";
+import type { MovieResponse } from "@/types/movie";
 import React from "react";
 import PageContainer from "@/components/layouts/page-container";
 import MovieCard from "@/components/movie/movie-card";
 import MovieContainer from "@/components/movie/movie-container";
 import Pagination from "@/components/pagination";
 import RootComponent from "@/components/root-component";
-import { GetServerSideProps } from "next";
+import { Metadata } from "next";
 import CustomHead from "@/components/custom-head";
-import {
-  getPageIndexParams,
-  getStringParams,
-} from "@/utils/server-function/global";
+import { generateMetaResult } from "@/utils/server-function/global";
 import { getMovieBySearchPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const index = params.index;
+  const searchInput = params.title;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/search/${searchInput}/page/${index}`;
+  const title = `Film ${searchInput} Terbaru - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${searchInput}, Serial TV ${searchInput}, Drakor ${searchInput}, Anime ${searchInput} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${searchInput}, Nonton ${searchInput} Gratis , Nonton ${searchInput} Streaming, Nonton Movie,${searchInput} Subtitle Indonesia, ${searchInput}`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function SearchTitleIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
@@ -23,12 +33,6 @@ async function SearchTitleIndexPage(props: PageProps) {
   );
   return (
     <>
-      <CustomHead
-        title={`Film ${searchInput} Terbaru - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film ${searchInput}, Serial TV ${searchInput}, Drakor ${searchInput}, Anime ${searchInput} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
-        keywords={`Nonton Film ${searchInput}, Nonton ${searchInput} Gratis , Nonton ${searchInput} Streaming, Nonton Movie,${searchInput} Subtitle Indonesia, ${searchInput}`}
-      />
-
       <RootComponent>
         <PageContainer title={`Pencarian: ${searchInput}`}>
           <MovieContainer title="Film Terbaru">

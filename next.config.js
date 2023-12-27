@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
+  output: {
+    publicPath: "/dist/",
+  },
   images: {
     remotePatterns: [
       {

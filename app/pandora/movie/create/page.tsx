@@ -9,11 +9,11 @@ import {
   getPlayerServerListPanel,
 } from "@/utils/server-function/player-server";
 import CreateMoviePanel from "@/components/panel/movie/create/create-movie-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function CreateMoviePage() {
   const playerServerList = await getPlayerServerListPanel();
   const playerServerListJson = await getPlayerServerListJson();
-
   return (
     <>
       <RootPanel selected="movie">

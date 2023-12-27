@@ -5,10 +5,29 @@ import { MovieResponse } from "@/types/movie";
 import MovieContainer from "@/components/movie/movie-container";
 import MovieCard from "@/components/movie/movie-card";
 import Pagination from "@/components/pagination";
-import CustomHead from "@/components/custom-head";
 import { getMovieByCastPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+import { Metadata } from "next";
+import { generateMetaResult } from "@/utils/server-function/global";
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const index = params.index;
+  const castName = params.name;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cast/${castName}/page/${index}`;
+  const title = `Film ${castName} Terbaru - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${castName} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Nonton Movie, Subtitle Indonesia, ${castName}`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+  });
+}
 async function CastNameIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
   const castName = props.params.name;
@@ -18,11 +37,6 @@ async function CastNameIndexPage(props: PageProps) {
   );
   return (
     <>
-      {/* <CustomHead
-        title={`Film ${castName} Terbaru - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film ${castName} dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari, semua tersedia disitus.`}
-        keywords={`Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Nonton Movie, Subtitle Indonesia, ${castName}`}
-      /> */}
       <RootComponent>
         <PageContainer title={castName}>
           <MovieContainer title="Film Terbaru">

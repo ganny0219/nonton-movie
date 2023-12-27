@@ -1,6 +1,6 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const requestIp = require("request-ip");
 
@@ -11,7 +11,7 @@ type Body = {
   lastTotalRating: number;
 };
 
-export async function PATCH(req: NextResponse) {
+export async function PATCH(req: NextRequest) {
   try {
     const { lastVote, movieId, star, lastTotalRating }: Body = await req.json();
     let newRating = "0";

@@ -2,6 +2,7 @@ import Line from "@/components/line";
 import RootPanel from "@/components/panel/root-panel";
 
 import SocialMediaPanel from "@/components/panel/social-media/social-media-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 import { getSocialMedia } from "@/utils/server-function/social-media";
 
@@ -9,7 +10,6 @@ import React from "react";
 
 async function SocialMediaPanelPage() {
   const socialMediaData = await getSocialMedia();
-
   return (
     <RootPanel selected="social-media">
       <div className="flex flex-row justify-between items-center py-2 w-[80%] max-w-[1100px] m-auto">

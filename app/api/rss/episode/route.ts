@@ -1,6 +1,5 @@
 import { prisma } from "@/prisma/prisma-client";
 import { Feed } from "feed";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -50,6 +49,5 @@ export async function GET() {
       });
     }
   });
-
-  return feed.rss2();
+  return new Response(feed.rss2(), { headers: { "Content-Type": "text/xml" } });
 }

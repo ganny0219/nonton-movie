@@ -1,13 +1,10 @@
 "use client";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useRouter } from "next/navigation";
 
 import ChevronLeftIcon from "@/assets/icons/chevron-left-icon";
 import ChevronRightIcon from "@/assets/icons/chevron-right-icon";
-import { Movie } from "@/types/movie";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
 
 const NextButton: ReactNode = (
   <div className="flex justify-center items-center bg-[#313131] w-10 aspect-square rounded">
@@ -29,8 +26,20 @@ type Props = {
 };
 
 const Pagination = ({ moviePerPage, movieLength, offset, url }: Props) => {
-  const isMobile = false;
   const router = useRouter();
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  function handleWindowSizeChange() {
+    setIsMobile(window.innerWidth <= 768);
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   const startOffset = offset - 1;
   const pageCount = Math.ceil(movieLength / moviePerPage);
 

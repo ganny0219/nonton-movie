@@ -2,17 +2,31 @@ import CustomSlider from "@/components/movie/custom-slider";
 import PageContainer from "@/components/layouts/page-container";
 import FeaturedContainer from "@/components/movie/featured-container";
 import RootComponent from "@/components/root-component";
-import { Episode, Movie, Season } from "@/types/movie";
-import { GetServerSideProps, GetStaticProps } from "next";
+
 import EpisodeContainer from "@/components/movie/episode-container";
-import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
-import CustomHead from "@/components/custom-head";
-import { isMobileServerCheck } from "@/utils/server-function/global";
+
 import { getMovieListPage } from "@/utils/server-function/movie";
 import { getFeatured } from "@/utils/server-function/featured";
 import { getMovieListByGenrePage } from "@/utils/server-function/genre";
 import { getSeasonListPage } from "@/utils/server-function/season";
 import { getEpisodeListPage } from "@/utils/server-function/episode";
+import { Metadata, ResolvingMetadata } from "next";
+import { PageProps } from "@/types/global";
+import { generateMetaResult } from "@/utils/server-function/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+  const title =
+    "Nonton Movie - Streaming Film dan TV Series Subtitle Indonesia";
+  const description =
+    "Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus.";
+  const keywords =
+    "Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime";
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 export default async function Home() {
   const movieTerbaru = (await getMovieListPage(1, "movie")).movie;
@@ -29,11 +43,6 @@ export default async function Home() {
 
   return (
     <>
-      {/* <CustomHead
-        title="Nonton Movie - Streaming Film dan TV Series Subtitle Indonesia"
-        description="Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus."
-        keywords="Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime"
-      /> */}
       <RootComponent main>
         <PageContainer>
           {/* <AdsContainerTwoGrid /> */}

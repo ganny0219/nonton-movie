@@ -1,13 +1,10 @@
 import React from "react";
-import RatingDetailMovie from "./rating-detail-movie";
-import GenreListMovie from "./genre-list-movie";
-import Line from "@/components/line";
+
 import Image from "next/image";
-import { Movie, Season } from "@/types/movie";
+import { Season } from "@/types/movie";
 import Link from "next/link";
 import RatingDetailSeason from "./rating-detail-season";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+
 import RatingDetailMobileSeason from "./rating-detail-mobile-season";
 
 type Props = {
@@ -15,7 +12,6 @@ type Props = {
 };
 
 function DetailSeason({ data }: Props) {
-  const isMobile = false;
   return (
     <>
       <div className="flex flex-row mt-4">
@@ -36,11 +32,8 @@ function DetailSeason({ data }: Props) {
             {data.name}
           </h1>
           {/* {movie.type === "movie" && <p>Captain Marvel Mantap</p>} */}
-          <div
-            className={`${
-              isMobile ? "grid grid-cols-2 gap-2" : ""
-            } text-xs mt-[2px]`}
-          >
+
+          <div className="grid grid-cols-2 gap-2 sm:flex text-xs mt-[2px]">
             <span className="mr-4">{data?.movie?.country}</span>
             <span className="mr-4">{data?.movie?.rated}</span>
             <span className="mr-4">{data?.released}</span>

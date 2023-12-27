@@ -1,6 +1,9 @@
 import CustomHead from "@/components/custom-head";
 import PageContainer from "@/components/layouts/page-container";
 import RootComponent from "@/components/root-component";
+import { PageProps } from "@/types/global";
+import { generateMetaResult } from "@/utils/server-function/global";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
 
@@ -17,14 +20,23 @@ const OfficialList = [
   "DC",
 ];
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/official`;
+  const title =
+    "Nonton Film, Movie, Box Office Terbaru dan Terlengkap Subtitle Indonesia - Nonton Movie";
+  const description =
+    "Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus.";
+  const keywords =
+    "Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime";
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
+
 function ListOfficialPage() {
   return (
     <>
-      <CustomHead
-        title="Nonton Film, Movie, Box Office Terbaru dan Terlengkap Subtitle Indonesia - Nonton Movie"
-        description="Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus."
-        keywords="Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime"
-      />
       <RootComponent>
         <PageContainer>
           <h1 className="text-3xl mt-4">Official</h1>

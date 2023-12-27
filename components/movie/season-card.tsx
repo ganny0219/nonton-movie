@@ -4,7 +4,7 @@ import type { Season } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   data: Season;
@@ -14,7 +14,19 @@ type Props = {
 
 function SeasonCard({ data, index, mainPage }: Props) {
   const [hovered, setHovered] = useState(false);
-  const isMobile = false;
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  function handleWindowSizeChange() {
+    setIsMobile(window.innerWidth <= 768);
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   const hoverIn = () => {
     setHovered(true);
   };

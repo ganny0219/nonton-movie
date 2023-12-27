@@ -1,11 +1,9 @@
 import React from "react";
 import RatingDetailMovie from "./rating-detail-movie";
 import GenreListMovie from "./genre-list-movie";
-import Line from "@/components/line";
 import Image from "next/image";
 import { Movie } from "@/types/movie";
-import { RootState } from "@/store";
-import { useSelector } from "react-redux";
+
 import RatingDetailMobileMovie from "./rating-detail-mobile-movie";
 
 type Props = {
@@ -13,7 +11,6 @@ type Props = {
 };
 
 function DetailMovie({ data }: Props) {
-  const isMobile = false;
   return (
     <>
       <div className="flex flex-row mt-4">
@@ -31,11 +28,7 @@ function DetailMovie({ data }: Props) {
         <div className="flex flex-col ml-4 w-full">
           <h1 className="md:text-2xl break-words">{data?.title}</h1>
           {/* {movie.type === "movie" && <p>Captain Marvel Mantap</p>} */}
-          <div
-            className={`${
-              isMobile ? "grid grid-cols-2 gap-2" : ""
-            } text-xs mt-[2px]`}
-          >
+          <div className="grid grid-cols-2 gap-2 sm:flex text-xs mt-[2px]">
             {data?.type === "movie" ? (
               <>
                 <span className="mr-4">{data?.country}</span>

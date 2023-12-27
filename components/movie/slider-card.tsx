@@ -1,11 +1,9 @@
 import PlayIcon from "@/assets/icons/play-icon";
-import { RootState } from "@/store";
 import type { Movie } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   data: Movie;
@@ -14,7 +12,18 @@ type Props = {
 
 function SliderCard({ data, index }: Props) {
   const [hovered, setHovered] = useState(false);
-  const isMobile = false;
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  function handleWindowSizeChange() {
+    setIsMobile(window.innerWidth <= 768);
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
   const hoverIn = () => {
     setHovered(true);
   };
@@ -41,13 +50,7 @@ function SliderCard({ data, index }: Props) {
             className={`aspect-story ${
               !isMobile ? (!hovered ? "scale-100" : "scale-150") : ""
             } `}
-            src={
-              data.poster
-              // ? isMobile
-              //   ? data.poster
-              //   : `${data.poster.substring(0, 116)}._V1_.jpg`
-              // : "/img/no-img.jpg"
-            }
+            src={data.poster}
           />
           {!isMobile && (
             <>

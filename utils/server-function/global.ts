@@ -1,8 +1,11 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import {
   GetServerSidePropsContext,
   GetStaticPropsContext,
   PreviewData,
 } from "next";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { ParsedUrlQuery } from "querystring";
 
 export const getPrismaJson = (prismaObjString: any) => {
@@ -53,3 +56,41 @@ export const getStringParams = (
   }
   return "";
 };
+
+type MetaProps = {
+  title: string;
+  description: string;
+  keywords: string;
+  url: string;
+  image: string;
+};
+export const generateMetaResult = ({
+  title,
+  description,
+  keywords,
+  url,
+  image,
+}: MetaProps) => {
+  return {
+    title,
+    description,
+    keywords,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      type: "video.movie",
+      url,
+      images: [image],
+    },
+  };
+};
+
+export async function sessionCheck() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/pandora/auth");
+  }
+}

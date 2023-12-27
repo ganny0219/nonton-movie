@@ -4,16 +4,32 @@ import Line from "@/components/line";
 import RecomendationMovie from "@/components/movie/recomendation-movie";
 import Note from "@/components/note";
 import RootComponent from "@/components/root-component";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, Metadata } from "next";
 import { Movie, Season } from "@/types/movie";
 import EpisodeItem from "@/components/movie/episode-item";
 import DetailSeason from "@/components/movie/detail/detail-season";
 import { convertSlugToTitle } from "@/utils/client-function/global";
 import CustomHead from "@/components/custom-head";
-import { getStringParams } from "@/utils/server-function/global";
+import {
+  generateMetaResult,
+  getStringParams,
+} from "@/utils/server-function/global";
 import { getSeasonBySlug } from "@/utils/server-function/season";
 import { getRecomendarionMovie } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const slug = params.slug;
+  const season: Season = await getSeasonBySlug(slug);
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/season/${slug}`;
+  const title = `Nonton ${season?.movie?.title} : ${season.name} - Subtitle Indonesia - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${season?.movie?.title} : ${season.name} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton ${season?.movie?.title} : ${season.name}, Nonton Film ${season?.movie?.title} : ${season.name}, Nonton ${season?.movie?.title} : ${season.name} Gratis, Nonton ${season?.movie?.title} : ${season.name} Streaming, ${season?.movie?.title} : ${season.name} Subtitle Indonesia`;
+  const image = season.poster;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function StreamSeriesPage(props: PageProps) {
   const slug = props.params.slug;

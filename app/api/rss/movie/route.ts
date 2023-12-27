@@ -26,5 +26,5 @@ export async function GET() {
     });
   });
 
-  return feed.rss2();
+  return new Response(feed.rss2(), { headers: { "Content-Type": "text/xml" } });
 }

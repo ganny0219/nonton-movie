@@ -7,9 +7,23 @@ import AdsContainerOneGrid from "@/components/ads/ads-container-one-grid";
 import MovieContainer from "@/components/movie/movie-container";
 import MovieCard from "@/components/movie/movie-card";
 import Pagination from "@/components/pagination";
-import CustomHead from "@/components/custom-head";
 import { getMovieByOfficalPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+import { Metadata } from "next";
+import { generateMetaResult } from "@/utils/server-function/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const index = params.index;
+  const productionName = params.production;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/official/${productionName}/page/${index}`;
+  const title = `Film ${productionName} Terbaru - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${productionName}, Serial TV ${productionName}, Drakor ${productionName}, Anime ${productionName} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${productionName}, Nonton ${productionName} Gratis , Nonton Film ${productionName} Streaming, Nonton Movie, Nonton Drama ${productionName}, Nonton Anime ${productionName}, Subtitle Indonesia, Streaming Drakor ${productionName}, Streaming Anime ${productionName}`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function OfficialProductionIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
@@ -20,11 +34,6 @@ async function OfficialProductionIndexPage(props: PageProps) {
   );
   return (
     <>
-      <CustomHead
-        title={`Film ${productionName} Terbaru - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film ${productionName}, Serial TV ${productionName}, Drakor ${productionName}, Anime ${productionName} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
-        keywords={`Nonton Film ${productionName}, Nonton ${productionName} Gratis , Nonton Film ${productionName} Streaming, Nonton Movie, Nonton Drama ${productionName}, Nonton Anime ${productionName}, Subtitle Indonesia, Streaming Drakor ${productionName}, Streaming Anime ${productionName}`}
-      />
       <RootComponent>
         <PageContainer title={productionName}>
           {movie.length > 0 && (

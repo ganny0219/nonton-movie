@@ -12,6 +12,7 @@ function Player({ playerUrl, track }: Props) {
   const [player, setPlayer] = useState<PlayerUrl | null>(null);
   const [playerCover, setPlayerCover] = useState(true);
   // const [trackUrl, setTrackUrl] = useState("");
+
   const vidSrcTrack = `${
     track.length > 0
       ? `?sub.file=${track[0].url}&sub.label=${track[0].language}`

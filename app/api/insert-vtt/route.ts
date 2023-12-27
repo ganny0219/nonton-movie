@@ -1,39 +1,17 @@
-import { prisma } from "@/prisma/prisma-client";
-import { Season } from "@/types/movie";
-import { convertEpisodeDateTimestamp } from "@/utils/client-function/global";
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
-import { cwd } from "process";
+import { NextRequest, NextResponse } from "next/server";
+import * as fs from "fs";
 
-interface MulterRequest extends NextApiRequest {
-  files: any;
-}
-
-export const config = {
-  api: {
-    bodyParser: false, // Matikan parsing bawaan permintaan yang masuk
-  },
-};
-
-const multer = require("multer");
-const storage = multer.diskStorage({
-  //@ts-ignore
-  destination: function (req, file, cb) {
-    cb(null, `./public/vtt`);
-  },
-  //@ts-ignore
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-export async function POST(req: MulterRequest, res: NextApiResponse) {
-  upload.fields([{ name: "files" }])(req, res, (err: Error) => {
-    if (err) {
-      return NextResponse.json({ error: err.message }, { status: 403 });
-    }
-    return NextResponse.json({ message: "File diunggah" }, { status: 200 });
-  });
+export async function POST(req: NextRequest) {
+  const data = await req.formData();
+  const files = data.getAll("files") as File[];
+  if (!files) {
+    return NextResponse.json({ success: false });
+  }
+  for (let file of files) {
+    const bytes = await file.arrayBuffer();
+    const fileBuffer = Buffer.from(bytes);
+    const filePath = process.cwd() + "/public/vtt/" + file.name;
+    fs.writeFileSync(filePath, fileBuffer);
+  }
+  return NextResponse.json({ success: true });
 }

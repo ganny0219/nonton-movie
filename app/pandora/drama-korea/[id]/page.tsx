@@ -12,6 +12,7 @@ import {
 } from "@/utils/server-function/player-server";
 import DrakorDetailPanel from "@/components/panel/movie/detail/drakor-detail-panel";
 import { PageProps } from "@/types/global";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function UpdateDrakorPage(props: PageProps) {
   const id = props.params.id;

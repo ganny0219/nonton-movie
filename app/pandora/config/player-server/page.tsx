@@ -12,6 +12,7 @@ import { apiAxios } from "@/utils/axios";
 import Loading from "@/components/loading";
 import { getPlayerServerListPanel } from "@/utils/server-function/player-server";
 import PlayerServerPanel from "@/components/panel/config/player-server/player-server-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function PlayerServerPage() {
   const playerServerList = await getPlayerServerListPanel();

@@ -8,6 +8,27 @@ import RootComponent from "@/components/root-component";
 import CustomHead from "@/components/custom-head";
 import { getMovieListByGenrePage } from "@/utils/server-function/genre";
 import { PageProps } from "@/types/global";
+import { generateMetaResult } from "@/utils/server-function/global";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const title = params.category;
+  const index = params.index;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${title}/page/${index}`;
+  const metaTitle = `Pilihan Genre ${title} Terlengkap - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Nonton Movie, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({
+    title: metaTitle,
+    description,
+    keywords,
+    url,
+    image,
+  });
+}
 
 async function GenreIndexPage(props: PageProps) {
   const pageIndex = props.params.index;

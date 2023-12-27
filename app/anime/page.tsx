@@ -1,11 +1,10 @@
-import type { Episode, Movie, MovieResponse, Season } from "@/types/movie";
-import type { GetStaticProps } from "next";
+import type { MovieResponse } from "@/types/movie";
+import type { Metadata } from "next";
 import React from "react";
 
 import PageContainer from "@/components/layouts/page-container";
 import RootComponent from "@/components/root-component";
 import FeaturedContainer from "@/components/movie/featured-container";
-import CustomHead from "@/components/custom-head";
 import CustomSlider from "@/components/movie/custom-slider";
 
 import EpisodeContainer from "@/components/movie/episode-container";
@@ -13,6 +12,19 @@ import { getEpisodeListPage } from "@/utils/server-function/episode";
 import { getMovieListPage } from "@/utils/server-function/movie";
 import { getFeatured } from "@/utils/server-function/featured";
 import { getSeasonListPage } from "@/utils/server-function/season";
+import { generateMetaResult } from "@/utils/server-function/global";
+import { PageProps } from "@/types/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/anime`;
+  const title = `Pilihan Genre Anime Terlengkap - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Nonton Movie, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function AnimePage() {
   const { movie: anime, movieLength: animeLength }: MovieResponse =
@@ -31,11 +43,6 @@ async function AnimePage() {
   );
   return (
     <>
-      {/* <CustomHead
-        title={`Pilihan Genre Anime Terlengkap - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
-        keywords={`Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Nonton Movie, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`}
-      /> */}
       <RootComponent>
         <PageContainer title="FILM ANIME">
           {animeEpisode.length > 0 && (

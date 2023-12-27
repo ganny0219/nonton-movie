@@ -1,14 +1,13 @@
 import { prisma } from "@/prisma/prisma-client";
 import { GoogleDrive } from "@/types/google-drive";
-import { Episode, Season } from "@/types/movie";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
   googleDriveData: GoogleDrive;
 };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { googleDriveData }: Body = req.body;
+export async function POST(req: NextRequest) {
+  const { googleDriveData }: Body = await req.json();
 
   try {
     const result = await prisma.googleDrive.upsert({
@@ -32,10 +31,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         movieType: googleDriveData.movieType,
       },
     });
-    res.status(201).json(result);
+    return NextResponse.json(result, { status: 201 });
   } catch (err) {
-    res.status(403).json(err);
+    return NextResponse.json({ message: err }, { status: 403 });
   }
 }
-
-export default handler;

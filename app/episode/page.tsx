@@ -1,14 +1,28 @@
-import type { Episode, EpisodeResponse } from "@/types/movie";
+import type { EpisodeResponse } from "@/types/movie";
 import React from "react";
 import PageContainer from "@/components/layouts/page-container";
 import Pagination from "@/components/pagination";
 import RootComponent from "@/components/root-component";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { Metadata } from "next";
 import EpisodeContainer from "@/components/movie/episode-container";
-import CustomHead from "@/components/custom-head";
-import { apiAxios } from "@/utils/axios";
 
 import { getEpisodeListPage } from "@/utils/server-function/episode";
+import { generateMetaResult } from "@/utils/server-function/global";
+import { PageProps } from "@/types/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/episode`;
+  const title =
+    "Nonton Episode Terbaru dari Serial TV, TV-Series, Seri TV Terbaru Subtitle Indonesia - Nonton Movie";
+  const description =
+    "Nonton Movie - Nonton Serial TV Episode Terbaru, Nonton Drakor Episode Terbaru, Nonton Anime Episode Terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari, semua tersedia disitus.";
+  const keywords =
+    "Nonton Film Episode Terbaru, Nonton Gratis Episode Terbaru, Nonton Streaming Episode Terbaru, Nonton Movie Episode Terbaru, Nonton Drama Episode Terbaru, Nonton Anime Episode Terbaru, Subtitle Indonesia, Streaming Drakor Episode Terbaru, Streaming Anime Episode Terbaru";
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function EpisodePage() {
   const { episode: episodeList, episodeLength }: EpisodeResponse =
@@ -16,11 +30,6 @@ async function EpisodePage() {
 
   return (
     <>
-      {/* <CustomHead
-        title="Nonton Episode Terbaru dari Serial TV, TV-Series, Seri TV Terbaru Subtitle Indonesia - Nonton Movie"
-        description="Nonton Movie - Nonton Serial TV Episode Terbaru, Nonton Drakor Episode Terbaru, Nonton Anime Episode Terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari, semua tersedia disitus."
-        keywords="Nonton Film Episode Terbaru, Nonton Gratis Episode Terbaru, Nonton Streaming Episode Terbaru, Nonton Movie Episode Terbaru, Nonton Drama Episode Terbaru, Nonton Anime Episode Terbaru, Subtitle Indonesia, Streaming Drakor Episode Terbaru, Streaming Anime Episode Terbaru"
-      /> */}
       <RootComponent>
         <PageContainer title="EPISODE TERBARU">
           <EpisodeContainer episodeList={episodeList} page />

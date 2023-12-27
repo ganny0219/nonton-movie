@@ -6,13 +6,27 @@ import RootComponent from "@/components/root-component";
 import { Movie } from "@/types/movie";
 import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
 import { convertSlugToTitle } from "@/utils/client-function/global";
-import CustomHead from "@/components/custom-head";
 import {
   getMovieBySlug,
   getRecomendarionMovie,
 } from "@/utils/server-function/movie";
 import { PageProps } from "@/.next/types/app/page";
 import DetailSelection from "@/components/movie/detail/detail-selection";
+import { generateMetaResult } from "@/utils/server-function/global";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const slug = params.slug;
+  const series: Movie = await getMovieBySlug(slug);
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/series/${slug}`;
+  const title = `Nonton $series.title} - Subtitle Indonesia - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${series.title} sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `;
+  const keywords = `Nonton ${series.title}, Nonton Film ${series.title}, Nonton ${series.title} Gratis, Nonton ${series.title} Streaming, ${series.title} Subtitle Indonesia`;
+  const image = series.poster;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function StreamSeriesPage(props: PageProps) {
   const slug = props.params.slug;
@@ -21,16 +35,11 @@ async function StreamSeriesPage(props: PageProps) {
 
   return (
     <>
-      {/* <CustomHead
-        title={`Nonton ${series.title} - Subtitle Indonesia - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film ${series.title} sub indonesia sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `}
-        keywords={`Nonton ${series.title}, Nonton Film ${series.title}, Nonton ${series.title} Gratis, Nonton ${series.title} Streaming, ${series.title} Subtitle Indonesia`}
-      /> */}
       <RootComponent>
         <PageContainer>
           <AdsContainerTwoGrid />
           <DetailMovie data={series} />
-          <DetailSelection series={series} />
+          <DetailSelection movie={series} />
           <RecomendationMovie recomendMovie={recomendMovie} />
           <Note title={convertSlugToTitle(series.slug)} />
         </PageContainer>

@@ -5,10 +5,22 @@ import MovieCard from "@/components/movie/movie-card";
 import MovieContainer from "@/components/movie/movie-container";
 import Pagination from "@/components/pagination";
 import RootComponent from "@/components/root-component";
-import CustomHead from "@/components/custom-head";
-import { getPageIndexParams } from "@/utils/server-function/global";
+import { generateMetaResult } from "@/utils/server-function/global";
 import { getMovieListPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const index = params.index;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/anime/page/${index}`;
+  const title = `Pilihan Genre Anime Terlengkap - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Nonton Movie, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function AnimeIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
@@ -17,11 +29,6 @@ async function AnimeIndexPage(props: PageProps) {
 
   return (
     <>
-      {/* <CustomHead
-        title={`Pilihan Genre Anime Terlengkap - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
-        keywords={`Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Nonton Movie, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`}
-      /> */}
       <RootComponent>
         <PageContainer title="FILM ANIME">
           <MovieContainer title="ANIME TERBARU">

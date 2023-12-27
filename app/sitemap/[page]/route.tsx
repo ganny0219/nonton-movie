@@ -1,12 +1,8 @@
 import { convertSitemapSlug } from "@/utils/client-function/global";
 import { generateSitemap } from "@/utils/server-function/sitemap";
-import { GetServerSideProps } from "next";
-import {
-  ISitemapField,
-  getServerSideSitemap,
-  getServerSideSitemapLegacy,
-} from "next-sitemap";
-import { NextRequest, NextResponse } from "next/server";
+
+import { ISitemapField, getServerSideSitemap } from "next-sitemap";
+import { NextRequest } from "next/server";
 
 const URLS_PER_SITEMAP = 1000;
 
@@ -24,9 +20,9 @@ const pageList = [
 ];
 
 export async function GET(request: NextRequest) {
-  if (!request.nextUrl.pathname) {
-    return { notFound: true };
-  }
+  // if (!request.nextUrl.pathname) {
+  //   return { notFound: true };
+  // }
   const fields: ISitemapField[] = [];
   const { type, page } = convertSitemapSlug(request.nextUrl.pathname);
   if (type == "page") {

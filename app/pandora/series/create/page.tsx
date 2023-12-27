@@ -9,6 +9,7 @@ import {
   getPlayerServerListPanel,
 } from "@/utils/server-function/player-server";
 import CreateSeriesPanel from "@/components/panel/movie/create/create-series-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function CreateSeriesPage() {
   const playerServerList = await getPlayerServerListPanel();

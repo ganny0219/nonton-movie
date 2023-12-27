@@ -8,6 +8,7 @@ import {
   getPlayerServerListPanel,
 } from "@/utils/server-function/player-server";
 import CreateDrakorPanel from "@/components/panel/movie/create/create-drakor-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function CreateDramaKoreaPage() {
   const playerServerList = await getPlayerServerListPanel();

@@ -1,9 +1,10 @@
 import Line from "@/components/line";
 import RootPanel from "@/components/panel/root-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 import Link from "next/link";
 import React from "react";
 
-function ConfigPage() {
+async function ConfigPage() {
   return (
     <RootPanel selected="config">
       <div className="flex flex-row justify-between items-center py-2 w-[80%] max-w-[1100px] m-auto">

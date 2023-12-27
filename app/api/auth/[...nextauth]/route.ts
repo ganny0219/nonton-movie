@@ -23,15 +23,15 @@ export const authOptions: AuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt"
+    strategy: "jwt",
   },
-  // pages: {
-  //   signIn: "/pandora/auth"
-  // },
+  pages: {
+    signIn: "/pandora/auth",
+  },
   callbacks: {
-    session: async ({ session }) => Promise.resolve(session)
+    session: async ({ session }) => Promise.resolve(session),
   },
-}
+};
 
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

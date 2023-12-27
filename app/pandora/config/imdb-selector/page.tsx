@@ -9,6 +9,7 @@ import SelectorEpisodeContainer from "@/components/panel/config/imdb-selector/se
 import { ImdbSelectorData } from "@/types/imdbSelector";
 import { getImdbSelector } from "@/utils/server-function/selector";
 import ImdbSelectorPanel from "@/components/panel/config/imdb-selector/imdb-selector-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function ImdbSelectorPage() {
   const imdbSelectorDB = await getImdbSelector("");

@@ -1,7 +1,7 @@
 import React from "react";
 import PageContainer from "@/components/layouts/page-container";
 import RootComponent from "@/components/root-component";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, Metadata } from "next";
 import { Movie, MovieResponse } from "@/types/movie";
 import MovieContainer from "@/components/movie/movie-container";
 import MovieCard from "@/components/movie/movie-card";
@@ -9,6 +9,25 @@ import Pagination from "@/components/pagination";
 import CustomHead from "@/components/custom-head";
 import { getMovieByCastPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+import { generateMetaResult } from "@/utils/server-function/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const castName = params.name;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cast/${castName}`;
+  const title = `Film ${castName} Terbaru - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film ${castName} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Nonton Movie, Subtitle Indonesia, ${castName}`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+  });
+}
 
 async function CastNamePage(props: PageProps) {
   const castName = props.params.name;

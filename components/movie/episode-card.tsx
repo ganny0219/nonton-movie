@@ -4,7 +4,7 @@ import { RootState } from "@/store";
 import type { Episode, Movie } from "@/types/movie";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 type Props = {
@@ -13,8 +13,20 @@ type Props = {
 };
 
 function EpisodeCard({ episode, index }: Props) {
-  const isMobile = false;
   const [hovered, setHovered] = useState(false);
+
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  function handleWindowSizeChange() {
+    setIsMobile(window.innerWidth <= 768);
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
 
   const hoverIn = () => {
     setHovered(true);

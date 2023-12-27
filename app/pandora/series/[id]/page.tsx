@@ -9,6 +9,7 @@ import {
 } from "@/utils/server-function/player-server";
 import { PageProps } from "@/types/global";
 import SeriesDetailPanel from "@/components/panel/movie/detail/series-detail-panel";
+import { sessionCheck } from "@/utils/server-function/global";
 
 async function UpdateSeriesPage(props: PageProps) {
   const id = props.params.id;

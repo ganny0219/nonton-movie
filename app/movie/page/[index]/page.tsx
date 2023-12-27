@@ -7,6 +7,23 @@ import Pagination from "@/components/pagination";
 import RootComponent from "@/components/root-component";
 import { getMovieListPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+import { Metadata } from "next";
+import { generateMetaResult } from "@/utils/server-function/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const index = params.index;
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/movie/page/${index}`;
+  const title =
+    "Nonton Film, Movie, Box Office Terbaru dan Terlengkap Subtitle Indonesia - Nonton Movie";
+  const description =
+    "Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus.";
+  const keywords =
+    "Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime";
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function MoviesIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
@@ -16,11 +33,6 @@ async function MoviesIndexPage(props: PageProps) {
   );
   return (
     <>
-      {/* <CustomHead
-        title="Nonton Film, Movie, Box Office Terbaru dan Terlengkap Subtitle Indonesia - Nonton Movie"
-        description="Nonton Movie - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus."
-        keywords="Nonton Film, Nonton Gratis, Nonton Streaming, Nonton Movie, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime"
-      /> */}
       <RootComponent>
         <PageContainer title="CINEMAXXI">
           <MovieContainer title="FILM TERBARU">

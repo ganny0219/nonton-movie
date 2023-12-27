@@ -83,12 +83,14 @@ function CustomSlider({ title, movieList, seasonList, urlSeeAll }: Props) {
         )}
         <div className="flex items-center ml-2">
           <button
+            aria-label="prev-button"
             className="mr-1"
             onClick={() => sliderRef.current?.slickPrev()}
           >
             <LeftCircle size="1.5" />
           </button>
           <button
+            aria-label="next-button"
             onClick={() => {
               // if (slideNumber == currentSlide) {
               if (slideNumberRef.current == currentSlideRef.current) {

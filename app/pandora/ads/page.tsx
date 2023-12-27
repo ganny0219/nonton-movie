@@ -1,16 +1,11 @@
 "use client";
-import Field from "@/components/field/field";
-import FieldHorizontal from "@/components/field/field-horizontal";
-import Line from "@/components/line";
-import AdsItem from "@/components/panel/ads/ads-item";
+
 import AdsPanel from "@/components/panel/ads/ads-panel";
 import RootPanel from "@/components/panel/root-panel";
-import { Ads } from "@/types/ads";
-import { apiAxios } from "@/utils/axios";
-import { getAdsList, getAdsListPanel } from "@/utils/server-function/ads";
-import axios from "axios";
-import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
+
+import { getAdsList } from "@/utils/server-function/ads";
+import { sessionCheck } from "@/utils/server-function/global";
+
 import React, { useState } from "react";
 
 async function AdsPanelPage() {

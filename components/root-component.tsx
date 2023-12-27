@@ -86,6 +86,7 @@ async function RootComponent({ children, main }: Props) {
         <Footer />
         <div className="flex flex-1 justify-end mt-4">
           <a
+            aria-label="up-button"
             href="#root-header"
             className="px-2 py-1 bg-[#31313180] rounded-md"
           >

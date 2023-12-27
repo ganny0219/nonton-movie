@@ -8,6 +8,20 @@ import { getEpisodeListPage } from "@/utils/server-function/episode";
 import { getFeatured } from "@/utils/server-function/featured";
 import { getSeasonListPage } from "@/utils/server-function/season";
 import FeaturedContainer from "@/components/movie/featured-container";
+import { Metadata } from "next";
+import { PageProps } from "@/types/global";
+import { generateMetaResult } from "@/utils/server-function/global";
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/drama-korea`;
+  const title = `Pilihan Genre Drama Korea Terlengkap - Nonton Movie`;
+  const description = `Nonton Movie - Nonton Film Drama Korea, Serial TV Drama Korea, Drakor Drama Korea, Anime Drama Korea terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film Drama Korea, Nonton Drama Korea Gratis , Nonton Film Drama Korea Streaming, Nonton Movie, Nonton Drama Drama Korea, Nonton Anime Drama Korea, Subtitle Indonesia, Streaming Drakor Drama Korea, Streaming Anime Drama Korea`;
+  const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
+  return generateMetaResult({ title, description, keywords, url, image });
+}
 
 async function DramaKoreaPage() {
   const { movie: drakor, movieLength: drakorLength } = await getMovieListPage(
@@ -27,11 +41,6 @@ async function DramaKoreaPage() {
 
   return (
     <>
-      {/* <CustomHead
-        title={`Pilihan Genre Drama Korea Terlengkap - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film Drama Korea, Serial TV Drama Korea, Drakor Drama Korea, Anime Drama Korea terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
-        keywords={`Nonton Film Drama Korea, Nonton Drama Korea Gratis , Nonton Film Drama Korea Streaming, Nonton Movie, Nonton Drama Drama Korea, Nonton Anime Drama Korea, Subtitle Indonesia, Streaming Drakor Drama Korea, Streaming Anime Drama Korea`}
-      /> */}
       <RootComponent>
         <PageContainer title="FILM DRAMA KOREA">
           {drakorEpisode.length > 0 && (

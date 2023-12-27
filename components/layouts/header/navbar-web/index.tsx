@@ -179,7 +179,11 @@ function NavbarWeb({
         <p className="ml-2">Genre</p>
       </Link> */}
       <div className="flex flex-1 justify-end">
-        <button onClick={searchToggleHandler} className="xl:hidden">
+        <button
+          aria-label="search-button"
+          onClick={searchToggleHandler}
+          className="xl:hidden"
+        >
           <SearchIcon color="#fff" size="1.5" />
         </button>
         <div className="hidden flex-col xl:flex">
