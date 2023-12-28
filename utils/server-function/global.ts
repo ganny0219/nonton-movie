@@ -72,6 +72,7 @@ export const generateMetaResult = ({
   image,
 }: MetaProps) => {
   return {
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_BASE_URL}`),
     title,
     description,
     keywords,
