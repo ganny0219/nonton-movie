@@ -1,29 +1,25 @@
--- CreateEnum
-CREATE TYPE "AdsType" AS ENUM ('full', 'half');
-
 -- CreateTable
 CREATE TABLE "Movie" (
     "id" TEXT NOT NULL,
+    "featured" BOOLEAN NOT NULL,
     "type" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "trailerUrl" TEXT NOT NULL,
     "resolution" TEXT NOT NULL,
-    "vote" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "vote" INTEGER NOT NULL,
     "year" TEXT NOT NULL,
     "rated" TEXT NOT NULL,
     "released" TEXT NOT NULL,
-    "releasedTimestamp" TEXT NOT NULL DEFAULT '',
     "runtime" TEXT NOT NULL,
     "plot" TEXT NOT NULL,
     "language" TEXT NOT NULL,
     "country" TEXT NOT NULL,
     "poster" TEXT NOT NULL,
-    "rating" TEXT NOT NULL DEFAULT '10',
-    "totalRating" INTEGER NOT NULL DEFAULT 0,
+    "rating" TEXT NOT NULL,
     "imdbId" TEXT NOT NULL,
     "production" TEXT NOT NULL,
-    "views" INTEGER NOT NULL DEFAULT 0,
+    "views" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -33,16 +29,11 @@ CREATE TABLE "Movie" (
 -- CreateTable
 CREATE TABLE "Season" (
     "id" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "released" TEXT NOT NULL,
-    "releasedTimestamp" TEXT NOT NULL DEFAULT '',
-    "vote" TEXT[] DEFAULT ARRAY[]::TEXT[],
-    "trailerUrl" TEXT NOT NULL DEFAULT '',
-    "sequence" INTEGER NOT NULL,
+    "vote" INTEGER NOT NULL,
     "poster" TEXT NOT NULL,
-    "rating" TEXT NOT NULL DEFAULT '10',
-    "totalRating" INTEGER NOT NULL DEFAULT 0,
+    "rating" TEXT NOT NULL,
     "movieId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -55,16 +46,14 @@ CREATE TABLE "Episode" (
     "id" TEXT NOT NULL,
     "seasonId" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
-    "sequence" INTEGER NOT NULL,
+    "episode" INTEGER NOT NULL,
     "released" TEXT NOT NULL,
-    "releasedTimestamp" TEXT NOT NULL DEFAULT '',
     "title" TEXT NOT NULL,
     "plot" TEXT NOT NULL,
-    "rating" TEXT NOT NULL DEFAULT '10',
-    "totalRating" INTEGER NOT NULL DEFAULT 0,
-    "vote" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "rating" TEXT NOT NULL,
+    "vote" INTEGER NOT NULL,
     "poster" TEXT NOT NULL,
-    "views" INTEGER NOT NULL DEFAULT 0,
+    "views" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -155,111 +144,8 @@ CREATE TABLE "Writer" (
 CREATE TABLE "Genre" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Genre_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Ads" (
-    "id" TEXT NOT NULL,
-    "sequence" INTEGER NOT NULL,
-    "name" TEXT NOT NULL,
-    "url" TEXT NOT NULL,
-    "bannerUrl" TEXT NOT NULL,
-    "type" "AdsType" NOT NULL DEFAULT 'full',
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Ads_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "SocialMedia" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "url" TEXT NOT NULL,
-    "logoUrl" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "SocialMedia_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "ReleaseSchedule" (
-    "id" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "day" TEXT NOT NULL,
-    "movieId" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "ReleaseSchedule_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Featured" (
-    "id" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
-    "movieId" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "Featured_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "ImdbSelector" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "mainTitle" TEXT NOT NULL,
-    "episodeTitle" TEXT NOT NULL,
-    "episodeArray" TEXT NOT NULL,
-    "rated" TEXT NOT NULL,
-    "poster" TEXT NOT NULL,
-    "genre" TEXT NOT NULL,
-    "released" TEXT NOT NULL,
-    "country" TEXT NOT NULL,
-    "language" TEXT NOT NULL,
-    "runtime" TEXT NOT NULL,
-    "plot" TEXT NOT NULL,
-    "year" TEXT NOT NULL,
-    "writer" TEXT NOT NULL,
-    "director" TEXT NOT NULL,
-    "actorArray" TEXT NOT NULL,
-    "actorName" TEXT NOT NULL,
-    "actorAs" TEXT NOT NULL,
-    "actorImage" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "ImdbSelector_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "PlayerServer" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "baseUrl" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "PlayerServer_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "GoogleDrive" (
-    "id" TEXT NOT NULL,
-    "googleId" TEXT NOT NULL,
-    "imdbId" TEXT NOT NULL,
-    "movieTitle" TEXT NOT NULL,
-    "season" INTEGER NOT NULL,
-    "episode" INTEGER NOT NULL,
-    "movieType" TEXT NOT NULL DEFAULT '',
-
-    CONSTRAINT "GoogleDrive_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -293,9 +179,6 @@ CREATE UNIQUE INDEX "Movie_slug_key" ON "Movie"("slug");
 CREATE UNIQUE INDEX "Movie_imdbId_key" ON "Movie"("imdbId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Season_slug_key" ON "Season"("slug");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Episode_slug_key" ON "Episode"("slug");
 
 -- CreateIndex
@@ -309,15 +192,6 @@ CREATE UNIQUE INDEX "Writer_name_key" ON "Writer"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Genre_name_key" ON "Genre"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "ImdbSelector_name_key" ON "ImdbSelector"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "PlayerServer_name_key" ON "PlayerServer"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "GoogleDrive_googleId_key" ON "GoogleDrive"("googleId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_MovieToWriter_AB_unique" ON "_MovieToWriter"("A", "B");
@@ -360,12 +234,6 @@ ALTER TABLE "PlayerUrl" ADD CONSTRAINT "PlayerUrl_movieId_fkey" FOREIGN KEY ("mo
 
 -- AddForeignKey
 ALTER TABLE "EpisodePlayerUrl" ADD CONSTRAINT "EpisodePlayerUrl_episodeId_fkey" FOREIGN KEY ("episodeId") REFERENCES "Episode"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "ReleaseSchedule" ADD CONSTRAINT "ReleaseSchedule_movieId_fkey" FOREIGN KEY ("movieId") REFERENCES "Movie"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Featured" ADD CONSTRAINT "Featured_movieId_fkey" FOREIGN KEY ("movieId") REFERENCES "Movie"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_MovieToWriter" ADD CONSTRAINT "_MovieToWriter_A_fkey" FOREIGN KEY ("A") REFERENCES "Movie"("id") ON DELETE CASCADE ON UPDATE CASCADE;
