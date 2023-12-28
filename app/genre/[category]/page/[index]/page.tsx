@@ -17,9 +17,9 @@ export async function generateMetadata({
   const title = decodeURIComponent(params.category);
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${title}/page/${index}`;
-  const metaTitle = `Pilihan Genre ${title} Terlengkap - Nonton Movie`;
-  const description = `Nonton Movie - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
-  const keywords = `Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Nonton Movie, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`;
+  const metaTitle = `Pilihan Genre ${title} Terlengkap - Moovie21`;
+  const description = `Moovie21 - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Moovie21, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({
     title: metaTitle,
@@ -40,9 +40,9 @@ async function GenreIndexPage(props: PageProps) {
   return (
     <>
       {/* <CustomHead
-        title={`Pilihan Genre ${title} Terlengkap - Nonton Movie`}
-        description={`Nonton Movie - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
-        keywords={`Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Nonton Movie, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`}
+        title={`Pilihan Genre ${title} Terlengkap - Moovie21`}
+        description={`Moovie21 - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
+        keywords={`Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Moovie21, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`}
       /> */}
       <RootComponent>
         <PageContainer title={"FILM " + title}>

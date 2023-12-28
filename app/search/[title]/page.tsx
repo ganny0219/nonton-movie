@@ -15,9 +15,9 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const searchInput = decodeURIComponent(params.title);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/search/${searchInput}`;
-  const title = `Film ${searchInput} Terbaru - Nonton Movie`;
-  const description = `Nonton Movie - Nonton Film ${searchInput}, Serial TV ${searchInput}, Drakor ${searchInput}, Anime ${searchInput} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
-  const keywords = `Nonton Film ${searchInput}, Nonton ${searchInput} Gratis , Nonton ${searchInput} Streaming, Nonton Movie,${searchInput} Subtitle Indonesia, ${searchInput}`;
+  const title = `Film ${searchInput} Terbaru - Moovie21`;
+  const description = `Moovie21 - Nonton Film ${searchInput}, Serial TV ${searchInput}, Drakor ${searchInput}, Anime ${searchInput} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${searchInput}, Nonton ${searchInput} Gratis , Nonton ${searchInput} Streaming, Moovie21,${searchInput} Subtitle Indonesia, ${searchInput}`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({ title, description, keywords, url, image });
 }

@@ -109,11 +109,11 @@ async function RootComponent({ children, main }: Props) {
                   {social.logoUrl != "" && (
                     <Image
                       loading="lazy"
-                      title={`Nonton Movie ${social.name}`}
+                      title={`Moovie21 ${social.name}`}
                       width={400}
                       height={400}
                       src={social.logoUrl}
-                      alt={`Nonton Movie ${social?.name}`}
+                      alt={`Moovie21 ${social?.name}`}
                       className="w-[16px] h-[16px] mr-2"
                     />
                   )}
@@ -126,7 +126,7 @@ async function RootComponent({ children, main }: Props) {
             })}
           </div>
           <div className="text-xs text-center mt-2">
-            Copyright © 2023 by Nonton Movie. All Rights Reserved.
+            Copyright © 2023 by Moovie21. All Rights Reserved.
           </div>
         </div>
       </div>

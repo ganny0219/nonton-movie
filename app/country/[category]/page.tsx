@@ -15,9 +15,9 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const country = decodeURIComponent(params.category);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/country/${country}`;
-  const title = `Pilihan Genre ${country} Terlengkap - Nonton Movie`;
-  const description = `Nonton Movie - Nonton Film ${country}, Serial TV ${country}, Drakor ${country}, Anime ${country} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
-  const keywords = `Nonton Film ${country}, Nonton ${country} Gratis , Nonton Film ${country} Streaming, Nonton Movie, Nonton Drama ${country}, Nonton Anime ${country}, Subcountry Indonesia, Streaming Drakor ${country}, Streaming Anime ${country}`;
+  const title = `Pilihan Genre ${country} Terlengkap - Moovie21`;
+  const description = `Moovie21 - Nonton Film ${country}, Serial TV ${country}, Drakor ${country}, Anime ${country} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film ${country}, Nonton ${country} Gratis , Nonton Film ${country} Streaming, Moovie21, Nonton Drama ${country}, Nonton Anime ${country}, Subcountry Indonesia, Streaming Drakor ${country}, Streaming Anime ${country}`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({
     title,

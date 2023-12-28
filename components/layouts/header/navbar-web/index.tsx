@@ -62,7 +62,7 @@ function NavbarWeb({
   };
 
   return (
-    <div className="flex lg:flex-1 items-center flex-row text-xl">
+    <div className="flex lg:flex-1 items-center flex-row text-xl pt-3">
       {/* <div className="hidden flex-col lg:flex">
         <MenuDropdown
           path={`/movie`}

@@ -31,8 +31,8 @@ export async function generateMetadata({
   const slug = params.slug;
   const mainEpisode: Episode = await getEpisodeBySlug(slug);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/episode/${slug}`;
-  const title = `Nonton ${mainEpisode.season?.movie?.title} : Season ${mainEpisode.season?.sequence} Episode ${mainEpisode.sequence} - Subtitle Indonesia - Nonton Movie`;
-  const description = `Nonton Movie - Nonton Film ${mainEpisode.season?.movie?.title} sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `;
+  const title = `Nonton ${mainEpisode.season?.movie?.title} : Season ${mainEpisode.season?.sequence} Episode ${mainEpisode.sequence} - Subtitle Indonesia - Moovie21`;
+  const description = `Moovie21 - Nonton Film ${mainEpisode.season?.movie?.title} sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `;
   const keywords = `Nonton ${mainEpisode.season?.movie?.title}, Nonton Film ${mainEpisode.season?.movie?.title}, Nonton ${mainEpisode.season?.movie?.title} Gratis, Nonton ${mainEpisode.season?.movie?.title} Streaming, ${mainEpisode.season?.movie?.title} Subtitle Indonesia`;
   const image = mainEpisode.poster;
   return generateMetaResult({ title, description, keywords, url, image });

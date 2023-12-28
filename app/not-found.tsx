@@ -13,7 +13,7 @@ function NotFoundPage() {
       </div>
       <Footer />
       <div className="hidden md:flex flex-row items-center my-6">
-        <div>Copyright © 2023 by Nonton Movie. All Rights Reserved.</div>
+        <div>Copyright © 2023 by Moovie21. All Rights Reserved.</div>
       </div>
     </div>
   );

@@ -19,9 +19,9 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/anime`;
-  const title = `Pilihan Genre Anime Terlengkap - Nonton Movie`;
-  const description = `Nonton Movie - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
-  const keywords = `Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Nonton Movie, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`;
+  const title = `Pilihan Genre Anime Terlengkap - Moovie21`;
+  const description = `Moovie21 - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const keywords = `Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Moovie21, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({ title, description, keywords, url, image });
 }

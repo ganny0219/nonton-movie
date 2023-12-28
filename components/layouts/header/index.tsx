@@ -62,7 +62,7 @@ function Header({ hidden }: Props) {
             <button
               aria-label="burger-button"
               onClick={burgerToggleHandler}
-              className="lg:hidden"
+              className="lg:hidden pt-3"
             >
               <BurgerIcon color="#fff" size="1.5" />
             </button>
@@ -72,13 +72,13 @@ function Header({ hidden }: Props) {
             >
               <Image
                 loading="lazy"
-                title="Nonton Movie Logo"
+                title="Moovie21 Logo"
                 height={400}
                 width={400}
-                src="/logo/nontonmovie-logo.png"
-                alt={`Nonton Movie Logo`}
+                src="/logo/moovie21-logo.png"
+                alt={`Moovie21 Logo`}
               />
-              {/* NONTON MOVIE */}
+              {/* MOOVIE21*/}
             </Link>
             <NavbarWeb
               searchMovie={searchMovie}

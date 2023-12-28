@@ -27,8 +27,8 @@ export async function generateMetadata({
   const slug = params.slug;
   const movie: Movie = await getMovieBySlug(slug);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/movie/${slug}`;
-  const title = `Nonton ${movie.title} - Subtitle Indonesia - Nonton Movie`;
-  const description = `Nonton Movie - Nonton Film ${movie.title} sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `;
+  const title = `Nonton ${movie.title} - Subtitle Indonesia - Moovie21`;
+  const description = `Moovie21 - Nonton Film ${movie.title} sub indonesia dengan kualitas tinggi yang tersedia disitus, dalam bahasa indonesia. `;
   const keywords = `Nonton ${movie.title}, Nonton Film ${movie.title}, Nonton ${movie.title} Gratis, Nonton ${movie.title} Streaming, ${movie.title} Subtitle Indonesia`;
   const image = movie.poster;
   return generateMetaResult({ title, description, keywords, url, image });

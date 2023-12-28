@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export async function GET() {
   const feed = new Feed({
     id: `${process.env.NEXT_PUBLIC_BASE_URL}`,
-    copyright: "Copyright © 2023 by Nonton Movie. All Rights Reserved.",
+    copyright: "Copyright © 2023 by Moovie21. All Rights Reserved.",
     title: "New Season",
     description: "New Season List",
     link: `${process.env.NEXT_PUBLIC_BASE_URL}/season`,

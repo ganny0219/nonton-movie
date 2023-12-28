@@ -12,11 +12,11 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/jadwal-rilis`;
   const title =
-    "Jadawal Nonton Film, Movie, Jadwal Box Office Terbaru dan Terlengkap Subtitle Indonesia - Nonton Movie";
+    "Jadawal Nonton Film, Movie, Jadwal Box Office Terbaru dan Terlengkap Subtitle Indonesia - Moovie21";
   const description =
-    "Nonton Movie - Jadwal Nonton Film, Jadwal Serial TV, Jadwal Drakor, Jadwal Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus.";
+    "Moovie21 - Jadwal Nonton Film, Jadwal Serial TV, Jadwal Drakor, Jadwal Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus.";
   const keywords =
-    "Jadwal Nonton Film, Jadwal Nonton Gratis, Jadwal Nonton Streaming, Jadwal Nonton Movie, Jadwal Nonton Drama, Jadwal Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime";
+    "Jadwal Nonton Film, Jadwal Nonton Gratis, Jadwal Nonton Streaming, Jadwal Moovie21, Jadwal Nonton Drama, Jadwal Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime";
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({ title, description, keywords, url, image });
 }
