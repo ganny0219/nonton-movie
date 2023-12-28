@@ -10,15 +10,15 @@ import {
   getMovieBySlug,
   getRecomendarionMovie,
 } from "@/utils/server-function/movie";
-import { PageProps } from "@/.next/types/app/page";
 import DetailSelection from "@/components/movie/detail/detail-selection";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
+import { PageProps } from "@/types/global";
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const slug = params.slug;
+  const slug = await params.slug;
   const series: Movie = await getMovieBySlug(slug);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/series/${slug}`;
   const title = `Nonton ${series.title} - Subtitle Indonesia - Nonton Movie`;
@@ -29,7 +29,7 @@ export async function generateMetadata({
 }
 
 async function StreamSeriesPage(props: PageProps) {
-  const slug = props.params.slug;
+  const slug = await props.params.slug;
   const series: Movie = await getMovieBySlug(slug);
   const recomendMovie = await getRecomendarionMovie(series ? series.genre : []);
 
