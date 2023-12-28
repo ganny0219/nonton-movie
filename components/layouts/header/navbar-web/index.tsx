@@ -9,9 +9,7 @@ import TvIcon from "@/assets/icons/tv-icon";
 import OpenFolderIcon from "@/assets/icons/open-folder-icon";
 import FilmIcon from "@/assets/icons/film-icon";
 import SearchIcon from "@/assets/icons/search-icon";
-import axios from "axios";
 import DropdownSearchContainer from "../dropdown-search-container";
-import DropdownSearchItem from "../dropdown-search-item";
 import { Movie } from "@/types/movie";
 import SearchDropdown from "../search-dropdown";
 
@@ -26,25 +24,25 @@ function NavbarWeb({
   searchToggleHandler,
   searchInputHandler,
 }: Props) {
-  const [movieHover, setMovieHover] = useState(false);
-  const [seriesHover, setSeriesHover] = useState(false);
+  // const [movieHover, setMovieHover] = useState(false);
+  // const [seriesHover, setSeriesHover] = useState(false);
   const [otherHover, setOtherHover] = useState(false);
   const [searchFocus, setSearchFocus] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const movieHoverIn = () => {
-    setMovieHover(true);
-  };
-  const movieHoverOut = () => {
-    setMovieHover(false);
-  };
-  const seriesHoverIn = () => {
-    setSeriesHover(true);
-  };
+  // const movieHoverIn = () => {
+  //   setMovieHover(true);
+  // };
+  // const movieHoverOut = () => {
+  //   setMovieHover(false);
+  // };
+  // const seriesHoverIn = () => {
+  //   setSeriesHover(true);
+  // };
 
-  const seriesHoverOut = () => {
-    setSeriesHover(false);
-  };
+  // const seriesHoverOut = () => {
+  //   setSeriesHover(false);
+  // };
   const otherHoverIn = () => {
     setOtherHover(true);
   };

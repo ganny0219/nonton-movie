@@ -4,9 +4,8 @@ import AdsPanel from "@/components/panel/ads/ads-panel";
 import RootPanel from "@/components/panel/root-panel";
 
 import { getAdsList } from "@/utils/server-function/ads";
-import { sessionCheck } from "@/utils/server-function/global";
 
-import React, { useState } from "react";
+import React from "react";
 
 async function AdsPanelPage() {
   const dataHalfAds = await getAdsList("half");

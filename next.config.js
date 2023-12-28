@@ -17,6 +17,10 @@ const nextConfig = {
   },
   rewrites: async () => [
     {
+      source: "/vtt/:slug(.+).vtt",
+      destination: "/vtt/:slug",
+    },
+    {
       source: "/sitemap.xml",
       destination: "/sitemap",
     },

@@ -1,11 +1,10 @@
 import PlayIcon from "@/assets/icons/play-icon";
-import { RootState } from "@/store";
-import type { Movie, Season } from "@/types/movie";
+
+import type { Season } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 
 type Props = {
   mainPage: boolean;
