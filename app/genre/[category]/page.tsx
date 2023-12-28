@@ -14,7 +14,7 @@ import { PageProps } from "@/types/global";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const title = params.category;
+  const title = decodeURIComponent(params.category);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${title}`;
   const metaTitle = `Pilihan Genre ${title} Terlengkap - Nonton Movie`;
   const description = `Nonton Movie - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;

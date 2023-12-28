@@ -14,7 +14,7 @@ import { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const title = params.category;
+  const title = decodeURIComponent(params.category);
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${title}/page/${index}`;
   const metaTitle = `Pilihan Genre ${title} Terlengkap - Nonton Movie`;

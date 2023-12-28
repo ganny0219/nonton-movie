@@ -13,7 +13,7 @@ import { PageProps } from "@/types/global";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const country = params.category;
+  const country = decodeURIComponent(params.category);
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/country/${country}/page/${index}`;
   const title = `Pilihan Genre ${country} Terlengkap - Nonton Movie`;
@@ -31,7 +31,7 @@ export async function generateMetadata({
 
 async function GenreIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
-  const title = props.params.category;
+  const title = decodeURIComponent(props.params.category);
   const { movie, movieLength }: MovieResponse = await getMovieListByCountryPage(
     pageIndex,
     title

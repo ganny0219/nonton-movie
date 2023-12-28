@@ -14,7 +14,7 @@ import { generateMetaResult } from "@/utils/server-function/global";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const productionName = params.production;
+  const productionName = decodeURIComponent(params.production);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/official/${productionName}`;
   const title = `Film ${productionName} Terbaru - Nonton Movie`;
   const description = `Nonton Movie - Nonton Film ${productionName}, Serial TV ${productionName}, Drakor ${productionName}, Anime ${productionName} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
@@ -23,7 +23,7 @@ export async function generateMetadata({
   return generateMetaResult({ title, description, keywords, url, image });
 }
 async function OfficialProductionPage(props: PageProps) {
-  const productionName = props.params.production;
+  const productionName = decodeURIComponent(props.params.production);
   const { movie, movieLength }: MovieResponse = await getMovieByOfficalPage(
     1,
     productionName

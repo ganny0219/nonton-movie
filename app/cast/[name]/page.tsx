@@ -14,7 +14,7 @@ import { generateMetaResult } from "@/utils/server-function/global";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const castName = params.name;
+  const castName = decodeURIComponent(params.name);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cast/${castName}`;
   const title = `Film ${castName} Terbaru - Nonton Movie`;
   const description = `Nonton Movie - Nonton Film ${castName} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
@@ -30,7 +30,7 @@ export async function generateMetadata({
 }
 
 async function CastNamePage(props: PageProps) {
-  const castName = props.params.name;
+  const castName = decodeURIComponent(props.params.name);
   const { movie, movieLength }: MovieResponse = await getMovieByCastPage(
     1,
     castName

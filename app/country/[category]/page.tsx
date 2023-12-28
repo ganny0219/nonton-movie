@@ -13,7 +13,7 @@ import { PageProps } from "@/types/global";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const country = params.category;
+  const country = decodeURIComponent(params.category);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/country/${country}`;
   const title = `Pilihan Genre ${country} Terlengkap - Nonton Movie`;
   const description = `Nonton Movie - Nonton Film ${country}, Serial TV ${country}, Drakor ${country}, Anime ${country} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
@@ -29,7 +29,7 @@ export async function generateMetadata({
 }
 
 async function CategoryPage(props: PageProps) {
-  const title = props.params.category;
+  const title = decodeURIComponent(props.params.category);
   const { movie, movieLength }: MovieResponse = await getMovieListByCountryPage(
     1,
     title
