@@ -1,19 +1,15 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import {
-  GetServerSidePropsContext,
-  GetStaticPropsContext,
-  PreviewData,
-} from "next";
+import { GetServerSidePropsContext, GetStaticPropsContext } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { ParsedUrlQuery } from "querystring";
+import { authOptions } from "../next-auth";
 
 export const getPrismaJson = (prismaObjString: any) => {
   return JSON.parse(JSON.stringify(prismaObjString));
 };
 
 export const isMobileServerCheck = (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
+  context: GetServerSidePropsContext<ParsedUrlQuery>
 ) => {
   const isServer = !!context.req;
   const userAgent: string | undefined = isServer
@@ -36,8 +32,8 @@ export const isMobileServerCheck = (
 
 export const getPageIndexParams = (
   context:
-    | GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
-    | GetStaticPropsContext<ParsedUrlQuery, PreviewData>
+    | GetServerSidePropsContext<ParsedUrlQuery>
+    | GetStaticPropsContext<ParsedUrlQuery>
 ) => {
   return context.params?.index ? +context.params.index : undefined;
 };
@@ -46,8 +42,8 @@ type KeyParams = "production" | "title" | "slug" | "category" | "id";
 
 export const getStringParams = (
   context:
-    | GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
-    | GetStaticPropsContext<ParsedUrlQuery, PreviewData>,
+    | GetServerSidePropsContext<ParsedUrlQuery>
+    | GetStaticPropsContext<ParsedUrlQuery>,
   key: KeyParams
 ) => {
   const json = JSON.parse(JSON.stringify(context.params));
