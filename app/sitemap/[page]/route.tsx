@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
     pageList.map((url) =>
       fields.push({
         loc: `${process.env.NEXT_PUBLIC_BASE_URL}/${url}`,
-        changefreq: "daily",
+        changefreq: "weekly",
         priority: 0.9,
       })
     );
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
       fields.push({
         loc: `${process.env.NEXT_PUBLIC_BASE_URL}/${type}/${data.slug}`,
         lastmod: data.updatedAt.toISOString(),
-        changefreq: "daily",
+        changefreq: "weekly",
       });
     });
   }
