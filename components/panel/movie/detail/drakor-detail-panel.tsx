@@ -157,7 +157,7 @@ function DrakorDetailPanel({
               <SingleSelectionRadio
                 radioList={productionList.drakor}
                 currentValue={movieData.production}
-                defaultValue="Official"
+                edit={editDetail}
               />
             </div>
           </div>
@@ -238,7 +238,7 @@ function DrakorDetailPanel({
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
+                edit={editDetail}
               />
             </div>
           </div>

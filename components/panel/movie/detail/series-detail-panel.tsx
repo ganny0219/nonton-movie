@@ -1,23 +1,17 @@
 "use client";
 import type { Movie } from "@/types/movie";
 import React, { useEffect, useState } from "react";
-
 import Field from "@/components/field/field";
-
 import CastInput from "@/components/panel/movie/cast-input";
 import GenreInput from "@/components/panel/movie/genre-input";
-
 import Loading from "@/components/loading";
 import SeasonInput from "@/components/panel/movie/season-input";
 import { useSelector, useDispatch, Provider } from "react-redux";
 import { RootState } from "@/store";
 import { updateMovieData, setSeriesData } from "@/store/movie";
-
 import EditButton from "@/components/button/edit-button";
-
 import { apiAxios } from "@/utils/axios";
 import { convertRating } from "@/utils/client-function/global";
-
 import { productionList, resolutionList } from "@/data/radio";
 import SingleSelectionRadio from "@/components/radio-button/single-selection-radio";
 import { PlayerServer, PlayerServerJson } from "@/types/player-server";
@@ -38,7 +32,6 @@ function SeriesDetailPanel({
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const movieData = useSelector((state: RootState) => state.movie);
-
   useEffect(() => {
     dispatch(
       updateMovieData({
@@ -120,7 +113,6 @@ function SeriesDetailPanel({
         );
       });
   };
-
   return (
     <>
       <Loading visible={loading} />
@@ -161,7 +153,7 @@ function SeriesDetailPanel({
               <SingleSelectionRadio
                 radioList={productionList.series}
                 currentValue={movieData.production}
-                defaultValue="Official"
+                edit={editDetail}
               />
             </div>
           </div>
@@ -243,7 +235,7 @@ function SeriesDetailPanel({
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
+                edit={editDetail}
               />
             </div>
           </div>

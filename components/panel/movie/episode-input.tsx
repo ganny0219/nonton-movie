@@ -130,7 +130,7 @@ function EpisodeInput({
           const newEpisodeResult: Episode[] = await apiAxios
             .patch(`/episode/update`, {
               seasonId: season.id,
-              episode: newEpisode,
+              episode: newEpisode.reverse(),
               removedEpisodeId: removedEpisodeId.current,
             })
             .then((res) => (newEpisode = res.data));

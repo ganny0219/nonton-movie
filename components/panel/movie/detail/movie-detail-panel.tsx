@@ -158,7 +158,7 @@ function MovieDetailPanel({ movie, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={productionList.movie}
                 currentValue={movieData.production}
-                defaultValue="Official"
+                edit={editDetail}
               />
             </div>
           </div>
@@ -240,7 +240,7 @@ function MovieDetailPanel({ movie, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
+                edit={editDetail}
               />
             </div>
           </div>

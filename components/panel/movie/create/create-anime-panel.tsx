@@ -208,7 +208,6 @@ function CreateAnimePanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
               />
             </div>
           </div>

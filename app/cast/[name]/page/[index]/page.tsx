@@ -28,6 +28,8 @@ export async function generateMetadata({
     image,
   });
 }
+
+export const dynamic = "force-static";
 async function CastNameIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
   const castName = decodeURIComponent(props.params.name);

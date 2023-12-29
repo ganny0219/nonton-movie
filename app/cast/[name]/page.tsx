@@ -28,7 +28,7 @@ export async function generateMetadata({
     image,
   });
 }
-
+export const dynamic = "force-static";
 async function CastNamePage(props: PageProps) {
   const castName = decodeURIComponent(props.params.name);
   const { movie, movieLength }: MovieResponse = await getMovieByCastPage(

@@ -8,6 +8,8 @@ import { getReleaseSchedule } from "@/utils/server-function/release-schedule";
 
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 async function SchedulePanelPage() {
   const movie = await getMovieListPanel("");
   const releaseScheduleDataDB = await getReleaseSchedule();

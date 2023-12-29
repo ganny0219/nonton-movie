@@ -21,6 +21,7 @@ import DetailSelection from "@/components/movie/detail/detail-selection";
 import Player from "@/components/movie/player";
 import { generateMetaResult } from "@/utils/server-function/global";
 
+export const dynamic = "force-static";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {

@@ -10,6 +10,7 @@ import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
 
+export const dynamic = "force-static";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {

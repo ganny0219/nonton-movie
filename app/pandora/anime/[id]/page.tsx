@@ -1,8 +1,6 @@
 import React from "react";
 import Line from "@/components/line";
 import RootPanel from "@/components/panel/root-panel";
-import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
 import { getMovieById } from "@/utils/server-function/movie";
 import {
   getPlayerServerListJson,
@@ -10,7 +8,6 @@ import {
 } from "@/utils/server-function/player-server";
 import AnimeDetailPanel from "@/components/panel/movie/detail/anime-detail-panel";
 import { PageProps } from "@/types/global";
-import { sessionCheck } from "@/utils/server-function/global";
 
 async function UpdateAnimePage(props: PageProps) {
   const id = props.params.id;

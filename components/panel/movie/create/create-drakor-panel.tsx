@@ -150,7 +150,6 @@ function CreateDrakorPanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={productionList.drakor}
                 currentValue={movieData.production}
-                defaultValue="Official"
               />
             </div>
           </div>
@@ -220,7 +219,6 @@ function CreateDrakorPanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
               />
             </div>
           </div>

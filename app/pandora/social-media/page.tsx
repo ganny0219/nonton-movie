@@ -1,12 +1,10 @@
 import Line from "@/components/line";
 import RootPanel from "@/components/panel/root-panel";
-
 import SocialMediaPanel from "@/components/panel/social-media/social-media-panel";
-import { sessionCheck } from "@/utils/server-function/global";
-
 import { getSocialMedia } from "@/utils/server-function/social-media";
-
 import React from "react";
+
+export const dynamic = "force-dynamic";
 
 async function SocialMediaPanelPage() {
   const socialMediaData = await getSocialMedia();

@@ -151,7 +151,7 @@ function CreateSeriesPanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={productionList.series}
                 currentValue={movieData.production}
-                defaultValue="Official"
+                
               />
             </div>
           </div>
@@ -223,7 +223,6 @@ function CreateSeriesPanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
               />
             </div>
           </div>

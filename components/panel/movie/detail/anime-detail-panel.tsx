@@ -221,7 +221,7 @@ function AnimeDetailPanel({
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
+                edit={editDetail}
               />
             </div>
           </div>

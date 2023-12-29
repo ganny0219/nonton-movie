@@ -25,6 +25,7 @@ import { getEpisodeBySlug } from "@/utils/server-function/episode";
 import { PageProps } from "@/types/global";
 import Player from "@/components/movie/player";
 
+export const dynamic = "force-static";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {

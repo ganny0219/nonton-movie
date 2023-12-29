@@ -10,6 +10,7 @@ import { getMovieListPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
 import { Metadata } from "next";
 
+export const dynamic = "force-static";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {

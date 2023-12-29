@@ -1,7 +1,6 @@
 import { Movie } from "@prisma/client";
 import Link from "next/link";
 import React, { useState } from "react";
-import axios from "axios";
 import DeleteConfirm from "@/components/delete-confirm";
 import { apiAxios } from "@/utils/axios";
 
@@ -36,8 +35,9 @@ function MovieItemTable({ odd, type, data, setMovieList, movieIndex }: Props) {
         onClose={setDeleteMovieModal}
       />
       <div
-        className={`flex flex-row w-full text-md ${odd ? "bg-slate-100" : "bg-slate-50"
-          }`}
+        className={`flex flex-row w-full text-md ${
+          odd ? "bg-slate-100" : "bg-slate-50"
+        }`}
       >
         <div className="flex items-center py-2 w-[20%] border-solid border-[1px] border-black border-t-0 pl-2">
           {data?.imdbId}

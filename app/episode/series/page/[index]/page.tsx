@@ -9,6 +9,7 @@ import { generateMetaResult } from "@/utils/server-function/global";
 import { getEpisodeListPage } from "@/utils/server-function/episode";
 import { PageProps } from "@/types/global";
 
+export const dynamic = "force-static";
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {

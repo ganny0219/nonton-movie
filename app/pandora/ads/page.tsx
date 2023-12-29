@@ -7,6 +7,7 @@ import { getAdsList } from "@/utils/server-function/ads";
 
 import React from "react";
 
+export const dynamic = "force-dynamic";
 async function AdsPanelPage() {
   const dataHalfAds = await getAdsList("half");
   const dataFullAds = await getAdsList("full");

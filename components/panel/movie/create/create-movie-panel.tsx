@@ -164,7 +164,6 @@ function CreateMoviePanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={productionList.movie}
                 currentValue={movieData.production}
-                defaultValue="Official"
               />
             </div>
           </div>
@@ -235,7 +234,6 @@ function CreateMoviePanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={resolutionList}
                 currentValue={movieData.resolution}
-                defaultValue="HD"
               />
             </div>
           </div>

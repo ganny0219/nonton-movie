@@ -11,6 +11,7 @@ import { getImdbSelector } from "@/utils/server-function/selector";
 import ImdbSelectorPanel from "@/components/panel/config/imdb-selector/imdb-selector-panel";
 import { sessionCheck } from "@/utils/server-function/global";
 
+export const dynamic = "force-dynamic";
 async function ImdbSelectorPage() {
   const imdbSelectorDB = await getImdbSelector("");
   return (

@@ -7,5 +7,11 @@ export default function PandoraLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <html lang="en">
+      <body className="flex flex-col min-h-[100vh] bg-primary font-quicksand ">
+        <Provider store={store}>{children}</Provider>;
+      </body>
+    </html>
+  );
 }

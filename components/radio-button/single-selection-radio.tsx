@@ -1,6 +1,6 @@
 "use client";
 import { updateMovieData } from "@/store/movie";
-import React, { ElementRef, useEffect } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 
 type RadioType = {
@@ -13,25 +13,11 @@ type RadioType = {
 type Props = {
   radioList: RadioType[];
   currentValue: string;
-  defaultValue: string;
+  edit?: boolean;
 };
 
-function SingleSelectionRadio({
-  radioList,
-  currentValue,
-  defaultValue,
-}: Props) {
+function SingleSelectionRadio({ radioList, currentValue, edit }: Props) {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const defaultRadio: HTMLElement = document.querySelector(
-      `[value=${defaultValue}]`
-    ) as HTMLElement;
-
-    if (currentValue == defaultValue && defaultRadio) {
-      defaultRadio.click();
-    }
-  }, [currentValue]);
 
   const onRadioChange = (
     e: React.MouseEvent<HTMLInputElement>,
@@ -46,10 +32,11 @@ function SingleSelectionRadio({
         return (
           <div key={index} className="flex flex-row items-center">
             <input
+              readOnly
               id={data.label}
-              disabled={data.disabled ? data.disabled : undefined}
+              disabled={edit ? edit : false}
               type="radio"
-              defaultChecked={currentValue == data.value}
+              checked={currentValue == data.value}
               name={data.name}
               value={data.value}
               onClick={(e) => onRadioChange(e, data.name)}

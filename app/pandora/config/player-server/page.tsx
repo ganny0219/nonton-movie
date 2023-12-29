@@ -14,6 +14,7 @@ import { getPlayerServerListPanel } from "@/utils/server-function/player-server"
 import PlayerServerPanel from "@/components/panel/config/player-server/player-server-panel";
 import { sessionCheck } from "@/utils/server-function/global";
 
+export const dynamic = "force-dynamic";
 async function PlayerServerPage() {
   const playerServerList = await getPlayerServerListPanel();
   return (
