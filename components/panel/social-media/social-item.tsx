@@ -31,12 +31,9 @@ function SocialItem({ socialMedia, socialIndex, setSocialMedia }: Props) {
   };
 
   const editSave = async () => {
-    await apiAxios.post(
-      `/social-media/update`,
-      {
-        socialMediaData: socialMedia,
-      },
-    );
+    await apiAxios.patch(`/social-media/update`, {
+      socialMediaData: socialMedia,
+    });
 
     return setEdit(false);
   };
@@ -54,14 +51,11 @@ function SocialItem({ socialMedia, socialIndex, setSocialMedia }: Props) {
   };
 
   const onDeleteAds = async () => {
-    await apiAxios.delete(
-      `/social-media/delete`,
-      {
-        params: {
-          socialMediaId: socialMedia.id,
-        },
-      }
-    );
+    await apiAxios.delete(`/social-media/delete`, {
+      params: {
+        socialMediaId: socialMedia.id,
+      },
+    });
     onDeleteConfirmClose();
     setSocialMedia((prev) => {
       const newSocialMedia = [...prev];
