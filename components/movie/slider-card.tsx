@@ -37,10 +37,11 @@ function SliderCard({ data, index }: Props) {
           <Image
             loading="lazy"
             title={`${data?.title}`}
-            fill
+            width={200}
+            height={200}
             quality={20}
             alt={`Nonton Film ${data?.title}`}
-            className={`w-full ${
+            className={` ${
               !isMobile ? (!hovered ? "scale-100" : "scale-150") : ""
             } `}
             src={data.poster}

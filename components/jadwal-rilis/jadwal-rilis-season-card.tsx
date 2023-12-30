@@ -35,7 +35,8 @@ function JadwalRilisSeasonCard({ data, index, mainPage }: Props) {
         <Image
           loading="lazy"
           title={`${data?.movie?.title} ${data.name}`}
-          fill
+          width={200}
+          height={200}
           quality={20}
           alt={`Nonton Film ${data?.movie?.title} ${data.name}`}
           className={`${!hovered ? "scale-100" : "scale-150"} aspect-story`}

@@ -19,7 +19,7 @@ async function CreateSeriesPage() {
       <RootPanel selected="series">
         <div className="flex flex-col w-[80%] min-h-[100%] max-w-[1100px] m-auto bg-tertiary">
           <div className="flex flex-col justify-center items-center px-4 mt-4 mb-2 pb-6">
-            <h1 className="text-3xl mb-2">CREATE SERIES</h1>
+            <h2 className="text-3xl mb-2">CREATE SERIES</h2>
             <Line thin />
             <CreateSeriesPanel
               playerServerList={playerServerList}

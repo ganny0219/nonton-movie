@@ -42,10 +42,11 @@ function SeasonCard({ data, index, mainPage }: Props) {
           <Image
             loading="lazy"
             title={`${data?.movie?.title} ${data.name}`}
-            fill
+            width={200}
+            height={200}
             quality={20}
             alt={`Nonton Film ${data?.movie?.title} ${data.name}`}
-            className={`w-full ${
+            className={` ${
               !isMobile ? (!hovered ? "scale-100" : "scale-150") : ""
             } `}
             src={data.poster ? data.poster : "/img/no-img.jpg"}

@@ -31,7 +31,7 @@ function DetailSelection({ movie, movieType }: Props) {
     if (selected === "Info") {
       return (
         <div>
-          <h1 className="mb-4">Sypnosis</h1>
+          <h3 className="mb-4">Sypnosis</h3>
           <p>{movie.plot}</p>
         </div>
       );

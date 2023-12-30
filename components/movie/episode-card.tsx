@@ -44,7 +44,8 @@ function EpisodeCard({ episode, index }: Props) {
         <Image
           loading="lazy"
           title={`${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
-          fill
+          width={200}
+          height={200}
           quality={20}
           alt={`Nonton Film ${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
           className={`w-full object-cover rounded-xl${

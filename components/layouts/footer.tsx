@@ -11,7 +11,7 @@ async function Footer({ hidden }: Props) {
       <div className=" border-solid border-[#363636] flex flex-row mt-auto text-white w-[95%] m-auto py-10">
         <div className="flex flex-col w-full m-2">
           <div className="w-[50%]">
-            <h2 className="mb-4">MOOVIE21</h2>
+            <h3 className="mb-4">MOOVIE21</h3>
             <p>
               Moovie21 merupakan situs penyedia layanan streaming film dan
               serial tv gratis. Sama seperti penyedia film dan serial tv lainnya
@@ -25,7 +25,7 @@ async function Footer({ hidden }: Props) {
           </div>
         </div>
         <div className="flex flex-col justify-start items-start w-[25%] m-2">
-          <h2>Original Series</h2>
+          <h3>Original Series</h3>
           <div className="flex flex-col justify-start items-start text-red-500 my-1 text-sm">
             <Link href={{ pathname: `/` }} className="my-1">
               Apple TV +
@@ -45,7 +45,7 @@ async function Footer({ hidden }: Props) {
           </div>
         </div>
         <div className="flex flex-col justify-start items-start w-[25%] m-2">
-          <h2>Categoty</h2>
+          <h3>Categoty</h3>
           <div className="flex flex-col justify-start items-start text-red-500 my-1 text-sm">
             <Link href={{ pathname: `/genre/Action` }} className="my-1">
               Action
@@ -71,7 +71,7 @@ async function Footer({ hidden }: Props) {
           </div>
         </div>
         <div className="flex justify-start items-start flex-col w-[25%] m-2">
-          <h2>MOOVIE21</h2>
+          <h3>MOOVIE21</h3>
           <div className="flex flex-col justify-start items-start text-red-500 my-1 text-sm">
             <Link href={{ pathname: `/` }} className="my-1">
               DCEU Movie
