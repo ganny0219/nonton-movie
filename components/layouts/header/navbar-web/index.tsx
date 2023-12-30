@@ -180,13 +180,13 @@ function NavbarWeb({
         <button
           aria-label="search-button"
           onClick={searchToggleHandler}
-          className="xl:hidden"
+          className="lg:hidden"
         >
           <SearchIcon color="#fff" size="1.5" />
         </button>
-        <div className="hidden flex-col xl:flex">
+        <div className="hidden flex-col lg:flex">
           <SearchDropdown>
-            <div className="hidden xl:flex flex-row items-center  bg-[#2E2E2C] rounded py-2 px-4 ">
+            <div className="hidden lg:flex flex-row items-center  bg-[#2E2E2C] rounded py-2 px-4 ">
               <input
                 ref={searchInputRef}
                 onFocus={searchFocusIn}

@@ -40,7 +40,7 @@ function NavbarMobile({
   return (
     <>
       {searchToggle && (
-        <div className="flex xl:hidden flex-row justify-center items-center bg-[#2E2E2C] rounded py-2 px-4 ">
+        <div className="flex lg:hidden flex-row justify-center items-center bg-[#2E2E2C] rounded py-2 px-4 ">
           <input
             ref={searchInputRef}
             onFocus={searchFocusIn}

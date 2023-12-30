@@ -16,7 +16,7 @@ function DropdownSearchItem({ movie }: Props) {
   return (
     <Link
       href={{ pathname: `/${movie.type}/${movie.slug}` }}
-      className="flex flex-row border-b-[1px] border-[#ffffff50] w-full max-w-[400px] lg:w-full p-2 "
+      className="flex flex-row border-b-[1px] border-[#ffffff50] w-full p-2 "
     >
       <Image
         loading="lazy"
