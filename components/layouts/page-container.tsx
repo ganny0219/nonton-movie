@@ -9,7 +9,7 @@ type Props = {
 async function PageContainer({ title, children, mainPage }: Props) {
   return (
     <div
-      className={`${mainPage ? "w-[85%]" : "w-full"}  m-auto text-[#fff]"} ${
+      className={`${mainPage ? "w-[85%]" : "w-full"}  m-auto text-[#fff] ${
         title ? "sm:mt-10" : ""
       } `}
     >

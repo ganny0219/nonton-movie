@@ -5,7 +5,7 @@ import React from "react";
 
 function NotFoundPage() {
   return (
-    <div className="w-[90%] m-auto text-[#fff] min-h-[100vh]">
+    <div className="max-w-[1100px] w-[90%] m-auto text-[#fff] min-h-[100vh]">
       <Header />
       <div className="w-[85%] m-auto py-2 mt-2 md:mt-6 text-[#fff]">
         <div className="flex w-full justify-center items-center min-h-[33vh]">
