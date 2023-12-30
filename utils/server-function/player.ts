@@ -6,7 +6,7 @@ export const getPlayerList = async () => {
   try {
     const result = await prisma.playerServer.findMany({
       orderBy: {
-        name: "asc",
+        name: "desc",
       },
     });
     return getPrismaJson(result);
