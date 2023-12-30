@@ -4,10 +4,8 @@ import {
   GoogleGenereateData,
   GoogleGenereateResult,
 } from "@/types/player-server";
-import { apiAxios } from "@/utils/axios";
 import { getPlayerServerListJson } from "@/utils/server-function/player-server";
 import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 type Body = {

@@ -13,11 +13,10 @@ function Player({ playerUrl, track }: Props) {
   const [playerCover, setPlayerCover] = useState(true);
   // const [trackUrl, setTrackUrl] = useState("");
 
-  const vidSrcTrack = `${
-    track.length > 0
+  const vidSrcTrack = `${track.length > 0
       ? `?sub.file=${track[0].url}&sub.label=${track[0].language}`
       : ""
-  }`;
+    }`;
 
   useEffect(() => {
     let playUrl = playerUrl.find((player) => player.url.length > 25);
@@ -81,7 +80,7 @@ function Player({ playerUrl, track }: Props) {
       )}
       <div className="w-full border-t-2 border-dashed border-[#000] my-4" />
       <PlayerList
-        playerList={playerUrl}
+        playerList={playerUrl.reverse()}
         player={player}
         selectedHandler={playerHandler}
       />

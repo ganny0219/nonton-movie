@@ -1,6 +1,4 @@
 import { prisma } from "@/prisma/prisma-client";
-import { Movie } from "@/types/movie";
-import { NextApiRequest, NextApiResponse } from "next";
 import { getPrismaJson } from "./global";
 
 export const getPlayerServerListPanel = async () => {
