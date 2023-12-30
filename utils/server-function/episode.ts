@@ -72,7 +72,7 @@ export const getEpisodeBySlug = async (slug: string) => {
       include: {
         playerUrl: {
           orderBy: {
-            name: "asc",
+            name: "desc",
           },
         },
         track: true,

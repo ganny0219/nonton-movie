@@ -62,7 +62,7 @@ export const getMovieBySlug = async (slug: string | string[] | undefined) => {
                 },
                 playerUrl: {
                   orderBy: {
-                    name: "asc",
+                    name: "desc",
                   },
                 },
                 track: true,
