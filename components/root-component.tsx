@@ -110,8 +110,8 @@ async function RootComponent({ children, main }: Props) {
                     <Image
                       loading="lazy"
                       title={`Moovie21 ${social.name}`}
-                      width={400}
-                      height={400}
+                      fill
+                      quality={20}
                       src={social.logoUrl}
                       alt={`Moovie21 ${social?.name}`}
                       className="w-[16px] h-[16px] mr-2"

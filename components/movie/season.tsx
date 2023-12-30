@@ -38,7 +38,7 @@ function Season({ season }: Props) {
               >
                 {season.sequence}
               </div>
-              <div className="flex justify-center w-[12%] min-w-[70px]  md:text-lg ml-2">
+              <div className="flex justify-center w-[12%] min-w-[70px] md:text-lg ml-2">
                 {season.name}
               </div>
               <div className="text-sm pl-2">{season.released}</div>

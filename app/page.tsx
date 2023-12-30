@@ -55,7 +55,7 @@ export default async function Home() {
               urlSeeAll="/movie"
             />
           )}
-          {actionMovie.length > 0 && (
+          {/* {actionMovie.length > 0 && (
             <CustomSlider
               title="FILM ACTION"
               movieList={actionMovie}
@@ -89,7 +89,7 @@ export default async function Home() {
               title="SEASON TERBARU"
               urlSeeAll="/season"
             />
-          )}
+          )} */}
           {episodeTerbaru.length > 0 && (
             <EpisodeContainer
               episodeList={episodeTerbaru}

@@ -18,7 +18,7 @@ function JadwalRilisContainer({ title, releseSchedule }: Props) {
             <h2 className="text-2xl ">{title}</h2>
           </div>
           <div
-            className={`grid grid-cols-3 lg:grid-cols-6 md:grid-cols-4  grid-rows-1 gap-4 w-full`}
+            className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 grid-rows-1 gap-4 w-full`}
           >
             {releseSchedule.map((schedule, scheduleIndex) => {
               return schedule.movie.type == "movie" ? (

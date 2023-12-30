@@ -14,7 +14,7 @@ async function FeaturedContainer({ featuredMovie }: Props) {
         <h3 className="flex-1 truncate md:text-2xl">FEATURED</h3>
       </div>
       <div
-        className={`grid grid-cols-3 lg:grid-cols-6 md:grid-cols-4  grid-rows-1 gap-4 w-full`}
+        className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6  grid-rows-1 gap-4 w-full`}
       >
         {featuredMovie.map((movie, movieIndex) => {
           {

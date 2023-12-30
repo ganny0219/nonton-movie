@@ -26,7 +26,7 @@ function MovieContainer({ seeAllPath, seeAll, title, children }: Props) {
         )}
       </div>
       <div
-        className={`grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 grid-rows-1 gap-4 w-full`}
+        className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 grid-rows-1 gap-4 w-full`}
       >
         {children}
       </div>

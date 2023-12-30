@@ -27,17 +27,10 @@ type Props = {
 
 const Pagination = ({ moviePerPage, movieLength, offset, url }: Props) => {
   const router = useRouter();
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  function handleWindowSizeChange() {
-    setIsMobile(window.innerWidth <= 768);
-  }
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
+    setIsMobile(window.innerWidth <= 768);
   }, []);
 
   const startOffset = offset - 1;

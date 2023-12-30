@@ -27,7 +27,9 @@ function EpisodeContainer({ seeAllpath, episodeList, page }: Props) {
       </div>
       <div
         className={`grid ${
-          page ? "grid-cols-2 md:grid-cols-3" : "grid-cols-2 md:grid-cols-4"
+          page
+            ? "grid-cols-2 xs:grid-cols-3 md:grid-cols-5"
+            : "grid-cols-2 md:grid-cols-4"
         } grid-rows-1 gap-4 w-full`}
       >
         {episodeList?.map((episode, movieIndex) => {

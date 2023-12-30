@@ -30,7 +30,7 @@ function CastCard({ cast }: Props) {
           >
             {cast?.name}
           </Link>
-          <p className="text-xs  sm:text-base truncate">{cast?.as}</p>
+          <p className="text-xs sm:text-base truncate">{cast?.as}</p>
         </div>
       </div>
       {/* <line className="w-full border-[1px] border-solid border-[#313131]" /> */}

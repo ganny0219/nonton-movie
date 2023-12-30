@@ -25,8 +25,8 @@ function EpisodeItem({ episode, episodeIndex, seasonSquence }: Props) {
         <Image
           loading="lazy"
           title={`${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
-          height={400}
-          width={400}
+          fill
+          quality={20}
           alt={`Nonton Film ${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
           src={episode?.poster ? episode.poster : "/img/no-img.jpg"}
           className="w-[10%] object-cover h-auto aspect-video max-w-[120px] min-w-[90px] text-[#313131] text-xl bg-secondary"

@@ -28,15 +28,15 @@ function JadwalRilisSeasonCard({ data, index, mainPage }: Props) {
             mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
           }`,
         }}
-        className="relative overflow-hidden rounded-xl hover:cursor-pointer"
+        className="relative aspect-story overflow-hidden rounded-xl hover:cursor-pointer"
         onMouseOver={hoverIn}
         onMouseLeave={hoverOut}
       >
         <Image
           loading="lazy"
           title={`${data?.movie?.title} ${data.name}`}
-          height={400}
-          width={400}
+          fill
+          quality={20}
           alt={`Nonton Film ${data?.movie?.title} ${data.name}`}
           className={`${!hovered ? "scale-100" : "scale-150"} aspect-story`}
           src={data.poster ? data.poster : "/img/no-img.jpg"}

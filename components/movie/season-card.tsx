@@ -14,17 +14,10 @@ type Props = {
 
 function SeasonCard({ data, index, mainPage }: Props) {
   const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  function handleWindowSizeChange() {
-    setIsMobile(window.innerWidth <= 768);
-  }
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
+    setIsMobile(window.innerWidth <= 768);
   }, []);
 
   const hoverIn = () => {
@@ -42,17 +35,17 @@ function SeasonCard({ data, index, mainPage }: Props) {
               mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
             }`,
           }}
-          className="relative overflow-hidden rounded-xl hover:cursor-pointer"
+          className="relative aspect-story overflow-hidden rounded-xl hover:cursor-pointer"
           onMouseOver={hoverIn}
           onMouseLeave={hoverOut}
         >
           <Image
             loading="lazy"
             title={`${data?.movie?.title} ${data.name}`}
-            height={400}
-            width={400}
+            fill
+            quality={20}
             alt={`Nonton Film ${data?.movie?.title} ${data.name}`}
-            className={`aspect-story ${
+            className={`w-full ${
               !isMobile ? (!hovered ? "scale-100" : "scale-150") : ""
             } `}
             src={data.poster ? data.poster : "/img/no-img.jpg"}

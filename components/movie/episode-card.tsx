@@ -15,17 +15,10 @@ type Props = {
 function EpisodeCard({ episode, index }: Props) {
   const [hovered, setHovered] = useState(false);
 
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  function handleWindowSizeChange() {
-    setIsMobile(window.innerWidth <= 768);
-  }
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
+    setIsMobile(window.innerWidth <= 768);
   }, []);
 
   const hoverIn = () => {
@@ -44,17 +37,17 @@ function EpisodeCard({ episode, index }: Props) {
     <div className="flex flex-col">
       <Link
         href={{ pathname: `/episode/${episode.slug}` }}
-        className="relative overflow-hidden rounded-xl hover:cursor-pointer"
+        className="relative aspect-video overflow-hidden rounded-xl hover:cursor-pointer"
         onMouseOver={hoverIn}
         onMouseLeave={hoverOut}
       >
         <Image
           loading="lazy"
           title={`${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
-          height={400}
-          width={400}
+          fill
+          quality={20}
           alt={`Nonton Film ${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
-          className={`w-full object-cover aspect-video rounded-xl${
+          className={`w-full object-cover rounded-xl${
             !isMobile ? (!hovered ? "scale-100" : "scale-150") : ""
           }`}
           src={poster ? poster : "/img/no-img.jpg"}

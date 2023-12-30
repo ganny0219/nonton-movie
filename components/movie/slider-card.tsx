@@ -1,7 +1,7 @@
 import PlayIcon from "@/assets/icons/play-icon";
 import type { Movie } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
-import Image from "next/image";
+import Image, { ImageLoader } from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -12,17 +12,10 @@ type Props = {
 
 function SliderCard({ data, index }: Props) {
   const [hovered, setHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-
-  function handleWindowSizeChange() {
-    setIsMobile(window.innerWidth <= 768);
-  }
+  const [isMobile, setIsMobile] = useState<boolean>(true);
 
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
+    setIsMobile(window.innerWidth <= 768);
   }, []);
   const hoverIn = () => {
     setHovered(true);
@@ -37,17 +30,17 @@ function SliderCard({ data, index }: Props) {
           href={{
             pathname: `/${data.type}/${data.slug}`,
           }}
-          className="relative overflow-hidden rounded-xl hover:cursor-pointer"
+          className="relative aspect-story overflow-hidden rounded-xl hover:cursor-pointer"
           onMouseOver={hoverIn}
           onMouseLeave={hoverOut}
         >
           <Image
             loading="lazy"
             title={`${data?.title}`}
-            height={400}
-            width={400}
+            fill
+            quality={20}
             alt={`Nonton Film ${data?.title}`}
-            className={`aspect-story ${
+            className={`w-full ${
               !isMobile ? (!hovered ? "scale-100" : "scale-150") : ""
             } `}
             src={data.poster}
