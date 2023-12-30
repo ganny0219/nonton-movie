@@ -16,15 +16,16 @@ function DropdownSearchItem({ movie }: Props) {
   return (
     <Link
       href={{ pathname: `/${movie.type}/${movie.slug}` }}
-      className="flex aspect-story flex-row border-b-[1px] border-[#ffffff50] w-full max-w-[400px] lg:w-full p-2 "
+      className="flex flex-row border-b-[1px] border-[#ffffff50] w-full max-w-[400px] lg:w-full p-2 "
     >
       <Image
         loading="lazy"
         title={movie.title}
-        fill
-        quality={10}
+        width={100}
+        height={100}
+        quality={20}
         alt={`Nonton Film ${movie.title}`}
-        className="rounded w-[30%] object-contain mr-4"
+        className="rounded w-[30%] object-contain aspect-story mr-4"
         src={movie.poster ? movie.poster : "/img/no-img.jpg"}
       />
       <div className="mt-4 lg:mt-0">

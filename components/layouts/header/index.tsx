@@ -73,8 +73,9 @@ function Header({ hidden }: Props) {
               <Image
                 loading="lazy"
                 title="Moovie21 Logo"
-                height={400}
-                width={400}
+                height={200}
+                width={200}
+                quality={20}
                 src="/logo/moovie21-logo.png"
                 alt={`Moovie21 Logo`}
               />

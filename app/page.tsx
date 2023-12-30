@@ -55,7 +55,7 @@ export default async function Home() {
               urlSeeAll="/movie"
             />
           )}
-          {/* {actionMovie.length > 0 && (
+          {actionMovie.length > 0 && (
             <CustomSlider
               title="FILM ACTION"
               movieList={actionMovie}
@@ -89,7 +89,7 @@ export default async function Home() {
               title="SEASON TERBARU"
               urlSeeAll="/season"
             />
-          )} */}
+          )}
           {episodeTerbaru.length > 0 && (
             <EpisodeContainer
               episodeList={episodeTerbaru}
@@ -101,38 +101,3 @@ export default async function Home() {
     </>
   );
 }
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   try {
-//     const movieTerbaru = await getMovieListPage(1, "movie");
-//     const featuredHome = await getFeatured("home");
-//     const actionMovie = await getMovieListByGenrePage("action", 1);
-//     const animeMovie = await getMovieListPage(1, "anime");
-//     const drakorMovie = await getMovieListPage(1, "drama-korea");
-//     const seasonTerbaru = await getSeasonListPage(1, "");
-//     const seriesTerbaru = await getMovieListPage(1, "series");
-//     const episodeTerbaru = await getEpisodeListPage(1, "");
-
-//     return {
-//       props: {
-//         movieTerbaru: movieTerbaru.movie,
-//         featuredHome: featuredHome,
-//         actionMovie: actionMovie.movie,
-//         animeMovie: animeMovie.movie,
-//         drakorMovie: drakorMovie.movie,
-//         seasonTerbaru: seasonTerbaru.season,
-//         seriesTerbaru: seriesTerbaru.movie,
-//         episodeTerbaru: episodeTerbaru.episode.splice(0, 28),
-//       },
-//       revalidate: 60,
-//     };
-//   } catch {
-//     return {
-//       props: {},
-//       redirect: {
-//         permanent: true,
-//         destination: "/error",
-//       },
-//     };
-//   }
-// };

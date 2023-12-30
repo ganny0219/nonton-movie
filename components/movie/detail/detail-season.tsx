@@ -20,7 +20,8 @@ function DetailSeason({ data }: Props) {
             loading="lazy"
             title={`${data?.movie?.title} ${data.name}`}
             className="aspect-story object-cover"
-            fill
+            width={140}
+            height={140}
             quality={20}
             alt={`Nonton Film ${data?.movie?.title} ${data.name}`}
             src={data?.poster ? data.poster : "/img/no-profile-img.jpg"}

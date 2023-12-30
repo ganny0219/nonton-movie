@@ -19,7 +19,8 @@ function DetailMovie({ data }: Props) {
             loading="lazy"
             title={`${data?.title}`}
             className="aspect-story object-cover"
-            fill
+            width={140}
+            height={140}
             quality={20}
             alt={`Nonton Film ${data?.title}`}
             src={data?.poster ? data.poster : "/img/no-profile-img.jpg"}

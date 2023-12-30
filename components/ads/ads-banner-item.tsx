@@ -16,8 +16,8 @@ function AdsBannerItem({ url, bannerUrl }: Props) {
         <Link href={{ pathname: url }} target="_blank">
           <Image
             loading="lazy"
-            fill
-            quality={20}
+            height={400}
+            width={400}
             alt="banner"
             src={bannerUrl}
             className="w-full max-h-[100px] object-cover"

@@ -17,8 +17,9 @@ function CastCard({ cast }: Props) {
         <Image
           loading="lazy"
           title={cast.name + " as " + cast.as}
-          height={400}
-          width={400}
+          height={200}
+          width={200}
+          quality={20}
           alt={`${cast.name} Sebagai ${cast.as}`}
           src={cast.imageUrl ? cast.imageUrl : "/img/no-profile-img.jpg"}
           className="w-[30%] aspect-square object-contain"
