@@ -14,7 +14,7 @@ function DropdownSearchContainer({ mobile, searchMovie, searchInput }: Props) {
   return (
     <div className={`relative ${mobile ? "" : "px-2"} `}>
       <div className="absolute w-full md:w-[268px] h-4 z-10" />
-      <div className="absolute w-full min-w-[268px] lg:w-full flex flex-col top-5 right-0 bg-[#000000] z-10">
+      <div className="absolute w-[268px] lg:w-full flex flex-col top-5 right-0 bg-[#000000] z-10">
         {searchMovie.map((movie, movieIndex) => {
           if (mobile) {
             if (movieIndex < 3) {
