@@ -51,7 +51,12 @@ function NavbarMobile({
           />
           <Link
             href={{
-              pathname: `/search/${searchInputRef.current?.value}`,
+              pathname: `${
+                searchInputRef.current?.value != undefined &&
+                searchInputRef.current?.value.length > 1
+                  ? `/search/${searchInputRef.current?.value}`
+                  : "/"
+              }`,
             }}
           >
             <SearchIcon color="#ccc" size="1.5" />

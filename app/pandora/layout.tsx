@@ -10,7 +10,7 @@ export default function PandoraLayout({
   return (
     <html lang="en">
       <body className="flex flex-col min-h-[100vh] bg-primary font-quicksand ">
-        <Provider store={store}>{children}</Provider>;
+        <Provider store={store}>{children}</Provider>
       </body>
     </html>
   );
