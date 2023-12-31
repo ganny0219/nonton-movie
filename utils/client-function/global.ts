@@ -159,14 +159,15 @@ export const convertSitemapSlug = (slug: string) => {
   let type = "";
   let page = "";
   for (let i = 0; i < allWord.length; i++) {
-    if (i == 0) {
-      type = allWord[i];
-    } else if (i == allWord.length - 1) {
-      page = allWord[i];
-    } else {
-      type = type + "-" + allWord[i];
+    if (i != 0) {
+      if (i == allWord.length - 1) {
+        page = allWord[i].replace(".xml", "");
+      } else {
+        type = type == "" ? allWord[i] : type + "-" + allWord[i];
+      }
     }
   }
+
   return { type, page };
 };
 

@@ -24,9 +24,8 @@ export async function GET(request: NextRequest) {
   //   return { notFound: true };
   // }
   const fields: ISitemapField[] = [];
-  console.log(request.nextUrl.pathname);
   const { type, page } = convertSitemapSlug(request.nextUrl.pathname);
-  if (type == "page") {
+  if (page == "page") {
     pageList.map((url) =>
       fields.push({
         loc: `${process.env.NEXT_PUBLIC_BASE_URL}/${url}`,
