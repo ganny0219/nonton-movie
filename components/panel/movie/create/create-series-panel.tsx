@@ -151,7 +151,6 @@ function CreateSeriesPanel({ playerServerList, playerServerListJson }: Props) {
               <SingleSelectionRadio
                 radioList={productionList.series}
                 currentValue={movieData.production}
-                
               />
             </div>
           </div>

@@ -86,7 +86,7 @@ function Player({ playerUrl, track }: Props) {
       />
       <div className="w-full border-t-2 border-dashed border-[#000] my-4" />
     </>
-  );
+  )
 }
 
 export default Player;

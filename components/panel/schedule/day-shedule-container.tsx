@@ -120,8 +120,9 @@ function DaySheduleContainer({
         />
         <button
           disabled={!tambahScheduleValidation}
-          className={`ml-2 rounded ${tambahScheduleValidation ? "bg-[#fff]" : "bg-[#ffffff90]"
-            } p-1`}
+          className={`ml-2 rounded ${
+            tambahScheduleValidation ? "bg-[#fff]" : "bg-[#ffffff90]"
+          } p-1`}
           onClick={onTambahSchedule}
         >
           Tambah

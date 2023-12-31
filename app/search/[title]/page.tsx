@@ -17,7 +17,7 @@ export async function generateMetadata({
   const searchInput = decodeURIComponent(params.title);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/search/${searchInput}`;
   const title = `Film ${searchInput} Terbaru - Moovie21`;
-  const description = `Moovie21 - Nonton Film ${searchInput}, Serial TV ${searchInput}, Drakor ${searchInput}, Anime ${searchInput} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const description = `Moovie21 - Nonton Film ${searchInput}, Serial TV ${searchInput}, Drakor ${searchInput}, Anime ${searchInput} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${searchInput}, Nonton ${searchInput} Gratis , Nonton ${searchInput} Streaming, Moovie21,${searchInput} Subtitle Indonesia, ${searchInput}`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({ title, description, keywords, url, image });

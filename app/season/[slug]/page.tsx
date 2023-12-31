@@ -26,7 +26,7 @@ export async function generateMetadata({
   const season: Season = await getSeasonBySlug(slug);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/season/${slug}`;
   const title = `Nonton ${season?.movie?.title} : ${season.name} - Subtitle Indonesia - Moovie21`;
-  const description = `Moovie21 - Nonton Film ${season?.movie?.title} : ${season.name} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const description = `Moovie21 - Nonton Film ${season?.movie?.title} : ${season.name} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton ${season?.movie?.title} : ${season.name}, Nonton Film ${season?.movie?.title} : ${season.name}, Nonton ${season?.movie?.title} : ${season.name} Gratis, Nonton ${season?.movie?.title} : ${season.name} Streaming, ${season?.movie?.title} : ${season.name} Subtitle Indonesia`;
   const image = season.poster;
   return generateMetaResult({ title, description, keywords, url, image });
@@ -42,7 +42,7 @@ async function StreamSeriesPage(props: PageProps) {
         title={`Nonton ${season?.movie?.title} :
         ${season.name} - Subtitle Indonesia - Moovie21`}
         description={`Moovie21 - Nonton Film ${season?.movie?.title} :
-        ${season.name} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
+        ${season.name} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`}
         keywords={`Nonton ${season?.movie?.title} :
         ${season.name}, Nonton Film ${season?.movie?.title} :
         ${season.name}, Nonton ${season?.movie?.title} :

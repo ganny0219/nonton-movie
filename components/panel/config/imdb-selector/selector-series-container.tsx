@@ -16,40 +16,37 @@ function SelectorSeriesContainer({ imdbSelector }: Props) {
     imdbSelector
       ? imdbSelector
       : {
-        name: "series",
-        cast: "",
-        country: "",
-        genre: "",
-        language: "",
-        plot: "",
-        poster: "",
-        rated: "",
-        runtime: "",
-        released: "",
-        title: "",
-        year: "",
-        actorArray: "",
-        actorAs: "",
-        actorImage: "",
-        actorName: "",
-        director: "",
-        episodeArray: "",
-        episodeTitle: "",
-        mainTitle: "",
-        writer: "",
-      }
+          name: "series",
+          cast: "",
+          country: "",
+          genre: "",
+          language: "",
+          plot: "",
+          poster: "",
+          rated: "",
+          runtime: "",
+          released: "",
+          title: "",
+          year: "",
+          actorArray: "",
+          actorAs: "",
+          actorImage: "",
+          actorName: "",
+          director: "",
+          episodeArray: "",
+          episodeTitle: "",
+          mainTitle: "",
+          writer: "",
+        }
   );
   const [edit, setEdit] = useState(true);
 
   const editHandler = async () => {
     if (edit == false) {
       await apiAxios
-        .patch(
-          `/imdb-selector/update`,
-          {
-            selectorData: selectorData,
-          },
-        )
+        .patch(`/imdb-selector/update`, {
+          selectorData: selectorData,
+        })
         .then((res) => res.data);
       setEdit(true);
     } else {

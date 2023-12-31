@@ -19,7 +19,7 @@ export async function generateMetadata({
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${title}/page/${index}`;
   const metaTitle = `Pilihan Genre ${title} Terlengkap - Moovie21`;
-  const description = `Moovie21 - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const description = `Moovie21 - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Moovie21, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({
@@ -42,7 +42,7 @@ async function GenreIndexPage(props: PageProps) {
     <>
       {/* <CustomHead
         title={`Pilihan Genre ${title} Terlengkap - Moovie21`}
-        description={`Moovie21 - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
+        description={`Moovie21 - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`}
         keywords={`Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Moovie21, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`}
       /> */}
       <RootComponent>

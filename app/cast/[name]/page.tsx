@@ -17,7 +17,7 @@ export async function generateMetadata({
   const castName = decodeURIComponent(params.name);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cast/${castName}`;
   const title = `Film ${castName} Terbaru - Moovie21`;
-  const description = `Moovie21 - Nonton Film ${castName} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`;
+  const description = `Moovie21 - Nonton Film ${castName} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Moovie21, Subtitle Indonesia, ${castName}`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
   return generateMetaResult({
@@ -39,7 +39,7 @@ async function CastNamePage(props: PageProps) {
     <>
       {/* <CustomHead
         title={`Film ${castName} Terbaru - Moovie21`}
-        description={`Moovie21 - Nonton Film ${castName} sub Indonesia dengan kualitas tinggi tersedia dalam bahasa Indonesia.`}
+        description={`Moovie21 - Nonton Film ${castName} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`}
         keywords={`Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Moovie21, Subtitle Indonesia, ${castName}`}
       /> */}
       <RootComponent>
