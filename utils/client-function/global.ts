@@ -155,12 +155,18 @@ export const convertRating = (rating: string) => {
 };
 
 export const convertSitemapSlug = (slug: string) => {
-  const regexPattern = /\/sitemap-(\w+)-(\d+)\.xml/;
-  const matches = slug.match(regexPattern);
-  //@ts-ignore
-  const type = matches[1];
-  //@ts-ignore
-  const page = parseInt(matches[2], 10);
+  const allWord = slug.split("-");
+  let type = "";
+  let page = "";
+  for (let i = 0; i < allWord.length; i++) {
+    if (i == 0) {
+      type = allWord[i];
+    } else if (i == allWord.length - 1) {
+      page = allWord[i];
+    } else {
+      type = type + "-" + allWord[i];
+    }
+  }
   return { type, page };
 };
 
