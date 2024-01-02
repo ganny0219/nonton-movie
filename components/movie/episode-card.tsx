@@ -46,7 +46,7 @@ function EpisodeCard({ episode, index }: Props) {
           title={`${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
           width={250}
           height={250}
-          quality={40}
+          quality={60}
           alt={`Nonton Film ${episode.season?.movie?.title} ${episode.season?.name} Episode ${episode.sequence}`}
           className={`w-full object-cover rounded-xl${
             !isMobile ? (!hovered ? "scale-100" : "scale-150") : ""
