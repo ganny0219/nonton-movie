@@ -324,7 +324,8 @@ function EpisodeInput({
         movieTitle,
         seasonIndex,
         playerServerList,
-        lastEpisodeSquence: season.episode[0].sequence,
+        lastEpisodeSquence:
+          season.episode.length > 0 ? season.episode[0].sequence : 0,
       })
     );
   };

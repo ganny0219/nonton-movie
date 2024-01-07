@@ -97,6 +97,12 @@ async function Footer({ hidden }: Props) {
             <Link href={{ pathname: `/` }} className="my-1">
               Rebahin
             </Link>
+            <Link href={{ pathname: `/` }} className="my-1">
+              Indoxxi
+            </Link>
+            <Link href={{ pathname: `/` }} className="my-1">
+              Idlix
+            </Link>
           </div>
         </div>
       </div>
