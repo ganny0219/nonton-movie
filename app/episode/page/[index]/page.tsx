@@ -12,6 +12,7 @@ import { PageProps } from "@/types/global";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/episode/page/${index}`;
@@ -22,7 +23,14 @@ export async function generateMetadata({
   const keywords =
     "Nonton Film Episode Terbaru, Nonton Gratis Episode Terbaru, Nonton Streaming Episode Terbaru, Moovie21 Episode Terbaru, Nonton Drama Episode Terbaru, Nonton Anime Episode Terbaru, Subtitle Indonesia, Streaming Drakor Episode Terbaru, Streaming Anime Episode Terbaru";
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 async function EpisodeIndexPage(props: PageProps) {
   const pageIndex = props.params.index;

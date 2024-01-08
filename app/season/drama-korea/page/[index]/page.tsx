@@ -13,6 +13,7 @@ import { PageProps } from "@/types/global";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/season/drama-korea/page/${index}`;
@@ -23,7 +24,14 @@ export async function generateMetadata({
   const keywords =
     "Nonton Film, Nonton Gratis, Nonton Streaming, Moovie21, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime, Season Terbaru";
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 async function SeasonIndexPage(props: PageProps) {

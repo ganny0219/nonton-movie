@@ -14,6 +14,7 @@ import { Metadata } from "next";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const title = decodeURIComponent(params.category);
   const index = params.index;

@@ -14,13 +14,21 @@ import { generateMetaResult } from "@/utils/server-function/global";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/drama-korea`;
   const title = `Pilihan Genre Drama Korea Terlengkap - Moovie21`;
   const description = `Moovie21 - Nonton Film Drama Korea, Serial TV Drama Korea, Drakor Drama Korea, Anime Drama Korea terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film Drama Korea, Nonton Drama Korea Gratis , Nonton Film Drama Korea Streaming, Moovie21, Nonton Drama Drama Korea, Nonton Anime Drama Korea, Subtitle Indonesia, Streaming Drakor Drama Korea, Streaming Anime Drama Korea`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 async function DramaKoreaPage() {

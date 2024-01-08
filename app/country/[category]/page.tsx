@@ -13,6 +13,7 @@ import { PageProps } from "@/types/global";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const country = decodeURIComponent(params.category);
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/country/${country}`;

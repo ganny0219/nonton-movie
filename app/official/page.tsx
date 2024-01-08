@@ -22,6 +22,7 @@ const OfficialList = [
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/official`;
   const title =
@@ -31,7 +32,14 @@ export async function generateMetadata({
   const keywords =
     "Nonton Film, Nonton Gratis, Nonton Streaming, Moovie21, Nonton Drama, Nonton Anime, Subtitle Indonesia, Streaming Drakor, Streaming Anime";
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 function ListOfficialPage() {

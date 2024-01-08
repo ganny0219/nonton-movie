@@ -12,6 +12,7 @@ import { generateMetaResult } from "@/utils/server-function/global";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const castName = decodeURIComponent(params.name);

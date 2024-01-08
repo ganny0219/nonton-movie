@@ -15,6 +15,7 @@ import { generateMetaResult } from "@/utils/server-function/global";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const productionName = decodeURIComponent(params.production);
@@ -23,7 +24,14 @@ export async function generateMetadata({
   const description = `Moovie21 - Nonton Film ${productionName}, Serial TV ${productionName}, Drakor ${productionName}, Anime ${productionName} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${productionName}, Nonton ${productionName} Gratis , Nonton Film ${productionName} Streaming, Moovie21, Nonton Drama ${productionName}, Nonton Anime ${productionName}, Subtitle Indonesia, Streaming Drakor ${productionName}, Streaming Anime ${productionName}`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 async function OfficialProductionIndexPage(props: PageProps) {

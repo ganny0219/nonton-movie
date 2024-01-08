@@ -13,6 +13,7 @@ import { Metadata } from "next";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/anime/page/${index}`;
@@ -20,7 +21,14 @@ export async function generateMetadata({
   const description = `Moovie21 - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Moovie21, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`;
   const image = `${process.env.NEXT_PUBLIC_BASE_URL}/favicon.ico`;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 async function AnimeIndexPage(props: PageProps) {

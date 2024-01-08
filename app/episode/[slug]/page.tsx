@@ -28,6 +28,7 @@ import Player from "@/components/movie/player";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const slug = params.slug;
   const mainEpisode: Episode = await getEpisodeBySlug(slug);
@@ -36,7 +37,14 @@ export async function generateMetadata({
   const description = `Moovie21 - Nonton Film ${mainEpisode.season?.movie?.title} : Season ${mainEpisode.season?.sequence} Episode ${mainEpisode.sequence} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${mainEpisode.season?.movie?.title}, Nonton Film ${mainEpisode.season?.movie?.title}, Nonton ${mainEpisode.season?.movie?.title} Gratis, Nonton ${mainEpisode.season?.movie?.title} Streaming, ${mainEpisode.season?.movie?.title} Subtitle Indonesia`;
   const image = mainEpisode.poster;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 async function EpisodeMoviePage(props: PageProps) {

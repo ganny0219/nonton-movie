@@ -18,6 +18,7 @@ import { PageProps } from "@/types/global";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const slug = await params.slug;
   const series: Movie = await getMovieBySlug(slug);
@@ -26,7 +27,14 @@ export async function generateMetadata({
   const description = `Moovie21 - Nonton Film ${series.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${series.title}, Nonton Film ${series.title}, Nonton ${series.title} Gratis, Nonton ${series.title} Streaming, ${series.title} Subtitle Indonesia`;
   const image = series.poster;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 async function StreamSeriesPage(props: PageProps) {

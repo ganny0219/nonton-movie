@@ -24,6 +24,7 @@ import { generateMetaResult } from "@/utils/server-function/global";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const slug = params.slug;
   const movie: Movie = await getMovieBySlug(slug);
@@ -32,7 +33,14 @@ export async function generateMetadata({
   const description = `Moovie21 - Nonton Film ${movie.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${movie.title}, Nonton Film ${movie.title}, Nonton ${movie.title} Gratis, Nonton ${movie.title} Streaming, ${movie.title} Subtitle Indonesia`;
   const image = movie.poster;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 
 async function StreamMoviePage(props: PageProps) {

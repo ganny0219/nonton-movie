@@ -19,6 +19,7 @@ import { generateMetaResult } from "@/utils/server-function/global";
 export const dynamic = "force-static";
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const slug = params.slug;
   const drakor = await getMovieBySlug(slug);
@@ -27,7 +28,14 @@ export async function generateMetadata({
   const description = `Moovie21 - Nonton Film ${drakor.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${drakor.title}, Nonton Film ${drakor.title}, Nonton ${drakor.title} Gratis, Nonton ${drakor.title} Streaming, ${drakor.title} Subtitle Indonesia`;
   const image = drakor.poster;
-  return generateMetaResult({ title, description, keywords, url, image });
+  return generateMetaResult({
+    title,
+    description,
+    keywords,
+    url,
+    image,
+    searchParams,
+  });
 }
 async function StreamDramaKoreaPage(props: PageProps) {
   const slug = props.params.slug;

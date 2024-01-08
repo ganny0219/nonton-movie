@@ -59,6 +59,9 @@ type MetaProps = {
   keywords: string;
   url: string;
   image: string;
+  searchParams: {
+    [key: string]: string;
+  };
 };
 export const generateMetaResult = ({
   title,
@@ -66,14 +69,32 @@ export const generateMetaResult = ({
   keywords,
   url,
   image,
+  searchParams,
 }: MetaProps) => {
+  const searchParamsKeys = Object.keys(searchParams);
+  let querySearhParams = "";
+  for (let i = 0; i < searchParamsKeys.length; i++) {
+    if (searchParamsKeys.length != i + 1) {
+      querySearhParams =
+        querySearhParams +
+        searchParamsKeys[i] +
+        "=" +
+        searchParams[searchParamsKeys[i]] +
+        "&";
+    }
+    querySearhParams =
+      querySearhParams +
+      searchParamsKeys[i] +
+      "=" +
+      searchParams[searchParamsKeys[i]];
+  }
   return {
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_BASE_URL}`),
     title,
     description,
     keywords,
     alternates: {
-      canonical: url,
+      canonical: url + `${querySearhParams ? `?${querySearhParams}` : ""}`,
     },
     openGraph: {
       title,
