@@ -4,7 +4,7 @@ import { sessionCheck } from "@/utils/server-function/global";
 import Link from "next/link";
 import React from "react";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 async function ConfigPage() {
   return (
     <RootPanel selected="config">

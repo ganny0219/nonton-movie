@@ -5,7 +5,7 @@ import { getGoogleDriveListPanel } from "@/utils/server-function/google-drive";
 import GDrivePanel from "@/components/panel/google-drive/google-drive-panel";
 import { sessionCheck } from "@/utils/server-function/global";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 async function GDrivePanelPage() {
   const gdrive = await getGoogleDriveListPanel();
   return (

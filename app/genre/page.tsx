@@ -26,7 +26,7 @@ export async function generateMetadata({
     keywords,
     url,
     image,
-    searchParams,
+    // searchParams,
   });
 }
 
