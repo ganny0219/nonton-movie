@@ -15,7 +15,7 @@ export default function RootLayout({
         <meta name="author" content="Moovie21" />
         <meta
           name="robots"
-          content="max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap"
