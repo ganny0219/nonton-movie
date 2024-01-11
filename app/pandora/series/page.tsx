@@ -4,7 +4,7 @@ import { getMovieListPanel } from "@/utils/server-function/movie";
 import MoviePanel from "@/components/panel/movie/movie-panel";
 import { sessionCheck } from "@/utils/server-function/global";
 
-//export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 async function MoviePanelPage() {
   const series = await getMovieListPanel("series");
