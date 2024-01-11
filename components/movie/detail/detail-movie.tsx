@@ -32,14 +32,14 @@ function DetailMovie({ data }: Props) {
           <div className="grid grid-cols-2 gap-2 sm:flex text-xs mt-[2px]">
             {data?.type === "movie" ? (
               <>
-                <span className="mr-4">{data?.country}</span>
+                <span className="mr-4">{data?.country?.name}</span>
                 <span className="mr-4">{data?.runtime}.</span>
                 <span className="mr-4">{data?.released}</span>
                 <span className="mr-4">{data?.rated}</span>
               </>
             ) : (
               <>
-                <span className="mr-4">{data?.country}</span>
+                <span className="mr-4">{data?.country?.name}</span>
                 <span className="mr-4">{data?.runtime}.</span>
                 <span className="mr-2">{data?.released}</span>
                 <span className="mr-2">{data?.production}</span>

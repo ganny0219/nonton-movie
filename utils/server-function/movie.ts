@@ -34,7 +34,7 @@ export const getMovieListPage = async (
       movieLength: movieLength,
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     throw new Error("getMoviePage Error~");
   }
 };
@@ -77,6 +77,7 @@ export const getMovieBySlug = async (slug: string | string[] | undefined) => {
           },
         },
         genre: true,
+        country: true,
         playerUrl: {
           orderBy: {
             name: "asc",
@@ -142,8 +143,10 @@ export const getMovieListByCountryPage = async (
     const movie = await prisma.movie.findMany({
       where: {
         country: {
-          contains: country as string,
-          mode: "insensitive",
+          name: {
+            contains: country as string,
+            mode: "insensitive",
+          },
         },
       },
       orderBy: {
@@ -156,8 +159,10 @@ export const getMovieListByCountryPage = async (
     const movieLength = await prisma.movie.count({
       where: {
         country: {
-          contains: country as string,
-          mode: "insensitive",
+          name: {
+            contains: country as string,
+            mode: "insensitive",
+          },
         },
       },
     });
@@ -367,6 +372,7 @@ export const getMovieById = async (movieId: string) => {
       },
       include: {
         genre: true,
+        country: true,
         director: true,
         writer: true,
         actor: true,

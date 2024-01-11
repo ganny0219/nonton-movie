@@ -23,7 +23,9 @@ const defaultState: MovieStore = {
   writer: [],
   plot: "",
   language: "",
-  country: "",
+  country: {
+    name: "",
+  },
   poster: "",
   imdbId: "",
   type: "",

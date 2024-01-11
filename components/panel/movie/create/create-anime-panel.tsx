@@ -45,6 +45,15 @@ function CreateAnimePanel({ playerServerList, playerServerListJson }: Props) {
     >,
     key: string
   ) => {
+    if (key == "country") {
+      return dispatch(
+        updateMovieData({
+          [key]: {
+            name: e.target.value,
+          },
+        })
+      );
+    }
     dispatch(
       updateMovieData({
         [key]: key == "rating" ? +e.target.value : e.target.value,
@@ -89,6 +98,12 @@ function CreateAnimePanel({ playerServerList, playerServerListJson }: Props) {
     }
     if (movieData.slug == "") {
       return alert("Isi Slug!");
+    }
+    if (movieData.country.name == "") {
+      return alert("Isi Country!");
+    }
+    if (movieData.language == "") {
+      return alert("Isi Language!");
     }
     setLoading(true);
     await apiAxios
@@ -193,7 +208,7 @@ function CreateAnimePanel({ playerServerList, playerServerListJson }: Props) {
             conf={{ onChange: (e) => onInputChange(e, "language") }}
           />
           <Field
-            value={movieData.country}
+            value={movieData.name}
             name="Country"
             conf={{ onChange: (e) => onInputChange(e, "country") }}
           />

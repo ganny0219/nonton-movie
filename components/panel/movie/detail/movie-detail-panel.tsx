@@ -54,6 +54,15 @@ function MovieDetailPanel({ movie, playerServerListJson }: Props) {
     >,
     key: string
   ) => {
+    if (key == "country") {
+      return dispatch(
+        updateMovieData({
+          [key]: {
+            name: e.target.value,
+          },
+        })
+      );
+    }
     dispatch(
       updateMovieData({
         [key]: key == "rating" ? +e.target.value : e.target.value,
@@ -75,6 +84,13 @@ function MovieDetailPanel({ movie, playerServerListJson }: Props) {
       if (movieData.slug == "") {
         return alert("Isi Slug!");
       }
+      if (movieData.country.name == "") {
+        return alert("Isi Country!");
+      }
+      if (movieData.language == "") {
+        return alert("Isi Language!");
+      }
+
       return await apiAxios
         .patch(`/movie/update-detail`, {
           movieData: movieData,
@@ -224,7 +240,7 @@ function MovieDetailPanel({ movie, playerServerListJson }: Props) {
           />
           <Field
             disabled={editDetail}
-            value={movieData.country}
+            value={movieData.country.name}
             name="Country"
             conf={{ onChange: (e) => onInputChange(e, "country") }}
           />

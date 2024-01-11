@@ -61,6 +61,15 @@ function CreateMoviePanel({ playerServerList, playerServerListJson }: Props) {
     >,
     key: string
   ) => {
+    if (key == "country") {
+      return dispatch(
+        updateMovieData({
+          [key]: {
+            name: e.target.value,
+          },
+        })
+      );
+    }
     dispatch(
       updateMovieData({
         [key]: key == "rating" ? +e.target.value : e.target.value,
@@ -104,6 +113,15 @@ function CreateMoviePanel({ playerServerList, playerServerListJson }: Props) {
     }
     if (movieData.slug == "") {
       return alert("Isi Slug!");
+    }
+    if (movieData.country.name == "") {
+      return alert("Isi Country!");
+    }
+    if (movieData.country.name == "") {
+      return alert("Isi Country!");
+    }
+    if (movieData.language == "") {
+      return alert("Isi Language!");
     }
 
     setLoading(true);
@@ -219,7 +237,7 @@ function CreateMoviePanel({ playerServerList, playerServerListJson }: Props) {
             conf={{ onChange: (e) => onInputChange(e, "language") }}
           />
           <Field
-            value={movieData.country}
+            value={movieData.country.name}
             name="Country"
             conf={{ onChange: (e) => onInputChange(e, "country") }}
           />

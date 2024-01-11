@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
         vote: movieData.vote,
         views: movieData.views,
         type: movieData.type,
-        country: movieData.country,
         imdbId: movieData.imdbId,
         language: movieData.language,
         plot: movieData.plot,
@@ -74,6 +73,16 @@ export async function POST(req: NextRequest) {
               },
             };
           }),
+        },
+        country: {
+          connectOrCreate: {
+            where: {
+              name: movieData.country.name,
+            },
+            create: {
+              name: movieData.country.name,
+            },
+          },
         },
         actor: {
           connectOrCreate: movieData.actor.map((actor) => {

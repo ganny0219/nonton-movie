@@ -52,7 +52,15 @@ function AnimeDetailPanel({
     >,
     key: string
   ) => {
-    e.preventDefault();
+    if (key == "country") {
+      return dispatch(
+        updateMovieData({
+          [key]: {
+            name: e.target.value,
+          },
+        })
+      );
+    }
     dispatch(
       updateMovieData({
         [key]: key == "rating" ? +e.target.value : e.target.value,
@@ -73,6 +81,12 @@ function AnimeDetailPanel({
       }
       if (movieData.slug == "") {
         return alert("Isi Slug!");
+      }
+      if (movieData.country.name == "") {
+        return alert("Isi Country!");
+      }
+      if (movieData.language == "") {
+        return alert("Isi Language!");
       }
 
       await apiAxios.patch(`/movie/update-detail`, {
@@ -205,7 +219,7 @@ function AnimeDetailPanel({
           />
           <Field
             disabled={editDetail}
-            value={movieData.country}
+            value={movieData.country.name}
             name="Country"
             conf={{ onChange: (e) => onInputChange(e, "country") }}
           />

@@ -7,6 +7,7 @@ export interface MovieBase {
   id?: string;
   type: string;
   title: string;
+  originalTitle?: string;
   slug: string;
   trailerUrl: string;
   resolution: string;
@@ -18,7 +19,7 @@ export interface MovieBase {
   runtime: string;
   plot: string;
   language: string;
-  country: string;
+
   poster: string;
   rating: string;
   totalRating: number;
@@ -36,6 +37,8 @@ export interface Movie extends MovieBase {
   [key: string]: any;
   featured: Featured[];
   genre: Genre[];
+  country: Country;
+  countryId: string;
   director: Director[];
   writer: Writer[];
   actor: Actor[];
@@ -47,6 +50,7 @@ export interface Movie extends MovieBase {
 export interface MovieStore extends MovieBase {
   [key: string]: any;
   genre: Genre[];
+  country: Country;
   director: Director[];
   writer: Writer[];
   actor: Actor[];
@@ -234,6 +238,15 @@ export interface Track {
 }
 
 export interface Genre {
+  [key: string]: any;
+  id?: string;
+  movie?: Movie[];
+  name: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface Country {
   [key: string]: any;
   id?: string;
   movie?: Movie[];

@@ -68,7 +68,7 @@ export const getImdbDetailSeries = async (imdbId: string) => {
 
   const releaseCountryIndex = released?.indexOf("(");
 
-  const country = document.querySelector(selector.country)?.textContent;
+  let country = document.querySelector(selector.country)?.textContent;
   const language = document.querySelector(selector.language)?.textContent;
   const runtime = document.querySelector(selector.runtime)?.textContent;
   // const production = document.querySelector(
@@ -78,7 +78,11 @@ export const getImdbDetailSeries = async (imdbId: string) => {
   const plot = document.querySelector(selector.plot)?.textContent;
 
   const slug = createSlug(title as string, year?.substring(0, 4) as string);
-
+  if (country?.toLocaleLowerCase().includes("korea")) {
+    country = "South Korea";
+  } else if (country?.toLocaleLowerCase().includes("united state")) {
+    country = "United States";
+  }
   return {
     title: title ? title : "",
     slug: slug ? slug : "",
@@ -93,7 +97,9 @@ export const getImdbDetailSeries = async (imdbId: string) => {
           releaseCountryIndex ? releaseCountryIndex - 1 : undefined
         )
       : "",
-    country: country ? country : "",
+    country: {
+      name: country ? country : "",
+    },
     language: language ? language : "",
     runtime: runtime ? convertRuntime(runtime) : "",
     plot: plot ? plot : "",
@@ -141,7 +147,7 @@ export const getImdbDetailMovie = async (imdbId: string) => {
   const released = document.querySelector(selector.released)?.textContent;
 
   const releaseCountryIndex = released?.indexOf("(");
-  const country = document.querySelector(selector.country)?.textContent;
+  let country = document.querySelector(selector.country)?.textContent;
   const language = document.querySelector(selector.language)?.textContent;
   const runtime = document.querySelector(selector.runtime)?.textContent;
   // const production = document.querySelector(
@@ -151,7 +157,11 @@ export const getImdbDetailMovie = async (imdbId: string) => {
   const plot = document.querySelector(selector.plot)?.textContent;
 
   const slug = createSlug(title as string, year as string);
-
+  if (country?.toLocaleLowerCase().includes("korea")) {
+    country = "South Korea";
+  } else if (country?.toLocaleLowerCase().includes("united state")) {
+    country = "United States";
+  }
   return {
     title: title ? title : "",
     slug: slug ? slug : "",
@@ -167,7 +177,9 @@ export const getImdbDetailMovie = async (imdbId: string) => {
           releaseCountryIndex ? releaseCountryIndex - 1 : undefined
         )
       : "",
-    country: country ? country : "",
+    country: {
+      name: country ? country : "",
+    },
     language: language ? language : "",
     runtime: runtime ? convertRuntime(runtime) : "",
     plot: plot ? plot : "",

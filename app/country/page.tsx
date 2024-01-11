@@ -1,6 +1,8 @@
 import PageContainer from "@/components/layouts/page-container";
 import RootComponent from "@/components/root-component";
 import { PageProps } from "@/types/global";
+import { Country } from "@/types/movie";
+import { getCountryList } from "@/utils/server-function/country";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -10,24 +12,24 @@ import React from "react";
 //   genreList: Genre[];
 // };
 
-const countryList = [
-  "Australia",
-  "Brazil",
-  "China",
-  "Germany",
-  "India",
-  "Italy",
-  "Japan",
-  "New Zealand",
-  "Philippines",
-  "Russia",
-  "South Korea",
-  "Spain",
-  "Thailand",
-  "United Kingdom",
-  "United State",
-  "Vietnam",
-];
+// const countryList = [
+//   "Australia",
+//   "Brazil",
+//   "China",
+//   "Germany",
+//   "India",
+//   "Italy",
+//   "Japan",
+//   "New Zealand",
+//   "Philippines",
+//   "Russia",
+//   "South Korea",
+//   "Spain",
+//   "Thailand",
+//   "United Kingdom",
+//   "United State",
+//   "Vietnam",
+// ];
 
 export async function generateMetadata({
   params,
@@ -51,7 +53,8 @@ export async function generateMetadata({
   });
 }
 
-function CountryPage() {
+async function CountryPage() {
+  const countryList: Country[] = await getCountryList();
   return (
     <>
       <RootComponent>
@@ -63,10 +66,10 @@ function CountryPage() {
               return (
                 <Link
                   key={index}
-                  href={{ pathname: `/country/${country}` }}
+                  href={{ pathname: `/country/${country.name}` }}
                   className="text-start p-4 w-full bg-black rounded-md text-xl"
                 >
-                  {country}
+                  {country.name}
                 </Link>
               );
             })}

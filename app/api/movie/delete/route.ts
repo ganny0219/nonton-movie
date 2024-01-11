@@ -10,6 +10,7 @@ export async function DELETE(req: NextRequest) {
       },
       include: {
         actor: true,
+        country: true,
         director: true,
         genre: true,
         playerUrl: true,

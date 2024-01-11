@@ -65,6 +65,7 @@ export const getSeasonBySlug = async (slug: string) => {
         movie: {
           include: {
             genre: true,
+            country: true,
           },
         },
         episode: {

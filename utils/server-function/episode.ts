@@ -93,6 +93,7 @@ export const getEpisodeBySlug = async (slug: string) => {
             movie: {
               include: {
                 genre: true,
+                country: true,
               },
             },
           },

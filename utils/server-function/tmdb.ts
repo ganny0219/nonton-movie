@@ -131,7 +131,7 @@ export const getTmdbDetailSeries = async (imdbId: string) => {
   const rated = "R";
   const poster = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbData.poster_path}`;
   const released = formatDate(tmdbData.first_air_date);
-  const country = tmdbData.production_countries[0]?.name;
+  let country = tmdbData.production_countries[0]?.name;
   const language = tmdbData.production_countries[0]?.name;
   const runtime = `${
     tmdbData.episode_run_time[0] ? tmdbData.episode_run_time[0] : 0
@@ -140,6 +140,11 @@ export const getTmdbDetailSeries = async (imdbId: string) => {
   const plot = tmdbData.overview;
 
   const slug = createSlug(title as string, year?.substring(0, 4) as string);
+  if (country.toLocaleLowerCase().includes("korea")) {
+    country = "South Korea";
+  } else if (country.toLocaleLowerCase().includes("united state")) {
+    country = "United States";
+  }
   return {
     title: title ? title : "",
     slug: slug ? slug : "",
@@ -150,7 +155,9 @@ export const getTmdbDetailSeries = async (imdbId: string) => {
     writer: writer ? writer : [],
     director: director ? director : [],
     released: released ? released : "",
-    country: country ? country : "",
+    country: {
+      name: country ? country : "",
+    },
     language: language ? language : "",
     runtime: runtime ? runtime : "",
     plot: plot ? plot : "",
@@ -214,12 +221,17 @@ export const getTmdbDetailMovie = async (imdbId: string) => {
   const rated = "R";
   const poster = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbData.poster_path}`;
   const released = formatDate(tmdbData.release_date);
-  const country = tmdbData.production_countries[0].name;
+  let country = tmdbData.production_countries[0].name;
   const language = tmdbData.production_countries[0].name;
   const runtime = `${tmdbData.runtime} min`;
   const year = tmdbData.release_date.substring(0, 4);
   const plot = tmdbData.overview;
   const slug = createSlug(title as string, year as string);
+  if (country.toLocaleLowerCase().includes("korea")) {
+    country = "South Korea";
+  } else if (country.toLocaleLowerCase().includes("united state")) {
+    country = "United States";
+  }
   return {
     title: title ? title : "",
     slug: slug ? slug : "",
@@ -230,7 +242,9 @@ export const getTmdbDetailMovie = async (imdbId: string) => {
     director: director ? director : [],
     actor: actor ? actor : [],
     released: released ? released : "",
-    country: country ? country : "",
+    country: {
+      name: country ? country : "",
+    },
     language: language ? language : "",
     runtime: runtime ? runtime : "",
     plot: plot ? plot : "",

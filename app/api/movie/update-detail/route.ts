@@ -24,7 +24,16 @@ export async function PATCH(req: NextRequest) {
         imdbId: movieData.imdbId,
         production: movieData.production,
         language: movieData.language,
-        country: movieData.country,
+        country: {
+          connectOrCreate: {
+            where: {
+              name: movieData.country.name,
+            },
+            create: {
+              name: movieData.country.name,
+            },
+          },
+        },
         poster: movieData.poster,
         trailerUrl: movieData.trailerUrl,
         resolution: movieData.resolution,

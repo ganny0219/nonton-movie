@@ -35,7 +35,7 @@ function DetailSeason({ data }: Props) {
           {/* {movie.type === "movie" && <p>Captain Marvel Mantap</p>} */}
 
           <div className="grid grid-cols-2 gap-2 sm:flex text-xs mt-[2px]">
-            <span className="mr-4">{data?.movie?.country}</span>
+            <span className="mr-4">{data?.movie?.country?.name}</span>
             <span className="mr-4">{data?.movie?.rated}</span>
             <span className="mr-4">{data?.released}</span>
             <span className="mr-4">{data?.movie?.production}</span>
