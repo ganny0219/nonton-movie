@@ -38,6 +38,11 @@ export async function PATCH(req: NextRequest) {
           }),
         },
       },
+      include: {
+        actor: true,
+        director: true,
+        writer: true,
+      },
     });
     return NextResponse.json(result, { status: 200 });
   } catch (err) {

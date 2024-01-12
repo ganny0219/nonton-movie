@@ -1,11 +1,8 @@
 "use client";
 import EditButton from "@/components/button/edit-button";
-import FieldHorizontal from "@/components/field/field-horizontal";
 import { RootState } from "@/store";
 import { updateMovieData } from "@/store/movie";
-import { Genre, Movie } from "@/types/movie";
 import { apiAxios } from "@/utils/axios";
-import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -44,7 +41,6 @@ function GenreInput({ updateMode }: Props) {
   };
 
   const editGenreToggle = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
     if (!editGenre) {
       await apiAxios
         .patch(`/movie/update-genre`, {
@@ -53,7 +49,7 @@ function GenreInput({ updateMode }: Props) {
           movieId,
         })
         .then((res) => {
-          dispatch(updateMovieData({ genre: res.data }));
+          dispatch(updateMovieData({ genre: res.data.genre }));
         });
       return setEditGenre((prev) => !prev);
     }
@@ -100,12 +96,11 @@ function GenreInput({ updateMode }: Props) {
                 editGenre ? "bg-[#ffffff90] text-[#31313190]" : ""
               } flex flex-row justify-center items-center bg-[#fff] rounded-full px-4 py-1 mb-2 mx-2`}
             >
-              <p className="mr-2">{genre.name}</p>
+              <p className="mr-2">{genre?.name}</p>
               <button
                 disabled={editGenre}
                 className="border-solid border-l-[1px] border-[#00000060] pl-1"
                 onClick={(e) => {
-                  e.preventDefault();
                   onDelete(index);
                 }}
               >

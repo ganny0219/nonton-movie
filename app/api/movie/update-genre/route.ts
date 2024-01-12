@@ -1,6 +1,5 @@
 import { prisma } from "@/prisma/prisma-client";
 import { Genre, Movie } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 type Body = {
@@ -34,6 +33,9 @@ export async function PATCH(req: NextRequest) {
             };
           }),
         },
+      },
+      include: {
+        genre: true,
       },
     });
     return NextResponse.json(result, { status: 200 });
