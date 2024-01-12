@@ -16,7 +16,6 @@ export async function GET(req: NextRequest) {
   const season = req.nextUrl.searchParams.get("season");
   const sequence = req.nextUrl.searchParams.get("sequence");
   const mainTitle = req.nextUrl.searchParams.get("mainTitle");
-
   try {
     let episode;
     if (imdbId?.includes("tt")) {

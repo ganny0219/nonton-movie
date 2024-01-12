@@ -140,9 +140,9 @@ export const getTmdbDetailSeries = async (imdbId: string) => {
   const plot = tmdbData.overview;
 
   const slug = createSlug(title as string, year?.substring(0, 4) as string);
-  if (country.toLocaleLowerCase().includes("korea")) {
+  if (country?.toLocaleLowerCase().includes("korea")) {
     country = "South Korea";
-  } else if (country.toLocaleLowerCase().includes("united state")) {
+  } else if (country?.toLocaleLowerCase().includes("united state")) {
     country = "United States";
   }
   return {
@@ -227,9 +227,9 @@ export const getTmdbDetailMovie = async (imdbId: string) => {
   const year = tmdbData.release_date.substring(0, 4);
   const plot = tmdbData.overview;
   const slug = createSlug(title as string, year as string);
-  if (country.toLocaleLowerCase().includes("korea")) {
+  if (country?.toLocaleLowerCase().includes("korea")) {
     country = "South Korea";
-  } else if (country.toLocaleLowerCase().includes("united state")) {
+  } else if (country?.toLocaleLowerCase().includes("united state")) {
     country = "United States";
   }
   return {
