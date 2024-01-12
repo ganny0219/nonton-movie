@@ -8,10 +8,20 @@ export async function GET(req: NextRequest) {
     if (search != "" && search?.length ? search?.length > 1 : true) {
       const movie = await prisma.movie.findMany({
         where: {
-          title: {
-            contains: search as string,
-            mode: "insensitive",
-          },
+          OR: [
+            {
+              title: {
+                contains: search as string,
+                mode: "insensitive",
+              },
+            },
+            {
+              originalTitle: {
+                contains: search as string,
+                mode: "insensitive",
+              },
+            },
+          ],
         },
         orderBy: {
           releasedTimestamp: "desc",

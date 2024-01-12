@@ -53,7 +53,10 @@ function MoviePanel({ movie, title, type }: Props) {
         for (let movie of prevMovie) {
           if (
             movie.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-            movie.imdbId.toLowerCase().includes(e.target.value.toLowerCase())
+            movie.imdbId.toLowerCase().includes(e.target.value.toLowerCase()) ||
+            movie.originalTitle
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase())
           ) {
             newMovie.push(movie);
           }

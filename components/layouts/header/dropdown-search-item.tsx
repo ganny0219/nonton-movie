@@ -1,13 +1,9 @@
-import ChevronRightIcon from "@/assets/icons/chevron-right-icon";
 import FilledStarIcon from "@/assets/icons/filled-star-icon";
-import StarIcon from "@/assets/icons/star-icon";
-import { RootState } from "@/store";
 import { Movie } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useSelector } from "react-redux";
 
 type Props = {
   movie: Movie;

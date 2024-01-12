@@ -42,7 +42,13 @@ function EpisodeInput({
   playerServerList,
 }: Props) {
   const movieData = useSelector((state: RootState) => state.movie);
-  const { imdbId, title: movieTitle, type: movieType, id: movieId } = movieData;
+  const {
+    imdbId,
+    title: movieTitle,
+    originalTitle,
+    type: movieType,
+    id: movieId,
+  } = movieData;
   const season = movieData.season[seasonIndex];
   const episode = season?.episode;
   const [imdbIdGenerate, setImdbIdGenerate] = useState(imdbId);
@@ -74,7 +80,7 @@ function EpisodeInput({
           imdbId: imdbIdGenerate,
           season: seasonGenerate,
           untilEps: untilEps,
-          mainTitle: movieTitle,
+          mainTitle: originalTitle ? originalTitle : movieTitle,
         },
       })
       .then(async (res) => {
@@ -206,7 +212,7 @@ function EpisodeInput({
           imdbId: imdbIdGenerate,
           season: seasonGenerate,
           sequence: episode[0] ? episode[0].sequence : 1,
-          mainTitle: movieTitle,
+          mainTitle: originalTitle ? originalTitle : movieTitle,
         },
       })
       .then(async (res) => {

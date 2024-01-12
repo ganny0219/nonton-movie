@@ -8,7 +8,7 @@ type Props = {
 
 async function PageContainer({ title, children, mainPage }: Props) {
   return (
-    <div
+    <main
       className={`${mainPage ? "w-[85%]" : "w-full"}  m-auto text-[#fff] ${
         title ? "sm:mt-10" : ""
       } `}
@@ -23,7 +23,7 @@ async function PageContainer({ title, children, mainPage }: Props) {
         </div>
       )}
       {children}
-    </div>
+    </main>
   );
 }
 

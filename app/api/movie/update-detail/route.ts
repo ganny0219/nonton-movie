@@ -11,6 +11,7 @@ export async function PATCH(req: NextRequest) {
       },
       data: {
         title: movieData.title,
+        originalTitle: movieData.originalTitle,
         slug: movieData.slug,
         year: movieData.year,
         rated: movieData.rated,

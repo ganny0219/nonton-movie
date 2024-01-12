@@ -66,7 +66,7 @@ function Note({ title }: Props) {
         <h2 className="text-sm">
           Tags : Nonton {title} | Download {title} Subtitle Indonesia Nonton
           Movie {title} | Nonton Film {title} Subtitle Indonesia Film {title} |{" "}
-          {title} sub indo
+          {title} Sub Indo
         </h2>
       </section>
     </div>

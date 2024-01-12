@@ -181,6 +181,12 @@ function DrakorDetailPanel({
           />
           <Field
             disabled={editDetail}
+            value={movieData.originalTitle}
+            name="Original Title"
+            conf={{ onChange: (e) => onInputChange(e, "originalTitle") }}
+          />
+          <Field
+            disabled={editDetail}
             value={movieData.slug}
             required
             placeholder="title-year"

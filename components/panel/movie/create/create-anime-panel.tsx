@@ -164,6 +164,11 @@ function CreateAnimePanel({ playerServerList, playerServerListJson }: Props) {
             conf={{ onChange: (e) => onInputChange(e, "title") }}
           />
           <Field
+            value={movieData.originalTitle}
+            name="Original Title"
+            conf={{ onChange: (e) => onInputChange(e, "originalTitle") }}
+          />
+          <Field
             value={movieData.slug}
             required
             placeholder="title-year"

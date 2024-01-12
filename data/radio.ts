@@ -92,6 +92,11 @@ export const productionList = {
     },
     {
       name: "production",
+      value: "Amazon Prime",
+      label: "Amazon Prime",
+    },
+    {
+      name: "production",
       value: "Official",
       label: "Official",
     },

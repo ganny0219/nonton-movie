@@ -14,6 +14,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState: MovieStore = {
   title: "",
+  originalTitle: "",
   year: "",
   rated: "",
   released: "",

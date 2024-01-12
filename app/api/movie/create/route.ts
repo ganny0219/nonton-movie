@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
     const result = await prisma.movie.create({
       data: {
         title: movieData.title,
+        originalTitle: movieData.originalTitle,
         slug: movieData.slug,
         rating: movieData.rating.toString(),
         totalRating: +movieData.totalRating,
