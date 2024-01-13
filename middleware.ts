@@ -2,7 +2,7 @@ export { default } from "next-auth/middleware";
 
 export const config = {
   matcher: [
-    "/pandora/ads/:path*",
+    "/pandora/eds/:path*",
     "/pandora/anime/:path*",
     "/pandora/config/:path*",
     "/pandora/drama-korea/:path*",

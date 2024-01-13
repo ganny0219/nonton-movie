@@ -13,9 +13,9 @@ import EpisodeItem from "@/components/movie/episode-item";
 import Discussion from "@/components/discussion";
 
 import EpisodeNavigation from "@/components/episode/episode-navigation";
-import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
+import EdsContainerTwoGrid from "@/components/eds/eds-container-two-grid";
 
-import AdsContainerOneGrid from "@/components/ads/ads-container-one-grid";
+import EdsContainerOneGrid from "@/components/eds/eds-container-one-grid";
 
 import { convertSlugToTitle } from "@/utils/client-function/global";
 
@@ -61,9 +61,9 @@ async function EpisodeMoviePage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <AdsContainerTwoGrid />
+          <EdsContainerTwoGrid />
           <Player playerUrl={mainEpisode.playerUrl} track={mainEpisode.track} />
-          <AdsContainerOneGrid />
+          <EdsContainerOneGrid />
           <EpisodeNavigation
             mainEpisode={mainEpisode}
             allEpisode={allEpisode}

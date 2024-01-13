@@ -3,7 +3,7 @@ type Props = {
   onClose: () => void;
 };
 
-const AdsBlockWarning = ({ visible, onClose }: Props) => {
+const EdsBlockWarning = ({ visible, onClose }: Props) => {
   return (
     <>
       {visible && (
@@ -23,4 +23,4 @@ const AdsBlockWarning = ({ visible, onClose }: Props) => {
   );
 };
 
-export default AdsBlockWarning;
+export default EdsBlockWarning;

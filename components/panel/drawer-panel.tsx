@@ -82,9 +82,9 @@ function DrawerPanel({ selected }: Props) {
           selected={selected}
         />
         <DrawerPanelItem
-          title="Ads"
-          path="/pandora/ads"
-          name="ads"
+          title="Eds"
+          path="/pandora/eds"
+          name="eds"
           selected={selected}
         />
         <DrawerPanelItem

@@ -45,6 +45,9 @@ function MovieItemTable({ odd, type, data, setMovieList, movieIndex }: Props) {
         <div className="flex flex-1 items-center py-2 border-solid border-[1px] border-l-0 border-black border-t-0 pl-2">
           {data?.title}
         </div>
+        <div className="flex flex-1 items-center py-2 border-solid border-[1px] border-l-0 border-black border-t-0 pl-2">
+          {data?.originalTitle}
+        </div>
         <div className="flex justify-evenly items-center py-2 w-[20%] border-solid border-[1px] border-l-0 border-black border-t-0 pl-2">
           <Link
             href={{

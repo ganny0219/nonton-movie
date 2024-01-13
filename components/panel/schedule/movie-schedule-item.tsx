@@ -1,10 +1,9 @@
 import DeleteConfirm from "@/components/delete-confirm";
 import FieldHorizontal from "@/components/field/field-horizontal";
-import { Ads } from "@/types/ads";
-import { Movie } from "@/types/movie";
+
 import { ReleaseSchedule, ReleaseScheduleData } from "@/types/release-schedule";
 import { apiAxios } from "@/utils/axios";
-import axios from "axios";
+
 import React, { useState } from "react";
 
 type Props = {
@@ -26,7 +25,7 @@ function MovieScheduleItem({
     setDeleteConfirm(false);
   };
 
-  const onDeleteAds = async () => {
+  const onDeleteEds = async () => {
     await apiAxios.delete(`/release-schedule/delete`, {
       params: {
         releaseScheduleId: releaseSchedule.id,
@@ -50,7 +49,7 @@ function MovieScheduleItem({
       <DeleteConfirm
         visible={deleteConfirm}
         onClose={onDeleteConfirmClose}
-        onConfirm={onDeleteAds}
+        onConfirm={onDeleteEds}
       />
       <div className="flex flex-row items-center">
         <FieldHorizontal

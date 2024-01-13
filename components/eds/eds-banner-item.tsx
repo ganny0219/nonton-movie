@@ -9,7 +9,7 @@ type Props = {
   bannerUrl: string;
 };
 
-function AdsBannerItem({ url, bannerUrl }: Props) {
+function EdsBannerItem({ url, bannerUrl }: Props) {
   return (
     <>
       {url && bannerUrl && (
@@ -28,4 +28,4 @@ function AdsBannerItem({ url, bannerUrl }: Props) {
   );
 }
 
-export default AdsBannerItem;
+export default EdsBannerItem;

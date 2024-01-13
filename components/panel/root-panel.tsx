@@ -2,7 +2,7 @@ import DrawerPanel from "@/components/panel/drawer-panel";
 import Script from "next/script";
 import React, { ReactNode, useEffect, useState } from "react";
 import { useDetectAdBlock } from "adblock-detect-react";
-import AdsBlockWarning from "../addblock-warning";
+import EdsBlockWarning from "../addblock-warning";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -11,24 +11,24 @@ type Props = {
 };
 
 function RootPanel({ children, selected }: Props) {
-  // const [adsBlockModal, setAdsBlockModal] = useState(false);
+  // const [edsBlockModal, setEdsBlockModal] = useState(false);
   // const adBlockDetected = useDetectAdBlock();
   // const router = useRouter();
 
   // useEffect(() => {
   //   if (adBlockDetected) {
-  //     setAdsBlockModal(true);
+  //     setEdsBlockModal(true);
   //   }
   // }, [adBlockDetected]);
 
-  // const adsBlockModalClose = () => {
-  //   setAdsBlockModal(false);
+  // const edsBlockModalClose = () => {
+  //   setEdsBlockModal(false);
   //   router.refresh();
   // };
 
   return (
     <>
-      {/* <AdsBlockWarning visible={adsBlockModal} onClose={adsBlockModalClose} /> */}
+      {/* <EdsBlockWarning visible={edsBlockModal} onClose={edsBlockModalClose} /> */}
       {/* <Script
         src="https://cdn.jsdelivr.net/npm/disable-devtool@latest"
         onReady={() => {

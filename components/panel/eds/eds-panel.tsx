@@ -1,26 +1,26 @@
 "use client";
 import FieldHorizontal from "@/components/field/field-horizontal";
 import Line from "@/components/line";
-import { Ads } from "@/types/ads";
+import { Eds } from "@/types/eds";
 import { apiAxios } from "@/utils/axios";
 import React, { useState } from "react";
-import AdsItem from "./ads-item";
+import EdsItem from "./eds-item";
 type Props = {
-  dataHalfAds: Ads[];
-  dataFullAds: Ads[];
+  dataHalfEds: Eds[];
+  dataFullEds: Eds[];
 };
 
-function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
-  const [fullAds, setFullAds] = useState<Ads[]>(dataFullAds);
-  const [halfAds, setHalfAds] = useState<Ads[]>(dataHalfAds);
-  const [tambahFullAds, setTambahFullAds] = useState<Ads>({
+function EdsPanel({ dataFullEds, dataHalfEds }: Props) {
+  const [fullEds, setFullEds] = useState<Eds[]>(dataFullEds);
+  const [halfEds, setHalfEds] = useState<Eds[]>(dataHalfEds);
+  const [tambahFullEds, setTambahFullEds] = useState<Eds>({
     name: "",
     sequence: 0,
     type: "full",
     url: "",
     bannerUrl: "",
   });
-  const [tambahHalfAds, setTambahHalfAds] = useState<Ads>({
+  const [tambahHalfEds, setTambahHalfEds] = useState<Eds>({
     name: "",
     sequence: 0,
     type: "half",
@@ -28,24 +28,27 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
     bannerUrl: "",
   });
   const tambahFullValidation =
-    tambahFullAds.name != "" && tambahFullAds.url != "";
+    tambahFullEds.name != "" &&
+    tambahFullEds.url != "" &&
+    tambahFullEds.bannerUrl != "";
   const tambahHalfValidation =
-    tambahHalfAds.name != "" && tambahHalfAds.url != "";
-
+    tambahHalfEds.name != "" &&
+    tambahHalfEds.url != "" &&
+    tambahHalfEds.bannerUrl != "";
   const onInputTambahChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     type: string,
     key: string
   ) => {
     if (type == "full") {
-      return setTambahFullAds((prev) => {
+      setTambahFullEds((prev) => {
         return {
           ...prev,
           [key]: e.target.value,
         };
       });
     } else {
-      return setTambahHalfAds((prev) => {
+      setTambahHalfEds((prev) => {
         return {
           ...prev,
           [key]: e.target.value,
@@ -54,20 +57,20 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
     }
   };
 
-  const onTambahAds = async (type: string) => {
+  const onTambahEds = async (type: string) => {
     if (type == "full") {
       await apiAxios
-        .post(`/ads/create`, {
-          dataAds: tambahFullAds,
+        .post(`/eds/create`, {
+          dataEds: tambahFullEds,
         })
         .then((res) => {
-          setFullAds((prevAds) => {
-            if (prevAds.length > 0) {
-              return [...prevAds, res.data];
+          setFullEds((prevEds) => {
+            if (prevEds.length > 0) {
+              return [...prevEds, res.data];
             }
             return [res.data];
           });
-          return setTambahFullAds({
+          return setTambahFullEds({
             name: "",
             sequence: 0,
             type: "full",
@@ -78,17 +81,17 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
         .catch((err) => console.log(err));
     } else {
       await apiAxios
-        .post(`/ads/create`, {
-          dataAds: tambahHalfAds,
+        .post(`/eds/create`, {
+          dataEds: tambahHalfEds,
         })
         .then((res) => {
-          setHalfAds((prevAds) => {
-            if (prevAds.length > 0) {
-              return [...prevAds, res.data];
+          setHalfEds((prevEds) => {
+            if (prevEds.length > 0) {
+              return [...prevEds, res.data];
             }
             return [res.data];
           });
-          return setTambahHalfAds({
+          return setTambahHalfEds({
             name: "",
             sequence: 0,
             type: "half",
@@ -103,21 +106,22 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
     <>
       <Line thin color="#00000050" />
       <div className="flex flex-col p-2 w-[80%] max-w-[1100px] m-auto bg-tertiary rounded-md">
-        <h2 className="text-4xl p-2">Full Ads</h2>
+        <h2 className="text-4xl p-2">Full Eds</h2>
         <div className="flex flex-row items-center">
           <FieldHorizontal
             name="Name"
-            value={tambahFullAds.name}
+            value={tambahFullEds.name}
             conf={{ onChange: (e) => onInputTambahChange(e, "full", "name") }}
+            // conf={{ onChange: (e) => onInputTambahChange(e, "full", "name") }}
           />
           <FieldHorizontal
             name="Url"
-            value={tambahFullAds.url}
+            value={tambahFullEds.url}
             conf={{ onChange: (e) => onInputTambahChange(e, "full", "url") }}
           />
           <FieldHorizontal
             name="Banner Url"
-            value={tambahFullAds.bannerUrl}
+            value={tambahFullEds.bannerUrl}
             conf={{
               onChange: (e) => onInputTambahChange(e, "full", "bannerUrl"),
             }}
@@ -127,21 +131,21 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
             className={`ml-2 rounded ${
               tambahFullValidation ? "bg-[#fff]" : "bg-[#ffffff90]"
             } p-1`}
-            onClick={() => onTambahAds("full")}
+            onClick={() => onTambahEds("full")}
           >
             Tambah
           </button>
         </div>
         <Line thin />
-        {fullAds?.length > 0 ? (
-          fullAds.map((ads, adsIndex) => {
+        {fullEds?.length > 0 ? (
+          fullEds.map((eds, edsIndex) => {
             return (
-              <AdsItem
-                key={adsIndex}
-                ads={ads}
-                adsIndex={adsIndex}
-                setFullAds={setFullAds}
-                setHalfAds={setHalfAds}
+              <EdsItem
+                key={edsIndex}
+                eds={eds}
+                edsIndex={edsIndex}
+                setFullEds={setFullEds}
+                setHalfEds={setHalfEds}
               />
             );
           })
@@ -152,21 +156,21 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
         )}
       </div>
       <div className="flex flex-col p-2 w-[80%] max-w-[1100px] m-auto bg-tertiary mt-6 rounded-md">
-        <h2 className="text-4xl p-2">Half Ads</h2>
+        <h2 className="text-4xl p-2">Half Eds</h2>
         <div className="flex flex-row items-center">
           <FieldHorizontal
             name="Name"
-            value={tambahHalfAds.name}
+            value={tambahHalfEds.name}
             conf={{ onChange: (e) => onInputTambahChange(e, "half", "name") }}
           />
           <FieldHorizontal
             name="Url"
-            value={tambahHalfAds.url}
+            value={tambahHalfEds.url}
             conf={{ onChange: (e) => onInputTambahChange(e, "half", "url") }}
           />
           <FieldHorizontal
             name="Banner Url"
-            value={tambahHalfAds.bannerUrl}
+            value={tambahHalfEds.bannerUrl}
             conf={{
               onChange: (e) => onInputTambahChange(e, "half", "bannerUrl"),
             }}
@@ -176,21 +180,21 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
             className={`ml-2 rounded ${
               tambahHalfValidation ? "bg-[#fff]" : "bg-[#ffffff90]"
             } p-1`}
-            onClick={() => onTambahAds("half")}
+            onClick={() => onTambahEds("half")}
           >
             Tambah
           </button>
         </div>
         <Line thin />
-        {halfAds?.length > 0 ? (
-          halfAds.map((ads, adsIndex) => {
+        {halfEds?.length > 0 ? (
+          halfEds.map((eds, edsIndex) => {
             return (
-              <AdsItem
-                key={adsIndex}
-                ads={ads}
-                adsIndex={adsIndex}
-                setFullAds={setFullAds}
-                setHalfAds={setHalfAds}
+              <EdsItem
+                key={edsIndex}
+                eds={eds}
+                edsIndex={edsIndex}
+                setFullEds={setFullEds}
+                setHalfEds={setHalfEds}
               />
             );
           })
@@ -204,4 +208,4 @@ function AdsPanel({ dataFullAds, dataHalfAds }: Props) {
   );
 }
 
-export default AdsPanel;
+export default EdsPanel;

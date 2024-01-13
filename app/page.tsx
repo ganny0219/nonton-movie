@@ -13,6 +13,7 @@ import { getEpisodeListPage } from "@/utils/server-function/episode";
 import { Metadata, ResolvingMetadata } from "next";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
+import EdsContainerOneGrid from "@/components/eds/eds-container-one-grid";
 
 export async function generateMetadata({
   params,
@@ -52,7 +53,8 @@ export default async function Home() {
     <>
       <RootComponent main>
         <PageContainer>
-          {/* <AdsContainerTwoGrid /> */}
+          {/* <EdsContainerTwoGrid /> */}
+          {/* <EdsContainerOneGrid /> */}
           {featuredHome.length > 0 && (
             <FeaturedContainer featuredMovie={featuredHome} />
           )}

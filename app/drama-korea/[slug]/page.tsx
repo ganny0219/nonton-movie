@@ -4,7 +4,7 @@ import DetailMovie from "@/components/movie/detail/detail-movie";
 import RecomendationMovie from "@/components/movie/recomendation-movie";
 import Note from "@/components/note";
 import RootComponent from "@/components/root-component";
-import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
+import EdsContainerTwoGrid from "@/components/eds/eds-container-two-grid";
 import { convertSlugToTitle } from "@/utils/client-function/global";
 import CustomHead from "@/components/custom-head";
 import {
@@ -46,7 +46,7 @@ async function StreamDramaKoreaPage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <AdsContainerTwoGrid />
+          <EdsContainerTwoGrid />
           <DetailMovie data={drakor} />
           <DetailSelection movie={drakor} />
           <RecomendationMovie recomendMovie={recomendMovie} />

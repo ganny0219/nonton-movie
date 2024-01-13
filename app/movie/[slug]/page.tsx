@@ -8,8 +8,8 @@ import RootComponent from "@/components/root-component";
 import { Metadata } from "next";
 import { Movie } from "@/types/movie";
 import Discussion from "@/components/discussion";
-import AdsContainerOneGrid from "@/components/ads/ads-container-one-grid";
-import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
+import EdsContainerOneGrid from "@/components/eds/eds-container-one-grid";
+import EdsContainerTwoGrid from "@/components/eds/eds-container-two-grid";
 import { convertSlugToTitle } from "@/utils/client-function/global";
 
 import {
@@ -52,9 +52,9 @@ async function StreamMoviePage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <AdsContainerTwoGrid />
+          <EdsContainerTwoGrid />
           <Player playerUrl={movie.playerUrl} track={movie.track} />
-          <AdsContainerOneGrid />
+          <EdsContainerOneGrid />
           <DetailMovie data={movie} />
           <DetailSelection movie={movie} movieType />
           <RecomendationMovie recomendMovie={recomendMovie} />

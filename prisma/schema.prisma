@@ -169,18 +169,18 @@ model Country {
   updatedAt DateTime @updatedAt
 }
 
-model Ads {
+model Eds {
   id        String   @id @default(uuid())
   sequence  Int
   name      String
   url       String
   bannerUrl String
-  type      AdsType  @default(full)
+  type      EdsType  @default(full)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-enum AdsType {
+enum EdsType {
   full
   half
 }

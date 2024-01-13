@@ -1,32 +1,30 @@
-"use client";
-
-import AdsPanel from "@/components/panel/ads/ads-panel";
+import EdsPanel from "@/components/panel/eds/eds-panel";
 import RootPanel from "@/components/panel/root-panel";
 
-import { getAdsList } from "@/utils/server-function/ads";
+import { getEdsList } from "@/utils/server-function/eds";
 
 import React from "react";
 
 export const dynamic = "force-dynamic";
-async function AdsPanelPage() {
-  const dataHalfAds = await getAdsList("half");
-  const dataFullAds = await getAdsList("full");
+async function EdsPanelPage() {
+  const dataHalfEds = await getEdsList("half");
+  const dataFullEds = await getEdsList("full");
   return (
-    <RootPanel selected="ads">
+    <RootPanel selected="eds">
       <div className="flex flex-row justify-between items-center py-2 w-[80%] max-w-[1100px] m-auto">
-        <h1 className="text-4xl">Ads List</h1>
+        <h1 className="text-4xl">Eds List</h1>
         {/* <div>
           <input
             className="bg-[#cccccc70] ounded px-2 py-2 rounded"
             placeholder="Search..."
           /> */}
         {/* <button className="bg-tertiary py-2 px-4 rounded mr-4">Upload</button>
-          <button className="bg-tertiary py-2 px-4 rounded">Create Ads</button> */}
+          <button className="bg-tertiary py-2 px-4 rounded">Create Eds</button> */}
         {/* </div> */}
       </div>
-      <AdsPanel dataFullAds={dataFullAds} dataHalfAds={dataHalfAds} />
+      <EdsPanel dataFullEds={dataFullEds} dataHalfEds={dataHalfEds} />
     </RootPanel>
   );
 }
 
-export default AdsPanelPage;
+export default EdsPanelPage;

@@ -1,10 +1,10 @@
 import FieldHorizontal from "@/components/field/field-horizontal";
 import Line from "@/components/line";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MovieScheduleItem from "./movie-schedule-item";
 import { Movie } from "@/types/movie";
 import { ReleaseSchedule, ReleaseScheduleData } from "@/types/release-schedule";
-import axios from "axios";
+
 import { apiAxios } from "@/utils/axios";
 
 type Props = {
@@ -45,7 +45,10 @@ function DaySheduleContainer({
     for (let movie of prevMovie) {
       if (
         movie.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        movie.imdbId.toLowerCase().includes(e.target.value.toLowerCase())
+        movie.imdbId.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        movie.originalTitle
+          ?.toLowerCase()
+          .includes(e.target.value.toLowerCase())
       ) {
         newMovie.push(movie);
       }
@@ -101,6 +104,7 @@ function DaySheduleContainer({
                       key={movieIndex}
                     >
                       <p className="truncate">{movie.title}</p>
+                      <p className="truncate">{movie.originalTitle}</p>
                     </button>
                   );
                 })}

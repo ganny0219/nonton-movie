@@ -2,7 +2,6 @@ import Line from "@/components/line";
 import RootPanel from "@/components/panel/root-panel";
 import SchedulePanel from "@/components/panel/schedule/schedule-panel";
 
-import { sessionCheck } from "@/utils/server-function/global";
 import { getMovieListPanel } from "@/utils/server-function/movie";
 import { getReleaseSchedule } from "@/utils/server-function/release-schedule";
 

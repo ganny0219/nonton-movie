@@ -1,6 +1,6 @@
 import DeleteConfirm from "@/components/delete-confirm";
 import FieldHorizontal from "@/components/field/field-horizontal";
-import { Ads } from "@/types/ads";
+import { Eds } from "@/types/eds";
 import { SocialMedia } from "@/types/social-media";
 import { apiAxios } from "@/utils/axios";
 import axios from "axios";
@@ -50,7 +50,7 @@ function SocialItem({ socialMedia, socialIndex, setSocialMedia }: Props) {
     setDeleteConfirm(false);
   };
 
-  const onDeleteAds = async () => {
+  const onDeleteEds = async () => {
     await apiAxios.delete(`/social-media/delete`, {
       params: {
         socialMediaId: socialMedia.id,
@@ -69,7 +69,7 @@ function SocialItem({ socialMedia, socialIndex, setSocialMedia }: Props) {
       <DeleteConfirm
         visible={deleteConfirm}
         onClose={onDeleteConfirmClose}
-        onConfirm={onDeleteAds}
+        onConfirm={onDeleteEds}
       />
       <div className="flex flex-row items-center">
         <FieldHorizontal

@@ -5,7 +5,7 @@ import RecomendationMovie from "@/components/movie/recomendation-movie";
 import Note from "@/components/note";
 import RootComponent from "@/components/root-component";
 import { Movie } from "@/types/movie";
-import AdsContainerTwoGrid from "@/components/ads/ads-container-two-grid";
+import EdsContainerTwoGrid from "@/components/eds/eds-container-two-grid";
 import { convertSlugToTitle } from "@/utils/client-function/global";
 import {
   getMovieBySlug,
@@ -49,7 +49,7 @@ async function StreamAnimePage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <AdsContainerTwoGrid />
+          <EdsContainerTwoGrid />
           <DetailMovie data={anime} />
           <DetailSelection movie={anime} />
           <RecomendationMovie recomendMovie={recomendMovie} />

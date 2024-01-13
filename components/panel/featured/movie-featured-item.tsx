@@ -1,6 +1,6 @@
 import DeleteConfirm from "@/components/delete-confirm";
 import FieldHorizontal from "@/components/field/field-horizontal";
-import { Ads } from "@/types/ads";
+import { Eds } from "@/types/eds";
 import { Featured, FeaturedData } from "@/types/featured";
 import { Movie } from "@/types/movie";
 import { apiAxios } from "@/utils/axios";
@@ -24,7 +24,7 @@ function MovieFeaturedItem({
     setDeleteConfirm(false);
   };
 
-  const onDeleteAds = async () => {
+  const onDeleteEds = async () => {
     await apiAxios.delete(`/featured/delete`, {
       params: {
         featuredId: featured.id,
@@ -48,7 +48,7 @@ function MovieFeaturedItem({
       <DeleteConfirm
         visible={deleteConfirm}
         onClose={onDeleteConfirmClose}
-        onConfirm={onDeleteAds}
+        onConfirm={onDeleteEds}
       />
       <div className="flex flex-row items-center">
         <FieldHorizontal disabled name="Title" value={featured?.movie?.title} />

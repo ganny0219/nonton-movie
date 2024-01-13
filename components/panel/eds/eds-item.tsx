@@ -1,50 +1,50 @@
 import DeleteConfirm from "@/components/delete-confirm";
 import FieldHorizontal from "@/components/field/field-horizontal";
-import { Ads } from "@/types/ads";
+import { Eds } from "@/types/eds";
 import { apiAxios, baseAxios } from "@/utils/axios";
 import axios from "axios";
 import React, { useState } from "react";
 
 type Props = {
-  ads: Ads;
-  adsIndex: number;
-  setFullAds: React.Dispatch<React.SetStateAction<Ads[]>>;
-  setHalfAds: React.Dispatch<React.SetStateAction<Ads[]>>;
+  eds: Eds;
+  edsIndex: number;
+  setFullEds: React.Dispatch<React.SetStateAction<Eds[]>>;
+  setHalfEds: React.Dispatch<React.SetStateAction<Eds[]>>;
 };
 
-function AdsItem({ ads, adsIndex, setFullAds, setHalfAds }: Props) {
+function EdsItem({ eds, edsIndex, setFullEds, setHalfEds }: Props) {
   const [edit, setEdit] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(false);
-  const onInputAdsChange = (
+  const onInputEdsChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     key: string
   ) => {
-    if (ads.type == "full") {
-      setFullAds((prev) => {
-        const newDataAds = [...prev];
-        newDataAds[adsIndex] = {
-          ...newDataAds[adsIndex],
+    if (eds.type == "full") {
+      setFullEds((prev) => {
+        const newDataEds = [...prev];
+        newDataEds[edsIndex] = {
+          ...newDataEds[edsIndex],
           [key]: e.target.value,
         };
-        return newDataAds;
+        return newDataEds;
       });
     } else {
-      setHalfAds((prev) => {
-        const newDataAds = [...prev];
-        newDataAds[adsIndex] = {
-          ...newDataAds[adsIndex],
+      setHalfEds((prev) => {
+        const newDataEds = [...prev];
+        newDataEds[edsIndex] = {
+          ...newDataEds[edsIndex],
           [key]: e.target.value,
         };
-        return newDataAds;
+        return newDataEds;
       });
     }
   };
 
   const editSave = async () => {
     await baseAxios.patch(
-      `/ads/update`,
+      `/eds/update`,
       {
-        dataAds: ads,
+        dataEds: eds,
       },
       {}
     );
@@ -64,25 +64,25 @@ function AdsItem({ ads, adsIndex, setFullAds, setHalfAds }: Props) {
     setDeleteConfirm(false);
   };
 
-  const onDeleteAds = async () => {
-    await apiAxios.delete(`/ads/delete`, {
+  const onDeleteEds = async () => {
+    await apiAxios.delete(`/eds/delete`, {
       params: {
-        adsId: ads.id,
+        edsId: eds.id,
       },
     });
-    if (ads.type == "full") {
+    if (eds.type == "full") {
       onDeleteConfirmClose();
-      setFullAds((prev) => {
-        const newDataAds = [...prev];
-        newDataAds.splice(adsIndex, 1);
-        return newDataAds;
+      setFullEds((prev) => {
+        const newDataEds = [...prev];
+        newDataEds.splice(edsIndex, 1);
+        return newDataEds;
       });
     } else {
       onDeleteConfirmClose();
-      setHalfAds((prev) => {
-        const newDataAds = [...prev];
-        newDataAds.splice(adsIndex, 1);
-        return newDataAds;
+      setHalfEds((prev) => {
+        const newDataEds = [...prev];
+        newDataEds.splice(edsIndex, 1);
+        return newDataEds;
       });
     }
   };
@@ -92,26 +92,26 @@ function AdsItem({ ads, adsIndex, setFullAds, setHalfAds }: Props) {
       <DeleteConfirm
         visible={deleteConfirm}
         onClose={onDeleteConfirmClose}
-        onConfirm={onDeleteAds}
+        onConfirm={onDeleteEds}
       />
       <div className="flex flex-row items-center">
         <FieldHorizontal
           disabled={!edit}
           name="Sequence"
-          value={ads.sequence.toString()}
-          conf={{ onChange: (e) => onInputAdsChange(e, "sequence") }}
+          value={eds.sequence.toString()}
+          conf={{ onChange: (e) => onInputEdsChange(e, "sequence") }}
         />
         <FieldHorizontal
           disabled={!edit}
           name="Name"
-          value={ads.name}
-          conf={{ onChange: (e) => onInputAdsChange(e, "name") }}
+          value={eds.name}
+          conf={{ onChange: (e) => onInputEdsChange(e, "name") }}
         />
         <FieldHorizontal
           disabled={!edit}
           name="Url"
-          value={ads.url}
-          conf={{ onChange: (e) => onInputAdsChange(e, "url") }}
+          value={eds.url}
+          conf={{ onChange: (e) => onInputEdsChange(e, "url") }}
         />
         <button className="bg-[#fff] rounded-md p-1 mr-2" onClick={onEdit}>
           {!edit ? "Edit" : "Save"}
@@ -127,4 +127,4 @@ function AdsItem({ ads, adsIndex, setFullAds, setHalfAds }: Props) {
   );
 }
 
-export default AdsItem;
+export default EdsItem;

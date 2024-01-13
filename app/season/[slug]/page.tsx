@@ -60,7 +60,7 @@ async function StreamSeriesPage(props: PageProps) {
       /> */}
       <RootComponent>
         <PageContainer>
-          {/* <AdsContainerTwoGrid /> */}
+          {/* <EdsContainerTwoGrid /> */}
           {season.trailerUrl && (
             <>
               <iframe
@@ -75,7 +75,7 @@ async function StreamSeriesPage(props: PageProps) {
           {season.movie && <DetailSeason data={season} />}
           {/* <div className="w-full border-t-2 border-dashed border-[#000] my-4" />
         <Line margin="4" />
-        <AdsContainerOneGrid /> */}
+        <EdsContainerOneGrid /> */}
           <Line margin="4" />
           {/* <SelectedComponent /> */}
           {season.episode.map((episode, episodeIndex) => {
