@@ -19,7 +19,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/series`;
+  const url = `/series`;
   const title =
     "Nonton Serial TV, TV-Series, Film Seri TV Terlengkap Subtitle Indonesia - Moovie21";
   const description =

@@ -16,7 +16,7 @@ export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
   const country = decodeURIComponent(params.category);
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/country/${country}`;
+  const url = `/country/${country}`;
   const title = `Pilihan Genre ${country} Terlengkap - Moovie21`;
   const description = `Moovie21 - Nonton Film ${country}, Serial TV ${country}, Drakor ${country}, Anime ${country} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${country}, Nonton ${country} Gratis , Nonton Film ${country} Streaming, Moovie21, Nonton Drama ${country}, Nonton Anime ${country}, Subcountry Indonesia, Streaming Drakor ${country}, Streaming Anime ${country}`;

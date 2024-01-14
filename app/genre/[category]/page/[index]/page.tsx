@@ -5,7 +5,6 @@ import MovieCard from "@/components/movie/movie-card";
 import MovieContainer from "@/components/movie/movie-container";
 import Pagination from "@/components/pagination";
 import RootComponent from "@/components/root-component";
-import CustomHead from "@/components/custom-head";
 import { getMovieListByGenrePage } from "@/utils/server-function/genre";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
@@ -18,7 +17,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const title = decodeURIComponent(params.category);
   const index = params.index;
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${title}/page/${index}`;
+  const url = `/genre/${title}/page/${index}`;
   const metaTitle = `Pilihan Genre ${title} Terlengkap - Moovie21`;
   const description = `Moovie21 - Nonton Film ${title}, Serial TV ${title}, Drakor ${title}, Anime ${title} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${title}, Nonton ${title} Gratis , Nonton Film ${title} Streaming, Moovie21, Nonton Drama ${title}, Nonton Anime ${title}, Subtitle Indonesia, Streaming Drakor ${title}, Streaming Anime ${title}`;

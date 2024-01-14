@@ -70,7 +70,7 @@ export const generateMetaResult = ({
   url,
   image,
 }: // searchParams,
-MetaProps) => {
+  MetaProps) => {
   // const searchParamsKeys = Object.keys(searchParams);
   // let querySearhParams = "";
   // for (let i = 0; i < searchParamsKeys.length; i++) {

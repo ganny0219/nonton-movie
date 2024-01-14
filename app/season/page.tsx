@@ -6,7 +6,6 @@ import RootComponent from "@/components/root-component";
 import { SeasonResponse } from "@/types/movie";
 import { Metadata } from "next";
 import SeasonCard from "@/components/movie/season-card";
-import CustomHead from "@/components/custom-head";
 
 import { getSeasonListPage } from "@/utils/server-function/season";
 import { PageProps } from "@/types/global";
@@ -16,7 +15,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/season`;
+  const url = `/season`;
   const title =
     "Nonton Season Terbaru dari Serial TV, TV-Series, Serial TV Terbaru Subtitle Indonesia - Moovie21";
   const description =

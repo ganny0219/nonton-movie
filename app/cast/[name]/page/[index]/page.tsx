@@ -16,7 +16,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const castName = decodeURIComponent(params.name);
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cast/${castName}/page/${index}`;
+  const url = `/cast/${castName}/page/${index}`;
   const title = `Film ${castName} Terbaru - Moovie21`;
   const description = `Moovie21 - Nonton Film ${castName} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Moovie21, Subtitle Indonesia, ${castName}`;

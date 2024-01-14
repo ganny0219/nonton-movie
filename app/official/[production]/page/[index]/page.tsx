@@ -19,7 +19,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const productionName = decodeURIComponent(params.production);
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/official/${productionName}/page/${index}`;
+  const url = `/official/${productionName}/page/${index}`;
   const title = `Film ${productionName} Terbaru - Moovie21`;
   const description = `Moovie21 - Nonton Film ${productionName}, Serial TV ${productionName}, Drakor ${productionName}, Anime ${productionName} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${productionName}, Nonton ${productionName} Gratis , Nonton Film ${productionName} Streaming, Moovie21, Nonton Drama ${productionName}, Nonton Anime ${productionName}, Subtitle Indonesia, Streaming Drakor ${productionName}, Streaming Anime ${productionName}`;

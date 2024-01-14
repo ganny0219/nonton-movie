@@ -6,7 +6,6 @@ import MovieContainer from "@/components/movie/movie-container";
 import Pagination from "@/components/pagination";
 import RootComponent from "@/components/root-component";
 import { Metadata } from "next";
-import CustomHead from "@/components/custom-head";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { getMovieBySearchPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
@@ -18,7 +17,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const searchInput = decodeURIComponent(params.title);
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/search/${searchInput}/page/${index}`;
+  const url = `/search/${searchInput}/page/${index}`;
   const title = `Film ${searchInput} Terbaru - Moovie21`;
   const description = `Moovie21 - Nonton Film ${searchInput}, Serial TV ${searchInput}, Drakor ${searchInput}, Anime ${searchInput} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${searchInput}, Nonton ${searchInput} Gratis , Nonton ${searchInput} Streaming, Moovie21,${searchInput} Subtitle Indonesia, ${searchInput}`;

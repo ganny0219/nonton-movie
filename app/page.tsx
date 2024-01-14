@@ -19,7 +19,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+  const url = `/`;
   const title = "Moovie21 - Streaming Film dan TV Series Subtitle Indonesia";
   const description =
     "Moovie21 - Nonton Film, Serial TV, Drakor, Anime terbaru dengan kualitas tinggi yang tersedia dalam subtitle Indonesia dan diupdate setiap hari. Film Box Office hingga Serial TV Terbaik semua tersedia disitus.";
