@@ -10,6 +10,8 @@ Disallow: /api
 Disallow: /api/*
 Disallow: /_next
 Disallow: /_next/*
+Disallow: /*?_rsc
+Disallow: /*?folio
 
 # Sitemaps
-Sitemap: https://nontonmovie.online/sitemap.xml
+Sitemap: https://moovie21.com/sitemap.xml
