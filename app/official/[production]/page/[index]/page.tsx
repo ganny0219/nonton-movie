@@ -21,7 +21,7 @@ export async function generateMetadata({
   const index = params.index;
   const productionName = decodeURIComponent(params.production);
   if (!productionName) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const url = `/official/${productionName}/page/${index}`;
   const title = `Film ${productionName} Terbaru - Moovie21`;
@@ -41,6 +41,9 @@ export async function generateMetadata({
 async function OfficialProductionIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
   const productionName = decodeURIComponent(props.params.production);
+  if (!productionName) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie, movieLength }: MovieResponse = await getMovieByOfficalPage(
     pageIndex,
     productionName

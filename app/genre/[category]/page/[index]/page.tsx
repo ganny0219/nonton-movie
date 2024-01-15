@@ -18,7 +18,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const title = decodeURIComponent(params.category);
   if (!title) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const index = params.index;
   const url = `/genre/${title}/page/${index}`;
@@ -39,6 +39,9 @@ export async function generateMetadata({
 async function GenreIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
   const title = props.params.category;
+  if (!title) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie, movieLength }: MovieResponse = await getMovieListByGenrePage(
     title,
     pageIndex

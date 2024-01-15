@@ -18,7 +18,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const productionName = decodeURIComponent(params.production);
   if (!productionName) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const url = `/official/${productionName}`;
   const title = `Film ${productionName} Terbaru - Moovie21`;
@@ -36,6 +36,9 @@ export async function generateMetadata({
 }
 async function OfficialProductionPage(props: PageProps) {
   const productionName = decodeURIComponent(props.params.production);
+  if (!productionName) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie, movieLength }: MovieResponse = await getMovieByOfficalPage(
     1,
     productionName

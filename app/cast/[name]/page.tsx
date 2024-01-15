@@ -17,7 +17,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const castName = decodeURIComponent(params.name);
   if (!castName) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const url = `/cast/${castName}`;
   const title = `Film ${castName} Terbaru - Moovie21`;
@@ -36,6 +36,9 @@ export async function generateMetadata({
 export const dynamic = "force-static";
 async function CastNamePage(props: PageProps) {
   const castName = decodeURIComponent(props.params.name);
+  if (!castName) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie, movieLength }: MovieResponse = await getMovieByCastPage(
     1,
     castName

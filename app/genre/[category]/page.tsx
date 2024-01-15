@@ -19,7 +19,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const title = decodeURIComponent(params.category);
   if (!title) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const url = `/genre/${title}`;
   const metaTitle = `Pilihan Genre ${title} Terlengkap - Moovie21`;

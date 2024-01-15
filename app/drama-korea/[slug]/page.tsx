@@ -24,7 +24,7 @@ export async function generateMetadata({
   const slug = params.slug;
   const drakor = await getMovieBySlug(slug, "drama-korea");
   if (!drakor) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const url = `/drama-korea/${slug}`;
   const title = `Nonton ${drakor.title} - Subtitle Indonesia - Moovie21`;
@@ -43,6 +43,9 @@ export async function generateMetadata({
 async function StreamDramaKoreaPage(props: PageProps) {
   const slug = props.params.slug;
   const drakor = await getMovieBySlug(slug, "drama-korea");
+  if (!drakor) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const recomendMovie = await getRecomendarionMovie(drakor ? drakor.genre : []);
 
   return (

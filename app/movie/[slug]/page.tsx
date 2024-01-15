@@ -30,7 +30,7 @@ export async function generateMetadata({
   const slug = params.slug;
   const movie: Movie = await getMovieBySlug(slug, "movie");
   if (!movie) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const url = `/movie/${slug}`;
   const title = `Nonton ${movie.title} - Subtitle Indonesia - Moovie21`;
@@ -50,6 +50,9 @@ export async function generateMetadata({
 async function StreamMoviePage(props: PageProps) {
   const slug = props.params.slug;
   const movie: Movie = await getMovieBySlug(slug, "movie");
+  if (!movie) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const recomendMovie = await getRecomendarionMovie(movie.genre);
 
   return (

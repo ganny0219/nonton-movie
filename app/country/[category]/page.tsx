@@ -18,7 +18,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const country = decodeURIComponent(params.category);
   if (!country) {
-    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const url = `/country/${country}`;
   const title = `Pilihan Genre ${country} Terlengkap - Moovie21`;
@@ -37,10 +37,14 @@ export async function generateMetadata({
 
 async function CategoryPage(props: PageProps) {
   const title = decodeURIComponent(props.params.category);
+  if (!title) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie, movieLength }: MovieResponse = await getMovieListByCountryPage(
     1,
     title
   );
+
   return (
     <>
       <RootComponent>
