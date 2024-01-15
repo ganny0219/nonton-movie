@@ -17,7 +17,7 @@ export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
   const index = params.index;
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/season/anime/page/${index}`;
+  const url = `/season/anime/page/${index}`;
   const title =
     "Nonton Season Terbaru dari Serial TV, TV-Series, Serial TV Terbaru Subtitle Indonesia - Moovie21";
   const description =

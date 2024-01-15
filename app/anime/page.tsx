@@ -20,7 +20,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/anime`;
+  const url = `/anime`;
   const title = `Pilihan Genre Anime Terlengkap - Moovie21`;
   const description = `Moovie21 - Nonton Film Anime, Serial TV Anime, Drakor Anime, Anime Anime terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film Anime, Nonton Anime Gratis , Nonton Film Anime Streaming, Moovie21, Nonton Drama Anime, Nonton Anime Anime, Subtitle Indonesia, Streaming Drakor Anime, Streaming Anime Anime`;

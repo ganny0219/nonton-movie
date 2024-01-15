@@ -11,7 +11,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/jadwal-rilis`;
+  const url = `/jadwal-rilis`;
   const title =
     "Jadawal Nonton Film, Movie, Jadwal Box Office Terbaru dan Terlengkap Subtitle Indonesia - Moovie21";
   const description =

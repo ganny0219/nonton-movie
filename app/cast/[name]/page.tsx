@@ -6,7 +6,6 @@ import { Movie, MovieResponse } from "@/types/movie";
 import MovieContainer from "@/components/movie/movie-container";
 import MovieCard from "@/components/movie/movie-card";
 import Pagination from "@/components/pagination";
-import CustomHead from "@/components/custom-head";
 import { getMovieByCastPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
@@ -20,7 +19,7 @@ export async function generateMetadata({
   if (!castName) {
     redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cast/${castName}`;
+  const url = `/cast/${castName}`;
   const title = `Film ${castName} Terbaru - Moovie21`;
   const description = `Moovie21 - Nonton Film ${castName} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Moovie21, Subtitle Indonesia, ${castName}`;
@@ -43,11 +42,6 @@ async function CastNamePage(props: PageProps) {
   );
   return (
     <>
-      {/* <CustomHead
-        title={`Film ${castName} Terbaru - Moovie21`}
-        description={`Moovie21 - Nonton Film ${castName} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`}
-        keywords={`Nonton Film ${castName}, Nonton Film ${castName} Gratis , Nonton Film ${castName} Streaming, Moovie21, Subtitle Indonesia, ${castName}`}
-      /> */}
       <RootComponent>
         <PageContainer title={castName}>
           <MovieContainer title="Film Terbaru">

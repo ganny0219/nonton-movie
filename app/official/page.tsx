@@ -1,4 +1,3 @@
-import CustomHead from "@/components/custom-head";
 import PageContainer from "@/components/layouts/page-container";
 import RootComponent from "@/components/root-component";
 import { PageProps } from "@/types/global";
@@ -24,7 +23,7 @@ export async function generateMetadata({
   params,
   searchParams,
 }: PageProps): Promise<Metadata> {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/official`;
+  const url = `/official`;
   const title =
     "Nonton Film, Movie, Box Office Terbaru dan Terlengkap Subtitle Indonesia - Moovie21";
   const description =

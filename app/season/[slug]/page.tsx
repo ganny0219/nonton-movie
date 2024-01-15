@@ -9,7 +9,6 @@ import { Movie, Season } from "@/types/movie";
 import EpisodeItem from "@/components/movie/episode-item";
 import DetailSeason from "@/components/movie/detail/detail-season";
 import { convertSlugToTitle } from "@/utils/client-function/global";
-import CustomHead from "@/components/custom-head";
 import {
   generateMetaResult,
   getStringParams,
@@ -29,7 +28,7 @@ export async function generateMetadata({
   if (!season) {
     redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/season/${slug}`;
+  const url = `/season/${slug}`;
   const title = `Nonton ${season?.movie?.title} : ${season.name} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${season?.movie?.title} : ${season.name} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
   const keywords = `Nonton ${season?.movie?.title} : ${season.name}, Nonton Film ${season?.movie?.title} : ${season.name}, Nonton ${season?.movie?.title} : ${season.name} Gratis, Nonton ${season?.movie?.title} : ${season.name} Streaming, ${season?.movie?.title} : ${season.name} Subtitle Indonesia`;
@@ -50,18 +49,6 @@ async function StreamSeriesPage(props: PageProps) {
   const recomendMovie = await getRecomendarionMovie(season.movie.genre);
   return (
     <>
-      {/* <CustomHead
-        title={`Nonton ${season?.movie?.title} :
-        ${season.name} - Subtitle Indonesia - Moovie21`}
-        description={`Moovie21 - Nonton Film ${season?.movie?.title} :
-        ${season.name} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`}
-        keywords={`Nonton ${season?.movie?.title} :
-        ${season.name}, Nonton Film ${season?.movie?.title} :
-        ${season.name}, Nonton ${season?.movie?.title} :
-        ${season.name} Gratis, Nonton ${season?.movie?.title} :
-        ${season.name} Streaming, ${season?.movie?.title} :
-        ${season.name} Subtitle Indonesia`}
-      /> */}
       <RootComponent>
         <PageContainer>
           {/* <EdsContainerTwoGrid /> */}

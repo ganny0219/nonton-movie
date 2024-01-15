@@ -24,10 +24,11 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const slug = params.slug;
   const anime: Movie = await getMovieBySlug(slug, "anime");
+
   if (!anime) {
     redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/anime/${slug}`;
+  const url = `/anime/${slug}`;
   const title = `Nonton ${anime.title} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${anime.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${anime.title}, Nonton Film ${anime.title}, Nonton ${anime.title} Gratis, Nonton ${anime.title} Streaming, ${anime.title} Subtitle Indonesia`;

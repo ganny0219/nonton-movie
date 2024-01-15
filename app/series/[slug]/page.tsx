@@ -26,7 +26,7 @@ export async function generateMetadata({
   if (!series) {
     redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/series/${slug}`;
+  const url = `/series/${slug}`;
   const title = `Nonton ${series.title} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${series.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${series.title}, Nonton Film ${series.title}, Nonton ${series.title} Gratis, Nonton ${series.title} Streaming, ${series.title} Subtitle Indonesia`;

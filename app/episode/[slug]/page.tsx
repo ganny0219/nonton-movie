@@ -32,7 +32,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const slug = params.slug;
   const mainEpisode: Episode = await getEpisodeBySlug(slug);
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/episode/${slug}`;
+  const url = `/episode/${slug}`;
   const title = `Nonton ${mainEpisode.season?.movie?.title} : Season ${mainEpisode.season?.sequence} Episode ${mainEpisode.sequence} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${mainEpisode.season?.movie?.title} : Season ${mainEpisode.season?.sequence} Episode ${mainEpisode.sequence} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${mainEpisode.season?.movie?.title}, Nonton Film ${mainEpisode.season?.movie?.title}, Nonton ${mainEpisode.season?.movie?.title} Gratis, Nonton ${mainEpisode.season?.movie?.title} Streaming, ${mainEpisode.season?.movie?.title} Subtitle Indonesia`;
@@ -82,9 +82,8 @@ async function EpisodeMoviePage(props: PageProps) {
                 />
                 {epsd.sequence == mainEpisode.sequence && (
                   <div
-                    className={`absolute bg-[#31313190] w-full h-full ${
-                      mainEpisode.sequence == 1 ? "top-0" : "top-1"
-                    } left-0`}
+                    className={`absolute bg-[#31313190] w-full h-full ${mainEpisode.sequence == 1 ? "top-0" : "top-1"
+                      } left-0`}
                   />
                 )}
               </div>

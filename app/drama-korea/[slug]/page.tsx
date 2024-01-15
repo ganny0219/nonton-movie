@@ -6,7 +6,6 @@ import Note from "@/components/note";
 import RootComponent from "@/components/root-component";
 import EdsContainerTwoGrid from "@/components/eds/eds-container-two-grid";
 import { convertSlugToTitle } from "@/utils/client-function/global";
-import CustomHead from "@/components/custom-head";
 import {
   getMovieBySlug,
   getRecomendarionMovie,
@@ -27,7 +26,7 @@ export async function generateMetadata({
   if (!drakor) {
     redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/drama-korea/${slug}`;
+  const url = `/drama-korea/${slug}`;
   const title = `Nonton ${drakor.title} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${drakor.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
   const keywords = `Nonton ${drakor.title}, Nonton Film ${drakor.title}, Nonton ${drakor.title} Gratis, Nonton ${drakor.title} Streaming, ${drakor.title} Subtitle Indonesia`;
