@@ -41,9 +41,8 @@ export async function generateMetadata({
 async function OfficialProductionIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
   const productionName = decodeURIComponent(props.params.production);
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (!productionName || searchParamsCount > 0) {
+  if (!productionName) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const { movie, movieLength }: MovieResponse = await getMovieByOfficalPage(

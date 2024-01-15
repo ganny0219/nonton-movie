@@ -37,11 +37,7 @@ export async function generateMetadata({
 
 async function EpisodeIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const { episode: episodeList, episodeLength }: EpisodeResponse =
     await getEpisodeListPage(pageIndex, "series");
 

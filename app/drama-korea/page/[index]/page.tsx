@@ -34,11 +34,7 @@ export async function generateMetadata({
 
 async function DramaKoreaIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const { movie: drakor, movieLength: drakorLength }: MovieResponse =
     await getMovieListPage(pageIndex, "drama-korea");
 

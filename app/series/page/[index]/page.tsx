@@ -38,11 +38,7 @@ export async function generateMetadata({
 
 async function SeriesIndexPage(props: PageProps) {
   const pageIndex = props.params?.index;
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const { movie: series, movieLength: seriesLength }: MovieResponse =
     await getMovieListPage(pageIndex, "series");
   // const featuredMovie = await apiAxios

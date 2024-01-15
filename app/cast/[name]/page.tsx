@@ -36,9 +36,8 @@ export async function generateMetadata({
 export const dynamic = "force-static";
 async function CastNamePage(props: PageProps) {
   const castName = decodeURIComponent(props.params.name);
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (!castName || searchParamsCount > 0) {
+  if (!castName) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const { movie, movieLength }: MovieResponse = await getMovieByCastPage(

@@ -46,9 +46,8 @@ export async function generateMetadata({
 async function StreamSeriesPage(props: PageProps) {
   const slug = props.params.slug;
   const season: Season = await getSeasonBySlug(slug);
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (!season || searchParamsCount > 0) {
+  if (!season) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const recomendMovie = await getRecomendarionMovie(season.movie.genre);

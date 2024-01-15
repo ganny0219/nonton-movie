@@ -46,9 +46,8 @@ export async function generateMetadata({
 async function StreamAnimePage(props: PageProps) {
   const slug = props.params.slug;
   const anime: Movie = await getMovieBySlug(slug, "anime");
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (!anime || searchParamsCount > 0) {
+  if (!anime) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const recomendMovie: Movie[] = await getRecomendarionMovie(

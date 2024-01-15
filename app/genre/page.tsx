@@ -32,11 +32,6 @@ export async function generateMetadata({
 }
 
 async function GenrePage(props: PageProps) {
-  const searchParamsCount = Object.keys(props.searchParams).length;
-
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const genreList: Genre[] = await getGenreList();
   return (
     <>

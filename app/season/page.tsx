@@ -35,11 +35,6 @@ export async function generateMetadata({
 }
 
 async function SeasonPage(props: PageProps) {
-  const searchParamsCount = Object.keys(props.searchParams).length;
-
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const { season, seasonLength }: SeasonResponse = await getSeasonListPage(
     1,
     ""

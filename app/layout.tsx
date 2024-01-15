@@ -1,14 +1,19 @@
+"use client";
 import Script from "next/script";
 import "./globals.css";
+import { redirect, useRouter, useSearchParams } from "next/navigation";
 
-// export const revalidate = 60;
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const serchParamsSize = useSearchParams().size;
+  if (serchParamsSize) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   return (
     <html lang="en">
       <head>

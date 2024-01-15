@@ -37,9 +37,8 @@ export async function generateMetadata({
 
 async function CategoryPage(props: PageProps) {
   const title = decodeURIComponent(props.params.category);
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (!title || searchParamsCount > 0) {
+  if (!title) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
 

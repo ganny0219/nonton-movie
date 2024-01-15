@@ -14,7 +14,7 @@ import { Metadata, ResolvingMetadata } from "next";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
 import EdsContainerOneGrid from "@/components/eds/eds-container-one-grid";
-import { redirect } from "next/navigation";
+import { redirect, useRouter, usePathname } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -38,10 +38,6 @@ export async function generateMetadata({
 }
 
 export default async function Home(props: PageProps) {
-  const searchParamsCount = Object.keys(props.searchParams).length;
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const movieTerbaru = (await getMovieListPage(1, "movie")).movie;
   const featuredHome = await getFeatured("home");
   const actionMovie = (await getMovieListByGenrePage("action", 1)).movie;

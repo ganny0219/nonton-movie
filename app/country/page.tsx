@@ -56,11 +56,7 @@ export async function generateMetadata({
 
 async function CountryPage(props: PageProps) {
   const countryList: Country[] = await getCountryList();
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   return (
     <>
       <RootComponent>

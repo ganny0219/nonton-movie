@@ -34,11 +34,7 @@ export async function generateMetadata({
 
 async function AnimeIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (searchParamsCount > 0) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const { movie: anime, movieLength: animeLength }: MovieResponse =
     await getMovieListPage(pageIndex, "anime");
 

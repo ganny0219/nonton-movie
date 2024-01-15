@@ -44,9 +44,7 @@ async function StreamDramaKoreaPage(props: PageProps) {
   const slug = props.params.slug;
   const drakor = await getMovieBySlug(slug, "drama-korea");
 
-  const searchParamsCount = Object.keys(props.searchParams).length;
-
-  if (!drakor || searchParamsCount > 0) {
+  if (!drakor) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const recomendMovie = await getRecomendarionMovie(drakor ? drakor.genre : []);

@@ -39,9 +39,8 @@ export async function generateMetadata({
 async function AnimePage(props: PageProps) {
   const { movie: anime, movieLength: animeLength }: MovieResponse =
     await getMovieListPage(1, "anime");
-  const searchParamsCount = Object.keys(props.searchParams).length;
 
-  if (!anime || searchParamsCount > 0) {
+  if (!anime) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const animeEpisode = (await getEpisodeListPage(1, "anime")).episode.splice(
