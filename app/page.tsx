@@ -39,7 +39,6 @@ export async function generateMetadata({
 
 export default async function Home(props: PageProps) {
   const searchParamsCount = Object.keys(props.searchParams).length;
-
   if (searchParamsCount > 0) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
