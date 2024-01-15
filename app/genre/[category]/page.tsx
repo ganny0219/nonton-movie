@@ -19,7 +19,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const title = decodeURIComponent(params.category);
   if (!title) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+    return {};
   }
   const url = `/genre/${title}`;
   const metaTitle = `Pilihan Genre ${title} Terlengkap - Moovie21`;
@@ -38,6 +38,9 @@ export async function generateMetadata({
 
 async function CategoryPage(props: PageProps) {
   const title = props.params.category;
+  if (!title) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie, movieLength }: MovieResponse = await getMovieListByGenrePage(
     title,
     1
