@@ -14,6 +14,7 @@ import DetailSelection from "@/components/movie/detail/detail-selection";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
 import { PageProps } from "@/types/global";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -21,7 +22,10 @@ export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
   const slug = await params.slug;
-  const series: Movie = await getMovieBySlug(slug);
+  const series: Movie = await getMovieBySlug(slug, "series");
+  if (!series) {
+    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/series/${slug}`;
   const title = `Nonton ${series.title} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${series.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
@@ -39,7 +43,7 @@ export async function generateMetadata({
 
 async function StreamSeriesPage(props: PageProps) {
   const slug = await props.params.slug;
-  const series: Movie = await getMovieBySlug(slug);
+  const series: Movie = await getMovieBySlug(slug, "series");
   const recomendMovie = await getRecomendarionMovie(series ? series.genre : []);
 
   return (

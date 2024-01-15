@@ -10,6 +10,7 @@ import { getMovieListByGenrePage } from "@/utils/server-function/genre";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -17,6 +18,9 @@ export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
   const title = decodeURIComponent(params.category);
+  if (!title) {
+    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const index = params.index;
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/genre/${title}/page/${index}`;
   const metaTitle = `Pilihan Genre ${title} Terlengkap - Moovie21`;

@@ -15,6 +15,7 @@ import { PageProps } from "@/types/global";
 import DetailSelection from "@/components/movie/detail/detail-selection";
 import { Metadata } from "next";
 import { generateMetaResult } from "@/utils/server-function/global";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -22,7 +23,10 @@ export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
   const slug = params.slug;
-  const drakor = await getMovieBySlug(slug);
+  const drakor = await getMovieBySlug(slug, "drama-korea");
+  if (!drakor) {
+    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/drama-korea/${slug}`;
   const title = `Nonton ${drakor.title} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${drakor.title} sub indo dengan kualitas tinggi yang tersedia disitus, dalam subtitle bahasa indonesia. `;
@@ -39,7 +43,7 @@ export async function generateMetadata({
 }
 async function StreamDramaKoreaPage(props: PageProps) {
   const slug = props.params.slug;
-  const drakor = await getMovieBySlug(slug);
+  const drakor = await getMovieBySlug(slug, "drama-korea");
   const recomendMovie = await getRecomendarionMovie(drakor ? drakor.genre : []);
 
   return (

@@ -11,6 +11,7 @@ import { getMovieByOfficalPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
 import { Metadata } from "next";
 import { generateMetaResult } from "@/utils/server-function/global";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -19,6 +20,9 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const index = params.index;
   const productionName = decodeURIComponent(params.production);
+  if (!productionName) {
+    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/official/${productionName}/page/${index}`;
   const title = `Film ${productionName} Terbaru - Moovie21`;
   const description = `Moovie21 - Nonton Film ${productionName}, Serial TV ${productionName}, Drakor ${productionName}, Anime ${productionName} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;

@@ -39,10 +39,14 @@ export const getMovieListPage = async (
   }
 };
 
-export const getMovieBySlug = async (slug: string | string[] | undefined) => {
+export const getMovieBySlug = async (
+  slug: string | string[] | undefined,
+  type: MovieType
+) => {
   try {
     const movie = await prisma.movie.findUnique({
       where: {
+        type,
         slug: slug as string,
       },
       include: {
@@ -85,6 +89,7 @@ export const getMovieBySlug = async (slug: string | string[] | undefined) => {
         },
       },
     });
+
     return getPrismaJson(movie);
   } catch (err) {
     throw new Error("getMovieBySlug Error~");

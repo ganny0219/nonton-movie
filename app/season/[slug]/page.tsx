@@ -17,6 +17,7 @@ import {
 import { getSeasonBySlug } from "@/utils/server-function/season";
 import { getRecomendarionMovie } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -25,6 +26,9 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const slug = params.slug;
   const season: Season = await getSeasonBySlug(slug);
+  if (!season) {
+    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/season/${slug}`;
   const title = `Nonton ${season?.movie?.title} : ${season.name} - Subtitle Indonesia - Moovie21`;
   const description = `Moovie21 - Nonton Film ${season?.movie?.title} : ${season.name} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;

@@ -9,6 +9,7 @@ import RootComponent from "@/components/root-component";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { getMovieListByCountryPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -16,6 +17,9 @@ export async function generateMetadata({
   searchParams,
 }: PageProps): Promise<Metadata> {
   const country = decodeURIComponent(params.category);
+  if (!country) {
+    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/country/${country}`;
   const title = `Pilihan Genre ${country} Terlengkap - Moovie21`;
   const description = `Moovie21 - Nonton Film ${country}, Serial TV ${country}, Drakor ${country}, Anime ${country} terbaru sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;

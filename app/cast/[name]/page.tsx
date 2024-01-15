@@ -10,12 +10,16 @@ import CustomHead from "@/components/custom-head";
 import { getMovieByCastPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata({
   params,
   searchParams,
 }: PageProps): Promise<Metadata> {
   const castName = decodeURIComponent(params.name);
+  if (!castName) {
+    redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const url = `${process.env.NEXT_PUBLIC_BASE_URL}/cast/${castName}`;
   const title = `Film ${castName} Terbaru - Moovie21`;
   const description = `Moovie21 - Nonton Film ${castName} sub indo dengan kualitas tinggi tersedia dalam subtitle bahasa indonesia.`;
