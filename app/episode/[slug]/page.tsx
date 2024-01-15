@@ -24,6 +24,7 @@ import { getRecomendarionMovie } from "@/utils/server-function/movie";
 import { getEpisodeBySlug } from "@/utils/server-function/episode";
 import { PageProps } from "@/types/global";
 import Player from "@/components/movie/player";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -49,6 +50,11 @@ export async function generateMetadata({
 
 async function EpisodeMoviePage(props: PageProps) {
   const slug = props.params.slug;
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const mainEpisode: Episode = await getEpisodeBySlug(slug);
   const allEpisode: Episode[] = mainEpisode.season
     ? mainEpisode.season.episode
@@ -82,8 +88,9 @@ async function EpisodeMoviePage(props: PageProps) {
                 />
                 {epsd.sequence == mainEpisode.sequence && (
                   <div
-                    className={`absolute bg-[#31313190] w-full h-full ${mainEpisode.sequence == 1 ? "top-0" : "top-1"
-                      } left-0`}
+                    className={`absolute bg-[#31313190] w-full h-full ${
+                      mainEpisode.sequence == 1 ? "top-0" : "top-1"
+                    } left-0`}
                   />
                 )}
               </div>

@@ -14,6 +14,7 @@ import { getFeatured } from "@/utils/server-function/featured";
 import { getSeasonListPage } from "@/utils/server-function/season";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { PageProps } from "@/types/global";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -35,10 +36,14 @@ export async function generateMetadata({
   });
 }
 
-async function AnimePage() {
+async function AnimePage(props: PageProps) {
   const { movie: anime, movieLength: animeLength }: MovieResponse =
     await getMovieListPage(1, "anime");
+  const searchParamsCount = Object.keys(props.searchParams).length;
 
+  if (!anime || searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const animeEpisode = (await getEpisodeListPage(1, "anime")).episode.splice(
     0,
     12

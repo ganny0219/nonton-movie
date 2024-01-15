@@ -9,6 +9,7 @@ import { getMovieListPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
 import { Metadata } from "next";
 import { generateMetaResult } from "@/utils/server-function/global";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -40,6 +41,11 @@ async function MoviesIndexPage(props: PageProps) {
     pageIndex,
     "movie"
   );
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   return (
     <>
       <RootComponent>

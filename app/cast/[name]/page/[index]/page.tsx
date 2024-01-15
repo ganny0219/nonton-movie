@@ -39,7 +39,9 @@ export const dynamic = "force-static";
 async function CastNameIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
   const castName = decodeURIComponent(props.params.name);
-  if (!castName) {
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (!castName || searchParamsCount > 0) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const { movie, movieLength }: MovieResponse = await getMovieByCastPage(

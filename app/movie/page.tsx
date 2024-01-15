@@ -12,6 +12,7 @@ import { getMovieListPage } from "@/utils/server-function/movie";
 import { Metadata } from "next";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { PageProps } from "@/types/global";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -35,7 +36,12 @@ export async function generateMetadata({
   });
 }
 
-async function MoviesPage() {
+async function MoviesPage(props: PageProps) {
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie, movieLength }: MovieResponse = await getMovieListPage(
     1,
     "movie"

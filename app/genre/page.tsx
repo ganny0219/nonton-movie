@@ -6,6 +6,7 @@ import { getGenreList } from "@/utils/server-function/genre";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export async function generateMetadata({
@@ -30,7 +31,12 @@ export async function generateMetadata({
   });
 }
 
-async function GenrePage() {
+async function GenrePage(props: PageProps) {
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const genreList: Genre[] = await getGenreList();
   return (
     <>

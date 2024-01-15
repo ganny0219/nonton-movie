@@ -49,8 +49,11 @@ export async function generateMetadata({
 
 async function StreamMoviePage(props: PageProps) {
   const slug = props.params.slug;
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
   const movie: Movie = await getMovieBySlug(slug, "movie");
-  if (!movie) {
+
+  if (!movie || searchParamsCount > 0) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
   }
   const recomendMovie = await getRecomendarionMovie(movie.genre);

@@ -9,6 +9,7 @@ import { getMovieListPage } from "@/utils/server-function/movie";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-static";
 export async function generateMetadata({
@@ -33,6 +34,11 @@ export async function generateMetadata({
 
 async function DramaKoreaIndexPage(props: PageProps) {
   const pageIndex = props.params.index;
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { movie: drakor, movieLength: drakorLength }: MovieResponse =
     await getMovieListPage(pageIndex, "drama-korea");
 

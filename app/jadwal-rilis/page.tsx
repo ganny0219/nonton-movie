@@ -5,6 +5,7 @@ import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { getReleaseSchedule } from "@/utils/server-function/release-schedule";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export async function generateMetadata({
@@ -29,7 +30,12 @@ export async function generateMetadata({
   });
 }
 
-async function JadwalRilisPage() {
+async function JadwalRilisPage(props: PageProps) {
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const releaseScheduleData = await getReleaseSchedule();
   return (
     <>

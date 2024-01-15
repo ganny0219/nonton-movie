@@ -6,6 +6,7 @@ import { getCountryList } from "@/utils/server-function/country";
 import { generateMetaResult } from "@/utils/server-function/global";
 import { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 // type Props = {
@@ -53,8 +54,13 @@ export async function generateMetadata({
   });
 }
 
-async function CountryPage() {
+async function CountryPage(props: PageProps) {
   const countryList: Country[] = await getCountryList();
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   return (
     <>
       <RootComponent>

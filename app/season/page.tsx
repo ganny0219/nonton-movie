@@ -10,6 +10,7 @@ import SeasonCard from "@/components/movie/season-card";
 import { getSeasonListPage } from "@/utils/server-function/season";
 import { PageProps } from "@/types/global";
 import { generateMetaResult } from "@/utils/server-function/global";
+import { redirect } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -33,7 +34,12 @@ export async function generateMetadata({
   });
 }
 
-async function SeasonPage() {
+async function SeasonPage(props: PageProps) {
+  const searchParamsCount = Object.keys(props.searchParams).length;
+
+  if (searchParamsCount > 0) {
+    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
+  }
   const { season, seasonLength }: SeasonResponse = await getSeasonListPage(
     1,
     ""
