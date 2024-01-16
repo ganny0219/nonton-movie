@@ -66,13 +66,13 @@ async function CountryPage(props: PageProps) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
             {countryList.map((country, index) => {
               return (
-                <Link
+                <a
                   key={index}
-                  href={{ pathname: `/country/${country.name}` }}
+                  href={`/country/${country.name}`}
                   className="text-start p-4 w-full bg-black rounded-md text-xl"
                 >
                   {country.name}
-                </Link>
+                </a>
               );
             })}
           </div>

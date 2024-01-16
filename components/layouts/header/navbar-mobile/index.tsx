@@ -1,4 +1,4 @@
-import Link from "next/link";
+import a from "next/link";
 import React, { useRef, useState } from "react";
 import MenuDropdown from "../menu-dropdown";
 import CamIcon from "@/assets/icons/cam-icon";
@@ -49,18 +49,16 @@ function NavbarMobile({
             className="flex bg-[#2E2E2C] outline-none text-gray-200 w-full text-xl py-2"
             placeholder="search..."
           />
-          <Link
-            href={{
-              pathname: `${
-                searchInputRef.current?.value != undefined &&
-                searchInputRef.current?.value.length > 1
-                  ? `/search/${searchInputRef.current?.value}`
-                  : "/"
-              }`,
-            }}
+          <a
+            href={`${
+              searchInputRef.current?.value != undefined &&
+              searchInputRef.current?.value.length > 1
+                ? `/search/${searchInputRef.current?.value}`
+                : "/"
+            }`}
           >
             <SearchIcon color="#ccc" size="1.5" />
-          </Link>
+          </a>
         </div>
       )}
       {searchFocus && (
@@ -72,28 +70,23 @@ function NavbarMobile({
       )}
       {burgerToggle && (
         <div className="text-[#fff]">
-          <Link
-            href={{
-              pathname: `/movie`,
-            }}
-            className="flex flex-col"
-          >
+          <a href={`/movie`} className="flex flex-col">
             <div className="flex flex-row justify-start items-center pl-2">
               <CamIcon size="1.8" />
               <p className="m-2 text-xl">Movie</p>
             </div>
-          </Link>
+          </a>
           {/* <div className="grid grid-cols-2">
             <DropdownItem title="Marvel" path={`/official/Marvel`} />
             <DropdownItem title="DC" path={`/official/DC Entertainment`} />
             <DropdownItem title="Disney" path={`/official/Disney`} />
           </div> */}
-          <Link href={{ pathname: `/series` }} className="flex  flex-col">
+          <a href={`/series`} className="flex  flex-col">
             <div className="flex flex-row justify-start items-center pl-2">
               <TvIcon size="1.5" />
               <p className="m-2 text-xl">TV Series</p>
             </div>
-          </Link>
+          </a>
           {/* <div className="grid grid-cols-2">
             <DropdownItem title="Netflix Series" path={`/official/Netflix`} />
             <DropdownItem
@@ -103,33 +96,27 @@ function NavbarMobile({
             <DropdownItem title="Disney+ Series" path={`/official/Disney+`} />
             <DropdownItem title="HBO Series" path={`/official/HBO`} />
           </div> */}
-          <Link
-            href={{
-              pathname: "/anime",
-            }}
+          <a
+            href="/anime"
             className="flex flex-row justify-start items-center pl-2 my-2 hover:cursor-pointer hover:text-secondary"
           >
             <FilmIcon size="1.6" />
             <p className="ml-2 text-xl">Anime</p>
-          </Link>
-          <Link
-            href={{
-              pathname: "/drama-korea",
-            }}
+          </a>
+          <a
+            href={"/drama-korea"}
             className="flex flex-row justify-start items-center pl-2 mt-4 mb-2 hover:cursor-pointer hover:text-secondary"
           >
             <FilmIcon size="1.6" />
             <p className="ml-2 text-xl">Drakor</p>
-          </Link>
-          {/* <Link
-            href={{
-              pathname: "/genre",
-            }}
+          </a>
+          {/* <a
+            href={ "/genre"}
             className="flex flex-row justify-start items-center pl-2 my-4 hover:cursor-pointer hover:text-secondary"
           >
             <OpenFolderIcon size="1.6" />
             <p className="ml-2 text-xl">Genre</p>
-          </Link> */}
+          </a> */}
           <div className="flex flex-col">
             <div className="flex flex-row justify-start items-center pl-2">
               <OpenFolderIcon size="1.6" />

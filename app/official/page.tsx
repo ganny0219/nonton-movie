@@ -52,15 +52,13 @@ function ListOfficialPage(props: PageProps) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 w-full">
             {OfficialList.map((official, index) => {
               return (
-                <Link
+                <animateMotion
                   key={index}
-                  href={{
-                    pathname: `/official/${official.toLowerCase()}/page/1`,
-                  }}
+                  href={`/official/${official.toLowerCase()}/page/1`}
                   className="text-start p-4 w-full bg-black rounded-md text-xl"
                 >
                   {official}
-                </Link>
+                </animateMotion>
               );
             })}
           </div>

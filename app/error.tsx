@@ -3,7 +3,13 @@ import Footer from "@/components/layouts/footer";
 import Header from "@/components/layouts/header";
 import React from "react";
 
-function NotFoundPage() {
+export default function ErrorBoundary({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
   return (
     <div className="max-w-[1100px] w-[90%] m-auto text-[#fff] min-h-[100vh]">
       <Header />
@@ -21,5 +27,3 @@ function NotFoundPage() {
     </div>
   );
 }
-
-export default NotFoundPage;

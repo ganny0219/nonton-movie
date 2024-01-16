@@ -4,7 +4,7 @@ import { RootState } from "@/store";
 import type { Movie } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image from "next/image";
-import Link from "next/link";
+import a from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -30,10 +30,8 @@ function MovieCard({ data, index }: Props) {
 
   return (
     <div className="flex flex-col">
-      <Link
-        href={{
-          pathname: `/${data.type}/${data.slug}`,
-        }}
+      <a
+        href={`/${data.type}/${data.slug}`}
         className="relative aspect-story overflow-hidden rounded-xl hover:cursor-pointer"
         onMouseOver={hoverIn}
         onMouseLeave={hoverOut}
@@ -81,19 +79,15 @@ function MovieCard({ data, index }: Props) {
           {/* {(+data.rating).toFixed(1)} */}
           {convertRating(data.rating)}
         </p>
-      </Link>
-      <Link
-        href={{
-          pathname: `/${data.type}/${data.slug}`,
-        }}
-      >
+      </a>
+      <a href={`/${data.type}/${data.slug}`}>
         <h2
           title={data.title}
           className="text-[#fff] text-sm md:text-base mt-2 whitespace-nowrap overflow-ellipsis overflow-hidden hover:text-secondary"
         >
           {data.title}
         </h2>
-      </Link>
+      </a>
       <p className="text-[#ffffff80] text-xs">{data.year}</p>
     </div>
   );

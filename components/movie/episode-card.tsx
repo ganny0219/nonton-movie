@@ -3,7 +3,7 @@ import PlayIcon from "@/assets/icons/play-icon";
 import { RootState } from "@/store";
 import type { Episode, Movie } from "@/types/movie";
 import Image from "next/image";
-import Link from "next/link";
+import a from "next/link";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -35,8 +35,8 @@ function EpisodeCard({ episode, index }: Props) {
   }
   return (
     <div className="flex flex-col">
-      <Link
-        href={{ pathname: `/episode/${episode.slug}` }}
+      <a
+        href={`/episode/${episode.slug}`}
         className="relative aspect-video overflow-hidden rounded-xl hover:cursor-pointer"
         onMouseOver={hoverIn}
         onMouseLeave={hoverOut}
@@ -85,8 +85,8 @@ function EpisodeCard({ episode, index }: Props) {
             {episode.released}
           </p>
         )} */}
-      </Link>
-      <Link href={{ pathname: `/episode/${episode.slug}` }}>
+      </a>
+      <a href={`/episode/${episode.slug}`}>
         <h2
           title={episode.title}
           className="text-[#fff] text-sm sm:text-base mt-2 whitespace-nowrap overflow-ellipsis overflow-hidden hover:text-secondary"
@@ -94,7 +94,7 @@ function EpisodeCard({ episode, index }: Props) {
           {episode.title}
           {/* {episode.season?.movie?.title} */}
         </h2>
-      </Link>
+      </a>
       <div className="flex flex-row truncate">
         <p className="text-[#ffffff80] text-xs">
           S{episode.season?.sequence} E{episode.sequence} {" /"}

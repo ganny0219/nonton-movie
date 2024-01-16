@@ -10,8 +10,8 @@ type Props = {
 };
 function DropdownSearchItem({ movie }: Props) {
   return (
-    <Link
-      href={{ pathname: `/${movie.type}/${movie.slug}` }}
+    <a
+      href={`/${movie.type}/${movie.slug}`}
       className="flex flex-row border-b-[1px] border-[#ffffff50] w-full p-2 "
     >
       <Image
@@ -36,7 +36,7 @@ function DropdownSearchItem({ movie }: Props) {
           <p className="ml-2">{convertRating(movie.rating)}</p>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
 

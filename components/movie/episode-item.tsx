@@ -12,8 +12,8 @@ type Props = {
 };
 function EpisodeItem({ episode, episodeIndex, seasonSquence }: Props) {
   return (
-    <Link
-      href={{ pathname: `/episode/${episode.slug}` }}
+    <a
+      href={`/episode/${episode.slug}`}
       className={`flex flex-col relative w-full mt-2 ${
         episodeIndex > 0
           ? "pt-2 border-t-solid border-t-[1px] border-[#313131]"
@@ -40,7 +40,7 @@ function EpisodeItem({ episode, episodeIndex, seasonSquence }: Props) {
           <p className="text-xs">{episode?.released}</p>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }
 

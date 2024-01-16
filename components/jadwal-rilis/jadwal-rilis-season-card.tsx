@@ -3,7 +3,7 @@ import PlayIcon from "@/assets/icons/play-icon";
 import type { Season } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image from "next/image";
-import Link from "next/link";
+import a from "next/link";
 import React, { useState } from "react";
 
 type Props = {
@@ -22,12 +22,10 @@ function JadwalRilisSeasonCard({ data, index, mainPage }: Props) {
   };
   return (
     <div className="flex flex-col">
-      <Link
-        href={{
-          pathname: `${
-            mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
-          }`,
-        }}
+      <a
+        href={`${
+          mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
+        }`}
         className="relative aspect-story overflow-hidden rounded-xl hover:cursor-pointer"
         onMouseOver={hoverIn}
         onMouseLeave={hoverOut}
@@ -84,18 +82,16 @@ function JadwalRilisSeasonCard({ data, index, mainPage }: Props) {
             </div>
           </>
         )}
-      </Link>
-      <Link
-        href={{
-          pathname: `${
-            mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
-          }`,
-        }}
+      </a>
+      <a
+        href={`${
+          mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
+        }`}
       >
         <p className="text-[#fff]  text-sm sm:text-base  mt-2 whitespace-nowrap overflow-ellipsis overflow-hidden hover:text-secondary">
           {`S${data.sequence} : ${data.movie?.title}`}
         </p>
-      </Link>
+      </a>
       <p className="text-[#ffffff80] text-xs">{data.released}</p>
     </div>
   );

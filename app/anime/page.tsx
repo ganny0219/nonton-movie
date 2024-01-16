@@ -39,17 +39,11 @@ export async function generateMetadata({
 async function AnimePage(props: PageProps) {
   const { movie: anime, movieLength: animeLength }: MovieResponse =
     await getMovieListPage(1, "anime");
-
-  if (!anime) {
-    return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/not-found");
-  }
   const animeEpisode = (await getEpisodeListPage(1, "anime")).episode.splice(
     0,
     12
   );
-
   const featuredAnime = await getFeatured("anime");
-
   const animeSeason = (await getSeasonListPage(1, "anime")).season.splice(
     0,
     12

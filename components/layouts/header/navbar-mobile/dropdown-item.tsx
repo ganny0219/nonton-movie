@@ -9,15 +9,15 @@ type Props = {
 
 function DropdownItem({ title, path }: Props) {
   return (
-    <Link
-      href={{ pathname: path }}
+    <a
+      href={path}
       className="flex flex-row items-center w-full md:w-[200px] p-2 hover:text-secondary"
     >
       <div>
         <ChevronRightIcon />
       </div>
       <span className="break-all ml-2">{title}</span>
-    </Link>
+    </a>
   );
 }
 

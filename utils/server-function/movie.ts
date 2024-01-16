@@ -34,7 +34,6 @@ export const getMovieListPage = async (
       movieLength: movieLength,
     });
   } catch (err) {
-    console.log(err);
     throw new Error("getMoviePage Error~");
   }
 };

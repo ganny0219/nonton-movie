@@ -18,13 +18,13 @@ function GenreListMovie({ genres }: Props) {
             {genreIndex != 1 && genreIndex != 0 && (
               <div className="mr-2">|</div>
             )}
-            <Link
+            <a
               key={genreIndex}
-              href={{ pathname: `/genre/${genre.name.toLowerCase()}` }}
+              href={`/genre/${genre.name.toLowerCase()}`}
               className="mr-2 hover:text-secondary"
             >
               {genre.name}
-            </Link>
+            </a>
             {genres.length > 1 && genreIndex == 0 && (
               <div className="mr-2">|</div>
             )}

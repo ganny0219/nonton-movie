@@ -13,7 +13,7 @@ function EdsBannerItem({ url, bannerUrl }: Props) {
   return (
     <>
       {url && bannerUrl && (
-        <Link href={{ pathname: url }} target="_blank">
+        <a href={url} target="_blank">
           <Image
             loading="lazy"
             height={400}
@@ -22,7 +22,7 @@ function EdsBannerItem({ url, bannerUrl }: Props) {
             src={bannerUrl}
             className="w-full max-h-[100px] object-cover"
           />
-        </Link>
+        </a>
       )}
     </>
   );

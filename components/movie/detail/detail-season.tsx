@@ -41,12 +41,12 @@ function DetailSeason({ data }: Props) {
             <span className="mr-4">{data?.movie?.production}</span>
           </div>
           <RatingDetailSeason data={data} />
-          <Link
+          <a
             className="hover:text-secondary mt-2 break-words"
-            href={{ pathname: `/${data.movie?.type}/${data.movie?.slug}` }}
+            href={`/${data.movie?.type}/${data.movie?.slug}`}
           >
             {data.movie?.title} All Season
-          </Link>
+          </a>
         </div>
       </div>
       <RatingDetailMobileSeason data={data} />

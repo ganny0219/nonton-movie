@@ -96,12 +96,12 @@ function MoviePanel({ movie, title, type }: Props) {
           >
             {camToggle ? "ALL" : "CAM"}
           </button>
-          <Link
-            href={{ pathname: `/pandora/${type}/create` }}
+          <a
+            href={`/pandora/${type}/create`}
             className="bg-tertiary py-2 px-4 rounded"
           >
             Create {title}
-          </Link>
+          </a>
         </div>
       </div>
       <Line thin color="#00000050" />

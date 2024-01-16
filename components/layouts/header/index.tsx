@@ -66,8 +66,8 @@ function Header({ hidden }: Props) {
             >
               <BurgerIcon color="#fff" size="1.5" />
             </button>
-            <Link
-              href={{ pathname: "/" }}
+            <a
+              href={"/"}
               className="flex items-center w-[120px] sm:w-[200px] pl-0 p-2 px-4 hover:cursor-pointer text-2xl hover:text-secondary"
             >
               <Image
@@ -80,7 +80,7 @@ function Header({ hidden }: Props) {
                 alt={`Moovie21 Logo`}
               />
               {/* MOOVIE21*/}
-            </Link>
+            </a>
             <NavbarWeb
               searchMovie={searchMovie}
               searchToggleHandler={searchToggleHandler}

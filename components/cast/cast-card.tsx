@@ -25,12 +25,12 @@ function CastCard({ cast }: Props) {
           className="w-[30%] aspect-square object-contain"
         />
         <div className="flex flex-col ml-2 truncate">
-          <Link
-            href={{ pathname: `/cast/${cast.name}` }}
+          <a
+            href={`/cast/${cast.name}`}
             className="hover:text-secondary text-xs sm:text-base truncate"
           >
             {cast?.name}
-          </Link>
+          </a>
           <p className="text-xs sm:text-base truncate">{cast?.as}</p>
         </div>
       </div>

@@ -15,9 +15,9 @@ function DrawerPanelItem({ title, selected, path, name }: Props) {
         selected === name ? "border-r-2 border-solid border-[#000]" : ""
       }`}
     >
-      <Link href={{ pathname: path }}>
+      <a href={path}>
         <h2 className="font-bold text-center">{title}</h2>
-      </Link>
+      </a>
     </div>
   );
 }

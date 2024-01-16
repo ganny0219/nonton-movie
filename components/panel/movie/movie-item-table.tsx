@@ -49,14 +49,12 @@ function MovieItemTable({ odd, type, data, setMovieList, movieIndex }: Props) {
           {data?.originalTitle}
         </div>
         <div className="flex justify-evenly items-center py-2 w-[20%] border-solid border-[1px] border-l-0 border-black border-t-0 pl-2">
-          <Link
-            href={{
-              pathname: `/pandora/${type}/${data.id}`,
-            }}
+          <a
+            href={`/pandora/${type}/${data.id}`}
             className="bg-red-100 p-2 rounded"
           >
             Edit
-          </Link>
+          </a>
           <button
             className="bg-red-100 p-2 rounded"
             onClick={() => setDeleteMovieModal(true)}

@@ -15,14 +15,12 @@ function MovieContainer({ seeAllPath, seeAll, title, children }: Props) {
         <div className="w-[3px] h-[1em] truncate bg-secondary mr-2 md:mr-4" />
         <h3 className="flex-1 truncate md:text-2xl">{title}</h3>
         {seeAll && (
-          <Link
-            href={{
-              pathname: seeAllPath,
-            }}
+          <a
+            href={seeAllPath}
             className="bg-secondary px-2 py-1 text-[0.5rem] font-bold rounded text-[#313131] text-xs"
           >
             SEE ALL
-          </Link>
+          </a>
         )}
       </div>
       <div

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import a from "next/link";
 import React from "react";
 
 type Props = {
@@ -27,82 +27,82 @@ async function Footer({ hidden }: Props) {
         <div className="flex flex-col justify-start items-start w-[25%] m-2">
           <h3>Original Series</h3>
           <div className="flex flex-col justify-start items-start text-red-500 my-1 text-sm">
-            <Link href={{ pathname: `/` }} className="my-1">
+            <a href={`/`} className="my-1">
               Apple TV +
-            </Link>
-            <Link href={{ pathname: `/official/Amazon` }} className="my-1">
+            </a>
+            <a href={`/official/Amazon`} className="my-1">
               Amazon
-            </Link>
-            <Link href={{ pathname: `/official/Disney` }} className="my-1">
+            </a>
+            <a href={`/official/Disney`} className="my-1">
               Disney+
-            </Link>
-            <Link href={{ pathname: `/official/Hbo` }} className="my-1">
+            </a>
+            <a href={`/official/Hbo`} className="my-1">
               HBO
-            </Link>
-            <Link href={{ pathname: `/official/Netflix` }} className="my-1">
+            </a>
+            <a href={`/official/Netflix`} className="my-1">
               Netflix
-            </Link>
+            </a>
           </div>
         </div>
         <div className="flex flex-col justify-start items-start w-[25%] m-2">
           <h3>Categoty</h3>
           <div className="flex flex-col justify-start items-start text-red-500 my-1 text-sm">
-            <Link href={{ pathname: `/genre/Action` }} className="my-1">
+            <a href={`/genre/Action`} className="my-1">
               Action
-            </Link>
-            <Link href={{ pathname: `/genre/Adventure` }} className="my-1">
+            </a>
+            <a href={`/genre/Adventure`} className="my-1">
               Adventure
-            </Link>
-            <Link href={{ pathname: `/anime` }} className="my-1">
+            </a>
+            <a href={`/anime`} className="my-1">
               Anime
-            </Link>
-            <Link href={{ pathname: `/genre/Comedy` }} className="my-1">
+            </a>
+            <a href={`/genre/Comedy`} className="my-1">
               Comedy
-            </Link>
-            <Link href={{ pathname: `/genre/Drama` }} className="my-1">
+            </a>
+            <a href={`/genre/Drama`} className="my-1">
               Drama
-            </Link>
-            <Link href={{ pathname: `/genre/Horror` }} className="my-1">
+            </a>
+            <a href={`/genre/Horror`} className="my-1">
               Horror
-            </Link>
-            <Link href={{ pathname: `/genre/Sci-Fi` }} className="my-1">
+            </a>
+            <a href={`/genre/Sci-Fi`} className="my-1">
               Sci-Fi
-            </Link>
+            </a>
           </div>
         </div>
         <div className="flex justify-start items-start flex-col w-[25%] m-2">
           <h3>MOOVIE21</h3>
           <div className="flex flex-col justify-start items-start text-red-500 my-1 text-sm">
-            <Link href={{ pathname: `/` }} className="my-1">
+            <a href={`/`} className="my-1">
               DCEU Movie
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1">
+            </a>
+            <a href={`/`} className="my-1">
               MCU Movie
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1 text-start">
+            </a>
+            <a href={`/`} className="my-1 text-start">
               Disney+ Movie and Series
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1 text-start">
+            </a>
+            <a href={`/`} className="my-1 text-start">
               Netflix Movie and Series
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1 text-start">
+            </a>
+            <a href={`/`} className="my-1 text-start">
               Marvel Studio Series
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1">
+            </a>
+            <a href={`/`} className="my-1">
               Coming Soon
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1">
+            </a>
+            <a href={`/`} className="my-1">
               LK21
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1">
+            </a>
+            <a href={`/`} className="my-1">
               Rebahin
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1">
+            </a>
+            <a href={`/`} className="my-1">
               Indoxxi
-            </Link>
-            <Link href={{ pathname: `/` }} className="my-1">
+            </a>
+            <a href={`/`} className="my-1">
               Idlix
-            </Link>
+            </a>
           </div>
         </div>
       </div>

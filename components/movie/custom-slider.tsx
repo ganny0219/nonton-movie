@@ -82,12 +82,12 @@ function CustomSlider({ title, movieList, seasonList, urlSeeAll }: Props) {
         <div className="w-[3px] truncate h-[1em] bg-secondary mr-2 md:mr-4" />
         <h2 className="flex-1 truncate md:text-2xl">{title}</h2>
         {urlSeeAll && (
-          <Link
-            href={{ pathname: urlSeeAll }}
+          <a
+            href={urlSeeAll}
             className="bg-secondary px-2 py-1 text-[0.5rem] md:text-xs font-bold rounded text-[#313131]"
           >
             SEE ALL
-          </Link>
+          </a>
         )}
         <div className="flex items-center ml-2">
           <button

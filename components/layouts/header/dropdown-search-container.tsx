@@ -25,14 +25,14 @@ function DropdownSearchContainer({ mobile, searchMovie, searchInput }: Props) {
           }
         })}
         {searchMovie.length > 2 && (
-          <Link
-            href={{ pathname: `/search/${searchInput}` }}
+          <a
+            href={`/search/${searchInput}`}
             className="flex flex-row w-full max-w-[400px] lg:w-full p-2 hover:text-secondary"
           >
             <p className="truncate ml-2 py-2 text-2xl  lg:text-base text-center">
               Search more
             </p>
-          </Link>
+          </a>
         )}
       </div>
     </div>

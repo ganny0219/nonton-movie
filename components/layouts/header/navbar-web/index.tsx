@@ -1,4 +1,4 @@
-import Link from "next/link";
+import a from "next/link";
 import React, { use, useRef, useState } from "react";
 import MenuDropdown from "../menu-dropdown";
 import CamIcon from "@/assets/icons/cam-icon";
@@ -109,42 +109,34 @@ function NavbarWeb({
           </DropdownItemContainer>
         )}
       </div> */}
-      <Link
-        href={{
-          pathname: "/movie",
-        }}
+      <a
+        href={"/movie"}
         className="hidden lg:flex flex-row justify-center items-center p-2 px-4 hover:cursor-pointer hover:text-secondary"
       >
         <CamIcon size="1.6" />
         <p className="ml-2">Movie</p>
-      </Link>
-      <Link
-        href={{
-          pathname: "/series",
-        }}
+      </a>
+      <a
+        href={"/series"}
         className="hidden lg:flex flex-row justify-center items-center p-2 px-4 hover:cursor-pointer hover:text-secondary"
       >
         <TvIcon size="1.4" />
         <p className="ml-2">Series</p>
-      </Link>
-      <Link
-        href={{
-          pathname: "/anime",
-        }}
+      </a>
+      <a
+        href={"/anime"}
         className="hidden lg:flex flex-row justify-center items-center p-2 px-4 hover:cursor-pointer hover:text-secondary"
       >
         <FilmIcon size="1.5" />
         <p className="ml-2">Anime</p>
-      </Link>
-      <Link
-        href={{
-          pathname: "/drama-korea",
-        }}
+      </a>
+      <a
+        href={"/drama-korea"}
         className="hidden lg:flex flex-row justify-center items-center p-2 px-4 hover:cursor-pointer hover:text-secondary"
       >
         <FilmIcon size="1.5" />
         <p className="ml-2">Drakor</p>
-      </Link>
+      </a>
       <div className="hidden flex-col lg:flex">
         <MenuDropdown
           onMouseOver={otherHoverIn}
@@ -167,15 +159,13 @@ function NavbarWeb({
           </DropdownItemContainer>
         )}
       </div>
-      {/* <Link
-        href={{
-          pathname: "/genre",
-        }}
+      {/* <a
+        href={"/genre"}
         className="hidden lg:flex flex-row justify-center items-center p-2 px-4 hover:cursor-pointer hover:text-secondary"
       >
         <OpenFolderIcon size="1.5" />
         <p className="ml-2">Genre</p>
-      </Link> */}
+      </a> */}
       <div className="flex flex-1 justify-end">
         <button
           aria-label="search-button"
@@ -195,18 +185,16 @@ function NavbarWeb({
                 className="flex bg-[#2E2E2C] outline-none w-[100%] min-w-[20px] text-gray-200 text-xl"
                 placeholder="search..."
               />
-              <Link
-                href={{
-                  pathname: `${
-                    searchInputRef.current?.value != undefined &&
-                    searchInputRef.current?.value.length > 1
-                      ? `/search/${searchInputRef.current?.value}`
-                      : "/"
-                  }`,
-                }}
+              <a
+                href={`${
+                  searchInputRef.current?.value != undefined &&
+                  searchInputRef.current?.value.length > 1
+                    ? `/search/${searchInputRef.current?.value}`
+                    : "/"
+                }`}
               >
                 <SearchIcon color="#ccc" size="1.5" />
-              </Link>
+              </a>
             </div>
           </SearchDropdown>
           {searchFocus && (

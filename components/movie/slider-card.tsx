@@ -2,7 +2,7 @@ import PlayIcon from "@/assets/icons/play-icon";
 import type { Movie } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image, { ImageLoader } from "next/image";
-import Link from "next/link";
+import a from "next/link";
 import React, { useEffect, useState } from "react";
 
 type Props = {
@@ -26,10 +26,8 @@ function SliderCard({ data, index }: Props) {
   return (
     <div className="w-full">
       <div className="px-2 flex flex-col">
-        <Link
-          href={{
-            pathname: `/${data.type}/${data.slug}`,
-          }}
+        <a
+          href={`/${data.type}/${data.slug}`}
           className="relative aspect-story overflow-hidden rounded-xl hover:cursor-pointer"
           onMouseOver={hoverIn}
           onMouseLeave={hoverOut}
@@ -77,19 +75,15 @@ function SliderCard({ data, index }: Props) {
             {/* {(+data.rating).toFixed(1)} */}
             {convertRating(data.rating)}
           </p>
-        </Link>
-        <Link
-          href={{
-            pathname: `/${data.type}/${data.slug}`,
-          }}
-        >
+        </a>
+        <a href={`/${data.type}/${data.slug}`}>
           <h2
             title={data.title}
             className="text-[#fff] mt-2 text-sm sm:text-base  whitespace-nowrap overflow-ellipsis overflow-hidden hover:text-secondary"
           >
             {data.title}
           </h2>
-        </Link>
+        </a>
         <p className="text-[#ffffff80] text-xs">{data.year}</p>
       </div>
     </div>
