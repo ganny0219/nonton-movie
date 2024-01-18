@@ -211,7 +211,7 @@ function EpisodeInput({
         params: {
           imdbId: imdbIdGenerate,
           season: seasonGenerate,
-          sequence: episode[0] ? episode[0].sequence : 1,
+          sequence: episode.length > 0 ? episode[0].sequence : 0,
           mainTitle: originalTitle ? originalTitle : movieTitle,
         },
       })

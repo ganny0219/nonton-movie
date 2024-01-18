@@ -68,14 +68,7 @@ async function RootComponent({ children, main }: Props) {
           _Hasync.push(['Histats.track_hits', '']);
           `}
       </Script> */}
-      <Script id="ganalytic-func" strategy="beforeInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-TJNG0J9X6K');
-          `}
-      </Script>
+
       <div
         className={`max-w-[1100px] ${
           main ? " w-[95%] sm:w-[90%] xl:w-[80%]" : "w-[95%] sm:w-[90%]"

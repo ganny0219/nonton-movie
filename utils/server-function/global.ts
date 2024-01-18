@@ -59,9 +59,6 @@ type MetaProps = {
   keywords: string;
   url: string;
   image: string;
-  // searchParams: {
-  //   [key: string]: string;
-  // };
 };
 export const generateMetaResult = ({
   title,
@@ -69,34 +66,12 @@ export const generateMetaResult = ({
   keywords,
   url,
   image,
-}: // searchParams,
-  MetaProps) => {
-  // const searchParamsKeys = Object.keys(searchParams);
-  // let querySearhParams = "";
-  // for (let i = 0; i < searchParamsKeys.length; i++) {
-  //   if (searchParamsKeys.length != i + 1) {
-  //     querySearhParams =
-  //       querySearhParams +
-  //       searchParamsKeys[i] +
-  //       "=" +
-  //       searchParams[searchParamsKeys[i]] +
-  //       "&";
-  //   }
-  //   querySearhParams =
-  //     querySearhParams +
-  //     searchParamsKeys[i] +
-  //     "=" +
-  //     searchParams[searchParamsKeys[i]];
-  // }
+}: MetaProps) => {
   return {
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_BASE_URL}`),
     title,
     description,
     keywords,
-    alternates: {
-      // canonical: url + `${querySearhParams ? `?${querySearhParams}` : ""}`,
-      canonical: url,
-    },
     openGraph: {
       title,
       description,
@@ -111,5 +86,21 @@ export async function sessionCheck() {
   const session = await getServerSession(authOptions);
   if (!session) {
     return redirect(process.env.NEXT_PUBLIC_BASE_URL + "/pandora/auth");
+  }
+}
+
+export function generateCanonical() {
+  const currentUrl = window.location.href;
+
+  const isWithoutWWW = !currentUrl.includes("www.");
+
+  const hasQueryString = !currentUrl.includes("?");
+
+  if (isWithoutWWW && hasQueryString) {
+    const canonicalLink = document.createElement("link");
+    canonicalLink.rel = "canonical";
+    canonicalLink.href = currentUrl;
+
+    document.head.appendChild(canonicalLink);
   }
 }

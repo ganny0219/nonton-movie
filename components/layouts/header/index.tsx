@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderContainer from "./header-container";
 import Link from "next/link";
 import BurgerIcon from "@/assets/icons/burger-icon";
@@ -9,6 +9,8 @@ import { Movie } from "@/types/movie";
 import Image from "next/image";
 import { apiAxios } from "@/utils/axios";
 import GoogleAnalytic from "@/components/google-analytic";
+import { generateCanonical } from "@/utils/server-function/global";
+import { useRouter } from "next/navigation";
 
 type Props = {
   hidden?: boolean;
@@ -18,6 +20,11 @@ function Header({ hidden }: Props) {
   const [burgerToggle, setBurgerToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
   const [searchMovie, setSearchMovie] = useState<Movie[]>([]);
+  const router = useRouter();
+
+  useEffect(() => {
+    generateCanonical();
+  }, [router]);
 
   const burgerToggleHandler = () => {
     setBurgerToggle((prev) => {
