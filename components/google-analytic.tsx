@@ -18,7 +18,7 @@ function GoogleAnalytic() {
   //   };
   // }, [router.events]);
   return (
-    <Script id="ganalytic-func">
+    <Script id="ganalytic-func" strategy="beforeInteractive">
       {`
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}

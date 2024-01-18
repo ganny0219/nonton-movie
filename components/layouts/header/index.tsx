@@ -9,8 +9,6 @@ import { Movie } from "@/types/movie";
 import Image from "next/image";
 import { apiAxios } from "@/utils/axios";
 import GoogleAnalytic from "@/components/google-analytic";
-import { generateCanonical } from "@/utils/server-function/global";
-import { useRouter } from "next/navigation";
 
 type Props = {
   hidden?: boolean;
@@ -20,12 +18,17 @@ function Header({ hidden }: Props) {
   const [burgerToggle, setBurgerToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
   const [searchMovie, setSearchMovie] = useState<Movie[]>([]);
-  const router = useRouter();
-
   useEffect(() => {
-    generateCanonical();
-  }, [router]);
-
+    const currentUrl = window.location.href;
+    const isWithoutWWW = !currentUrl.includes("www.");
+    const hasQueryString = !currentUrl.includes("?");
+    if (isWithoutWWW && hasQueryString) {
+      const canonicalLink = document.createElement("link");
+      canonicalLink.rel = "canonical";
+      canonicalLink.href = currentUrl;
+      document.head.appendChild(canonicalLink);
+    }
+  }, []);
   const burgerToggleHandler = () => {
     setBurgerToggle((prev) => {
       if (searchToggle) {
