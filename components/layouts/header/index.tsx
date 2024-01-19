@@ -65,7 +65,7 @@ function Header({ hidden }: Props) {
 
   return (
     <>
-      <GoogleAnalytic />
+      {process.env.NODE_ENV == "production" && <GoogleAnalytic />}
       <HeaderContainer>
         <div className="flex flex-row w-full items-center">
           <div className="flex flex-row text-gray-200 flex-1 justify-between lg:justify-normal">
