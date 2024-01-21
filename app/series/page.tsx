@@ -65,13 +65,13 @@ async function SeriesPage(props: PageProps) {
           {featuredSeries.length > 0 && (
             <FeaturedContainer featuredMovie={featuredSeries} />
           )}
-          {seriesSeason.length > 0 && (
+          {/* {seriesSeason.length > 0 && (
             <CustomSlider
               seasonList={seriesSeason}
               title="SEASON TERBARU"
               urlSeeAll="/season/series/page/1"
             />
-          )}
+          )} */}
           {series.length > 0 && (
             <CustomSlider
               movieList={series}

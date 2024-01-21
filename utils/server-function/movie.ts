@@ -1,6 +1,6 @@
 // "use server";
 import { prisma } from "@/prisma/prisma-client";
-import { MovieById, MovieType } from "@/types/movie";
+import { MovieById, MovieType, PlayerUrl } from "@/types/movie";
 import { Genre, MovieBase } from "@/types/movie";
 import { getPrismaJson } from "./global";
 
@@ -88,8 +88,27 @@ export const getMovieBySlug = async (
         },
       },
     });
-
-    return getPrismaJson(movie);
+    const result = getPrismaJson(movie);
+    const playerList: PlayerUrl[] = [];
+    for (let player of result.playerUrl.filter(
+      (player: PlayerUrl) => player.url.length > 25
+    )) {
+      if (
+        player?.name.toLowerCase().includes("playerx") &&
+        player?.url[player.url.length] != "/"
+      ) {
+        playerList.push({
+          name: player.name,
+          url: player?.url + "/",
+        });
+      } else {
+        playerList.push(player);
+      }
+    }
+    return {
+      ...result,
+      playerUrl: playerList,
+    };
   } catch (err) {
     throw new Error("getMovieBySlug Error~");
   }

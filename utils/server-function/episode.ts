@@ -1,5 +1,5 @@
 import { prisma } from "@/prisma/prisma-client";
-import { MovieType } from "@/types/movie";
+import { MovieType, PlayerUrl } from "@/types/movie";
 import { EpisodeCardType } from "@/types/movie";
 import { getPrismaJson } from "./global";
 
@@ -65,7 +65,7 @@ export const getEpisodeListPage = async (
 
 export const getEpisodeBySlug = async (slug: string) => {
   try {
-    const result = await prisma.episode.findUnique({
+    const episode = await prisma.episode.findUnique({
       where: {
         slug: slug as string,
       },
@@ -100,7 +100,28 @@ export const getEpisodeBySlug = async (slug: string) => {
         },
       },
     });
-    return getPrismaJson(result);
+
+    const result = getPrismaJson(episode);
+    const playerList: PlayerUrl[] = [];
+    for (let player of result.playerUrl.filter(
+      (player: PlayerUrl) => player.url.length > 25
+    )) {
+      if (
+        player?.name.toLowerCase().includes("playerx") &&
+        player?.url[player.url.length] != "/"
+      ) {
+        playerList.push({
+          name: player.name,
+          url: player?.url + "/",
+        });
+      } else {
+        playerList.push(player);
+      }
+    }
+    return {
+      ...result,
+      playerUrl: playerList,
+    };
   } catch (err) {
     throw new Error("getEpisodeBySlug Error~");
   }

@@ -9,41 +9,43 @@ type Props = {
 };
 
 function Player({ playerUrl, track }: Props) {
-  const [player, setPlayer] = useState<PlayerUrl | null>(null);
+  const [player, setPlayer] = useState<PlayerUrl | null>(playerUrl[0]);
   const [playerCover, setPlayerCover] = useState(true);
   // const [trackUrl, setTrackUrl] = useState("");
 
-  const vidSrcTrack = `${track.length > 0
+  const vidSrcTrack = `${
+    track.length > 0
       ? `?sub.file=${track[0].url}&sub.label=${track[0].language}`
       : ""
-    }`;
+  }`;
 
-  useEffect(() => {
-    let playUrl = playerUrl.find((player) => player.url.length > 25);
-    if (
-      playUrl?.name.toLowerCase().includes("playerx") &&
-      playUrl?.url[playUrl.url.length] != "/"
-    ) {
-      playUrl.url = playUrl?.url + "/";
-    }
-    setPlayer(playUrl ? playUrl : null);
-    setPlayerCover(true);
-  }, [playerUrl]);
+  // useEffect(() => {
+  //   let playUrl = playerUrl.find((player) => player.url.length > 25);
+  //   if (
+  //     playUrl?.name.toLowerCase().includes("playerx") &&
+  //     playUrl?.url[playUrl.url.length] != "/"
+  //   ) {
+  //     playUrl.url = playUrl?.url + "/";
+  //   }
+  //   setPlayer(playUrl ? playUrl : null);
+  //   setPlayerCover(true);
+  // }, [playerUrl]);
 
   const playerHandler = (player: PlayerUrl) => {
     let playerUrl = "";
-    if (
-      player.name.toLowerCase().includes("playerx") &&
-      player.url[player.url.length] != "/"
-    ) {
-      playerUrl = player.url + "/";
-    } else {
-      playerUrl = player.url;
-    }
-    setPlayer({
-      ...player,
-      url: playerUrl,
-    });
+    // if (
+    //   player.name.toLowerCase().includes("playerx") &&
+    //   player.url[player.url.length] != "/"
+    // ) {
+    //   playerUrl = player.url + "/";
+    // } else {
+    //   playerUrl = player.url;
+    // }
+    setPlayer(player);
+    // setPlayer({
+    //   ...player,
+    //   url: playerUrl,
+    // });
   };
 
   const playerCoverHandler = () => {
@@ -86,7 +88,7 @@ function Player({ playerUrl, track }: Props) {
       />
       <div className="w-full border-t-2 border-dashed border-[#000] my-4" />
     </>
-  )
+  );
 }
 
 export default Player;

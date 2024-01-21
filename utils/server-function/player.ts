@@ -4,7 +4,7 @@ import { getPrismaJson } from "./global";
 
 export const getPlayerList = async () => {
   try {
-    const result = await prisma.playerServer.findMany({
+    const result = await prisma.playerUrl.findMany({
       orderBy: {
         name: "asc",
       },

@@ -1,11 +1,8 @@
 "use client";
 import PlayIcon from "@/assets/icons/play-icon";
-import { RootState } from "@/store";
 import type { Episode, Movie } from "@/types/movie";
 import Image from "next/image";
-import a from "next/link";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 type Props = {
   episode: Episode;
