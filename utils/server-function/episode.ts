@@ -100,7 +100,9 @@ export const getEpisodeBySlug = async (slug: string) => {
         },
       },
     });
-
+    if (!episode) {
+      return episode;
+    }
     const result = getPrismaJson(episode);
     const playerList: PlayerUrl[] = [];
     for (let player of result.playerUrl.filter(

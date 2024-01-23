@@ -88,6 +88,9 @@ export const getMovieBySlug = async (
         },
       },
     });
+    if (!movie) {
+      return movie;
+    }
     const result = getPrismaJson(movie);
     const playerList: PlayerUrl[] = [];
     for (let player of result.playerUrl.filter(
@@ -110,6 +113,7 @@ export const getMovieBySlug = async (
       playerUrl: playerList,
     };
   } catch (err) {
+    console.log(err);
     throw new Error("getMovieBySlug Error~");
   }
 };
