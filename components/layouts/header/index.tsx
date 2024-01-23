@@ -20,12 +20,18 @@ function Header({ hidden }: Props) {
   const [searchMovie, setSearchMovie] = useState<Movie[]>([]);
   useEffect(() => {
     const currentUrl = window.location.href;
-    const isWithoutWWW = !currentUrl.includes("www.");
+    // const isWithoutWWW = !currentUrl.includes("www.");
     const hasQueryString = !currentUrl.includes("?");
-    if (isWithoutWWW && hasQueryString) {
+    if (hasQueryString) {
       const canonicalLink = document.createElement("link");
       canonicalLink.rel = "canonical";
       canonicalLink.href = currentUrl;
+      document.head.appendChild(canonicalLink);
+    } else {
+      const canonicalLink = document.createElement("link");
+      const searchQueryIndex = currentUrl.indexOf("?");
+      canonicalLink.rel = "canonical";
+      canonicalLink.href = currentUrl.substring(0, searchQueryIndex);
       document.head.appendChild(canonicalLink);
     }
   }, []);
