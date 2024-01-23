@@ -3,7 +3,6 @@ import PlayIcon from "@/assets/icons/play-icon";
 import type { Season } from "@/types/movie";
 import { convertRating } from "@/utils/client-function/global";
 import Image from "next/image";
-import a from "next/link";
 import React, { useEffect, useState } from "react";
 
 type Props = {
@@ -31,7 +30,9 @@ function SeasonCard({ data, index, mainPage }: Props) {
       <div className="px-2 flex flex-col">
         <a
           href={`${
-            mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
+            mainPage
+              ? `/${data.movie?.type}/${data.movie?.slug}`
+              : `/season/${data.slug}`
           }`}
           className="relative aspect-story overflow-hidden rounded-xl hover:cursor-pointer"
           onMouseOver={hoverIn}
@@ -97,7 +98,9 @@ function SeasonCard({ data, index, mainPage }: Props) {
         </a>
         <a
           href={`${
-            mainPage ? `/series/${data.movie?.slug}` : `/season/${data.slug}`
+            mainPage
+              ? `/${data.movie?.type}/${data.movie?.slug}`
+              : `/season/${data.slug}`
           }`}
         >
           <h3
