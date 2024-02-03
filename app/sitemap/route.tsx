@@ -1,6 +1,7 @@
 import { countSitemap } from "@/utils/server-function/sitemap";
 
 import { getServerSideSitemapIndex } from "next-sitemap";
+// import { NextResponse } from "next/server";
 
 const URLS_PER_SITEMAP = 1000;
 
@@ -70,10 +71,12 @@ export async function GET() {
 
   const cacheMaxAgeUntilStaleSeconds = 60; // 1 minute
   const cacheMaxAgeStaleDataReturnSeconds = 15 * 60; // 15 minutes
+
   return getServerSideSitemapIndex(sitemaps, {
-    "Content-Type": "application/xml",
+    "Content-Type": "application/xml; charset=UTF-8",
     "X-Frame-Options": "SAMEORIGIN",
     "X-Content-Type-Options": "nosniff",
+    Vary: "Accept-Encoding,User-Agent,Content-Type",
   });
   // return getServerSideSitemapIndex(sitemaps, {
   //   "Cache-Control": `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`,
