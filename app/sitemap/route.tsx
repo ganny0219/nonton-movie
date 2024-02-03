@@ -70,7 +70,11 @@ export async function GET() {
 
   const cacheMaxAgeUntilStaleSeconds = 60; // 1 minute
   const cacheMaxAgeStaleDataReturnSeconds = 15 * 60; // 15 minutes
-  return getServerSideSitemapIndex(sitemaps);
+  return getServerSideSitemapIndex(sitemaps, {
+    "content-type": "application/xml",
+    "x-frame-options": "SAMEORIGIN",
+    "x-content-type-options": "nosniff",
+  });
   // return getServerSideSitemapIndex(sitemaps, {
   //   "Cache-Control": `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`,
   // });
