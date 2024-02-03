@@ -83,7 +83,7 @@ export const getMovieBySlug = async (
         country: true,
         playerUrl: {
           orderBy: {
-            name: "asc",
+            name: "desc",
           },
         },
       },

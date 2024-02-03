@@ -1,6 +1,7 @@
 import Line from "@/components/line";
 import RootPanel from "@/components/panel/root-panel";
 import { sessionCheck } from "@/utils/server-function/global";
+// import { convertPoster } from "@/utils/server-function/imdb";
 import Link from "next/link";
 import React from "react";
 

@@ -1,9 +1,11 @@
 import { JsdomProps } from "@/types/global";
 import { ImdbSelector } from "@/types/imdbSelector";
 
-import { apiAxios } from "../axios";
+import { apiAxios, apiTmdb } from "../axios";
 import { createSlugEpisode } from "../client-function/global";
 import { getImdbSelector } from "./selector";
+import { prisma } from "@/prisma/prisma-client";
+import { NextResponse } from "next/server";
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
@@ -40,6 +42,10 @@ export const getImdbDetailSeries = async (imdbId: string) => {
   const html = await result.text();
   const { document }: JsdomProps = new JSDOM(html).window;
   const selector: ImdbSelector = await getImdbSelector("series");
+  const tmdbDetail = await apiTmdb(
+    `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id`
+  ).then((res) => res.data);
+
   const genre = Array.from(document.querySelectorAll(selector.genre), (e) => {
     return { name: e.textContent };
   });
@@ -63,7 +69,10 @@ export const getImdbDetailSeries = async (imdbId: string) => {
   );
   const title = document.querySelector(selector.mainTitle)?.textContent;
   const rated = "R";
-  const poster = document.querySelector(selector.poster)?.getAttribute("src");
+  // const poster = document.querySelector(selector.poster)?.getAttribute("src");
+  const poster = tmdbDetail.tv_results[0]?.poster_path
+    ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbDetail.tv_results[0]?.poster_path}`
+    : "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
   const released = document.querySelector(selector.released)?.textContent;
 
   const releaseCountryIndex = released?.indexOf("(");
@@ -113,7 +122,9 @@ export const getImdbDetailMovie = async (imdbId: string) => {
   const html = await result.text();
   const { document }: JsdomProps = new JSDOM(html).window;
   const selector: ImdbSelector = await getImdbSelector("movie");
-
+  const tmdbDetail = await apiTmdb(
+    `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id`
+  ).then((res) => res.data);
   const genre = Array.from(document.querySelectorAll(selector.genre), (e) => {
     return { name: e.textContent };
   });
@@ -143,7 +154,10 @@ export const getImdbDetailMovie = async (imdbId: string) => {
   );
   const title = document.querySelector(selector.mainTitle)?.textContent;
   const rated = document.querySelector(selector.rated)?.textContent;
-  const poster = document.querySelector(selector.poster)?.getAttribute("src");
+  const poster = tmdbDetail.movie_results[0]?.poster_path
+    ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbDetail.movie_results[0]?.poster_path}`
+    : "https://image.tmdb.org/t/p/w600_and_h900_bestv2";
+  // const poster = document.querySelector(selector.poster)?.getAttribute("src");
   const released = document.querySelector(selector.released)?.textContent;
 
   const releaseCountryIndex = released?.indexOf("(");
@@ -199,6 +213,12 @@ export const getImdbEpisodeDetail = async (
   const { document }: JsdomProps = new JSDOM(html).window;
   let counter = 0;
   const selector: ImdbSelector = await getImdbSelector("episode");
+  const tmdbDetail = await apiTmdb(
+    `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id`
+  ).then((res) => res.data);
+  const episodeDetail = await apiTmdb(
+    `https://api.themoviedb.org/3/tv/${tmdbDetail.tv_results[0].id}/season/${season}?language=en-US`
+  ).then((res) => res.data.episodes);
   const seriesTitle = mainTitle;
   const episode: any = [];
   Array.from(document.querySelectorAll(selector.episodeArray), async (e) => {
@@ -211,7 +231,10 @@ export const getImdbEpisodeDetail = async (
     // const imdbRating = e
     //   .querySelector(".sc-577bf7cb-0 .sc-f1a948e3-1 .ipc-rating-star")
     //   ?.textContent?.substring(0, 3);
-    const poster = e.querySelector(selector.poster)?.getAttribute("src");
+    const poster = `https://www.themoviedb.org/t/p/w227_and_h127_bestv2${
+      episodeDetail[counter - 1]?.still_path
+    }`;
+    // const poster = e.querySelector(selector.poster)?.getAttribute("src");
 
     episode.push({
       slug: slug,
@@ -244,6 +267,12 @@ export const getImdbNewEpisodeDetail = async (
   const html = await result.text();
   const { document }: JsdomProps = new JSDOM(html).window;
   const selector: ImdbSelector = await getImdbSelector("episode");
+  const tmdbDetail = await apiTmdb(
+    `https://api.themoviedb.org/3/find/${imdbId}?external_source=imdb_id`
+  ).then((res) => res.data);
+  const episodeDetail = await apiTmdb(
+    `https://api.themoviedb.org/3/tv/${tmdbDetail.tv_results[0].id}/season/${season}?language=en-US`
+  ).then((res) => res.data.episodes);
 
   const seriesTitle = mainTitle;
   const episodeList = document.querySelectorAll(selector.episodeArray);
@@ -256,9 +285,12 @@ export const getImdbNewEpisodeDetail = async (
     selector.released
   )?.textContent;
   const plot = episodeList[+sequence].querySelector(selector.plot)?.textContent;
-  const poster = episodeList[+sequence]
-    .querySelector(selector.poster)
-    ?.getAttribute("src");
+  // const poster = episodeList[+sequence]
+  //   .querySelector(selector.poster)
+  //   ?.getAttribute("src");
+  const poster = `https://www.themoviedb.org/t/p/w227_and_h127_bestv2${
+    episodeDetail[+sequence]?.still_path
+  }`;
 
   return {
     slug: slug,
@@ -275,3 +307,90 @@ export const getImdbNewEpisodeDetail = async (
     playerUrl: [],
   };
 };
+
+// export const convertPoster = async () => {
+//   const movie = await prisma.movie.findMany({
+//     where: {
+//       type: "movie",
+//     },
+//   });
+//   for await (let mov of movie) {
+//     if (mov.imdbId.includes("tt")) {
+//       const tmdbDetail = await apiTmdb(
+//         `https://api.themoviedb.org/3/find/${mov.imdbId}?external_source=imdb_id`
+//       ).then((res) => res.data);
+//       if (tmdbDetail.movie_results[0]?.id) {
+//         await prisma.movie.update({
+//           where: {
+//             id: mov.id,
+//           },
+//           data: {
+//             poster: tmdbDetail.movie_results[0]?.poster_path
+//               ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbDetail.movie_results[0]?.poster_path}`
+//               : mov.poster,
+//           },
+//         });
+//       }
+//     }
+//   }
+//   const series = await prisma.movie.findMany({
+//     where: {
+//       type: {
+//         in: ["series", "drama-korea"],
+//       },
+//     },
+//     include: {
+//       season: {
+//         include: {
+//           episode: true,
+//         },
+//       },
+//     },
+//   });
+
+//   for await (let ser of series) {
+//     if (ser.imdbId.includes("tt")) {
+//       const tmdbDetail = await apiTmdb(
+//         `https://api.themoviedb.org/3/find/${ser.imdbId}?external_source=imdb_id`
+//       ).then((res) => res.data);
+//       if (tmdbDetail.tv_results[0]?.id) {
+//         await prisma.movie.update({
+//           where: {
+//             id: ser.id,
+//           },
+//           data: {
+//             poster: tmdbDetail.tv_results[0]?.poster_path
+//               ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbDetail.tv_results[0]?.poster_path}`
+//               : ser.poster,
+//           },
+//         });
+
+//         for await (let seas of ser.season) {
+//           for await (let eps of seas.episode) {
+//             const episodeDetail = await apiTmdb(
+//               `https://api.themoviedb.org/3/tv/${tmdbDetail.tv_results[0]?.id}/season/${seas.sequence}?language=en-US`
+//             )
+//               .then((res) => res.data.episodes)
+//               .catch(() => {
+//                 return false;
+//               });
+//             if (episodeDetail) {
+//               await prisma.episode.update({
+//                 where: {
+//                   id: eps.id,
+//                 },
+//                 data: {
+//                   poster: episodeDetail[eps.sequence - 1]?.still_path
+//                     ? `https://www.themoviedb.org/t/p/w227_and_h127_bestv2${
+//                         episodeDetail[eps.sequence - 1]?.still_path
+//                       }`
+//                     : `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbDetail.tv_results[0]?.poster_path}`,
+//                 },
+//               });
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// };

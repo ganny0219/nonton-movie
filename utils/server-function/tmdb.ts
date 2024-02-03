@@ -129,7 +129,7 @@ export const getTmdbDetailSeries = async (imdbId: string) => {
   });
   const title = tmdbData.name;
   const rated = "R";
-  const poster = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbData.poster_path}`;
+  const poster = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbData?.poster_path}`;
   const released = formatDate(tmdbData.first_air_date);
   let country = tmdbData.production_countries[0]?.name;
   const language = tmdbData.production_countries[0]?.name;
@@ -219,7 +219,7 @@ export const getTmdbDetailMovie = async (imdbId: string) => {
 
   const title = tmdbData.title;
   const rated = "R";
-  const poster = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbData.poster_path}`;
+  const poster = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${tmdbData?.poster_path}`;
   const released = formatDate(tmdbData.release_date);
   let country = tmdbData.production_countries[0].name;
   const language = tmdbData.production_countries[0].name;
