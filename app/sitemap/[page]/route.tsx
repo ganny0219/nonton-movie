@@ -47,9 +47,9 @@ export async function GET(request: NextRequest) {
   const cacheMaxAgeStaleDataReturnSeconds = 15 * 60; // 15 minutes
 
   return getServerSideSitemap(fields, {
-    "content-type": "application/xml",
-    "x-frame-options": "SAMEORIGIN",
-    "x-content-type-options": "nosniff",
+    "Content-Type": "application/xml",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-Content-Type-Options": "nosniff",
   });
   // return getServerSideSitemap(fields, {
   //   "Cache-Control": `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`,
