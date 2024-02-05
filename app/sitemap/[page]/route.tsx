@@ -50,7 +50,6 @@ export async function GET(request: NextRequest) {
     "Content-Type": "application/xml; charset=UTF-8",
     "X-Frame-Options": "SAMEORIGIN",
     "X-Content-Type-Options": "nosniff",
-    Vary: "Accept-Encoding,User-Agent,Content-Type",
   });
   // return getServerSideSitemap(fields, {
   //   "Cache-Control": `public, s-maxage=${cacheMaxAgeUntilStaleSeconds}, stale-while-revalidate=${cacheMaxAgeStaleDataReturnSeconds}`,
