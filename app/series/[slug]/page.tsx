@@ -54,7 +54,7 @@ async function StreamSeriesPage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <EdsContainerTwoGrid />
+          {/* <EdsContainerTwoGrid /> */}
           <DetailMovie data={series} />
           <DetailSelection movie={series} />
           <RecomendationMovie recomendMovie={recomendMovie} />

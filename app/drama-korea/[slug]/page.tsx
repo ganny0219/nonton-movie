@@ -53,7 +53,7 @@ async function StreamDramaKoreaPage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <EdsContainerTwoGrid />
+          {/* <EdsContainerTwoGrid /> */}
           <DetailMovie data={drakor} />
           <DetailSelection movie={drakor} />
           <RecomendationMovie recomendMovie={recomendMovie} />

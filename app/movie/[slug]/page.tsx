@@ -61,9 +61,9 @@ async function StreamMoviePage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <EdsContainerTwoGrid />
+          {/* <EdsContainerTwoGrid /> */}
           <Player playerUrl={movie.playerUrl} track={movie.track} />
-          <EdsContainerOneGrid />
+          {/* <EdsContainerOneGrid /> */}
           <DetailMovie data={movie} />
           <DetailSelection movie={movie} movieType />
           <RecomendationMovie recomendMovie={recomendMovie} />

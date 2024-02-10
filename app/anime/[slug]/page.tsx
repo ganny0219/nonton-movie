@@ -58,7 +58,7 @@ async function StreamAnimePage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <EdsContainerTwoGrid />
+          {/* <EdsContainerTwoGrid /> */}
           <DetailMovie data={anime} />
           <DetailSelection movie={anime} />
           <RecomendationMovie recomendMovie={recomendMovie} />

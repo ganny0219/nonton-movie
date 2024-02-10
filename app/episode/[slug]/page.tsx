@@ -63,9 +63,9 @@ async function EpisodeMoviePage(props: PageProps) {
     <>
       <RootComponent>
         <PageContainer>
-          <EdsContainerTwoGrid />
+          {/* <EdsContainerTwoGrid /> */}
           <Player playerUrl={mainEpisode.playerUrl} track={mainEpisode.track} />
-          <EdsContainerOneGrid />
+          {/* <EdsContainerOneGrid /> */}
           <EpisodeNavigation
             mainEpisode={mainEpisode}
             allEpisode={allEpisode}
@@ -84,9 +84,8 @@ async function EpisodeMoviePage(props: PageProps) {
                 />
                 {epsd.sequence == mainEpisode.sequence && (
                   <div
-                    className={`absolute bg-[#31313190] w-full h-full ${
-                      mainEpisode.sequence == 1 ? "top-0" : "top-1"
-                    } left-0`}
+                    className={`absolute bg-[#31313190] w-full h-full ${mainEpisode.sequence == 1 ? "top-0" : "top-1"
+                      } left-0`}
                   />
                 )}
               </div>
